@@ -4,11 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.storage.mapper.BackendAdviceMapper">
 
-    <select id="findAdviceList" resultType="com.ruoyi.project.storage.domain.AdviceVO">
+    <select id="findAdviceList" resultMap="adviceResultMap">
         SELECT t.id,
                t.content,
                t.user_id
         FROM t_advice t
         ORDER BY t.id
     </select>
+    <resultMap id="adviceResultMap" type="com.ruoyi.project.storage.domain.AdviceVO">
+        <!-- vo类字段与数据库字段对应 -->
+        <result property="userId" column="user_id"/>
+    </resultMap>
 </mapper>
