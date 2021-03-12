@@ -6,6 +6,7 @@ import com.ruoyi.project.storage.service.BackendAdviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 @Service
 public class BackendAdviceServiceImpl implements BackendAdviceService {
 
-    @Autowired
+    @Resource
     private BackendAdviceMapper backendAdviceMapper;
 
     @Override
