@@ -26,7 +26,6 @@ public class BackendAdviceController extends BaseController {
     public Order test1() {
         Order order = new Order();
         order.setOrderName("张三");
-        order.setUserId(123456l);
         order.setUpdateTime(new Date());
         return order;
     }
