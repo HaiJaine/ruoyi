@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * 意见管理
  *
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/advice")
-public class BackenAdviceController extends BaseController {
+public class BackendAdviceController extends BaseController {
     @PostMapping("/list")
     public String getAdviceList() {
         return "test";
@@ -25,6 +27,7 @@ public class BackenAdviceController extends BaseController {
         Order order = new Order();
         order.setOrderName("张三");
         order.setUserId(123456l);
+        order.setUpdateTime(new Date());
         return order;
     }
 }
