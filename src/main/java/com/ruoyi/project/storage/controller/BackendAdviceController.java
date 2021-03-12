@@ -35,8 +35,7 @@ public class BackendAdviceController extends BaseController {
 
     @PostMapping("test2")
     public List<Order> test2() {
-        List<Order> orders = getOrders();
-        return orders;
+        return getOrders();
     }
 
     /*
