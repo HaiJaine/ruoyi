@@ -8,7 +8,15 @@ import lombok.Data;
  */
 @Data
 public class AdviceVO {
-    private String id;
+    private Long id;
+    private Long userId;
+    private String title;
     private String content;
-    private String userId;
+    private Long sortNo;
+    private String createTime;
+    private String createBy;
+    private String updateTime;
+    private String updateBy;
+    private Long version;
+    private String delFlag;
 }
