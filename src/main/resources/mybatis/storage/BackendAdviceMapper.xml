@@ -6,7 +6,8 @@
 
     <select id="findAdviceList" resultType="com.ruoyi.project.storage.domain.AdviceVO">
         SELECT t.id,
-               t.content
+               t.content,
+               t.user_id
         FROM t_advice t
         ORDER BY t.id
     </select>

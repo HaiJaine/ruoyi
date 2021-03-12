@@ -10,5 +10,5 @@ import lombok.Data;
 public class AdviceVO {
     private String id;
     private String content;
-    private String userId;
+    private String user_id;
 }
