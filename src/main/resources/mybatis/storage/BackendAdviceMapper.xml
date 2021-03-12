@@ -9,5 +9,6 @@
                t.content
         FROM t_advice t
         ORDER BY t.id
+        LIMIT 0,5
     </select>
 </mapper>

@@ -2,7 +2,10 @@ package com.ruoyi.project.storage.controller;
 
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.page.TableDataInfo;
+import com.ruoyi.project.storage.domain.AdviceVO;
 import com.ruoyi.project.storage.domain.Order;
+import com.ruoyi.project.storage.service.BackendAdviceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/advice")
 public class BackendAdviceController extends BaseController {
+    @Autowired
+    private BackendAdviceService backendAdviceService;
+
     @PostMapping("/test")
     public String test() {
         return "test";
@@ -44,8 +50,8 @@ public class BackendAdviceController extends BaseController {
     @PostMapping("page")
     public TableDataInfo test3() {
         startPage();
-        List<Order> orders = getOrders();
-        return getDataTable(orders);
+        List<AdviceVO> adviceVOList = backendAdviceService.findAdviceList();
+        return getDataTable(adviceVOList);
     }
 
     private List<Order> getOrders() {
