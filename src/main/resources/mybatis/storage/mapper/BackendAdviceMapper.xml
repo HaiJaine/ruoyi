@@ -11,6 +11,7 @@
         FROM t_advice t
         ORDER BY t.id
     </select>
+
     <resultMap id="adviceResultMap" type="com.ruoyi.project.storage.domain.AdviceVO">
         <!-- vo类字段与数据库字段对应 -->
         <result property="userId" column="user_id"/>
