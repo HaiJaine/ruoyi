@@ -24,7 +24,7 @@ public class BackendAdviceController extends BaseController {
         return "test";
     }
 
-    @PostMapping("list1")
+    @PostMapping("test1")
     public Order test1() {
         Order order = new Order();
         order.setOrderName("张三");
