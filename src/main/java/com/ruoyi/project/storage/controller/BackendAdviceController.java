@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 意见管理
@@ -17,8 +19,8 @@ import java.util.Date;
 @RestController
 @RequestMapping("/advice")
 public class BackendAdviceController extends BaseController {
-    @PostMapping("/list")
-    public String getAdviceList() {
+    @PostMapping("/test")
+    public String test() {
         return "test";
     }
 
@@ -28,5 +30,23 @@ public class BackendAdviceController extends BaseController {
         order.setOrderName("张三");
         order.setUpdateTime(new Date());
         return order;
+    }
+
+    @PostMapping("test2")
+    public List<Order> test2() {
+        List<Order> orders = new ArrayList<>();
+        Order order1 = new Order();
+        Order order2 = new Order();
+        Order order3 = new Order();
+        order1.setOrderName("张三");
+        order2.setOrderName("李四");
+        order3.setOrderName("王五");
+        order1.setUpdateTime(new Date());
+        order2.setUpdateTime(new Date());
+        order3.setUpdateTime(new Date());
+        orders.add(order1);
+        orders.add(order2);
+        orders.add(order3);
+        return orders;
     }
 }
