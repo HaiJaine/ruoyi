@@ -1,7 +1,7 @@
 package com.ruoyi.project.storage.service.impl;
 
 import com.ruoyi.common.utils.SecurityUtils;
-import com.ruoyi.project.storage.domain.BannerParam;
+import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.mapper.BannerMapper;
 import com.ruoyi.project.storage.service.BannerService;
@@ -23,8 +23,8 @@ public class BannerServiceImpl implements BannerService {
     private BannerMapper bannerMapper;
 
     @Override
-    public List<BannerVO> findBannerList(BannerParam param) {
-        return bannerMapper.findBannerList(param);
+    public List<BannerVO> findBannerList(Params params) {
+        return bannerMapper.findBannerList(params);
     }
 
     @Override

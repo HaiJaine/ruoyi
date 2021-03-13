@@ -1,6 +1,7 @@
 package com.ruoyi.project.storage.mapper;
 
 import com.ruoyi.project.storage.domain.AdviceVO;
+import com.ruoyi.project.storage.domain.Params;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
  */
 
 public interface BackendAdviceMapper {
-    List<AdviceVO> findAdviceList();
+    List<AdviceVO> findAdviceList(Params params);
 }

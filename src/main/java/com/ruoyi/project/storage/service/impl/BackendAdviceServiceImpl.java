@@ -1,9 +1,9 @@
 package com.ruoyi.project.storage.service.impl;
 
 import com.ruoyi.project.storage.domain.AdviceVO;
+import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.BackendAdviceMapper;
 import com.ruoyi.project.storage.service.BackendAdviceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ public class BackendAdviceServiceImpl implements BackendAdviceService {
     private BackendAdviceMapper backendAdviceMapper;
 
     @Override
-    public List<AdviceVO> findAdviceList() {
-        return backendAdviceMapper.findAdviceList();
+    public List<AdviceVO> findAdviceList(Params params) {
+        return backendAdviceMapper.findAdviceList(params);
     }
 }

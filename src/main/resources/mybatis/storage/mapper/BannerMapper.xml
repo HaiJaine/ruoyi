@@ -61,7 +61,7 @@
 
     <!--查询广告-->
     <select id="findBannerList" resultMap="BannerResultMap"
-            parameterType="com.ruoyi.project.storage.domain.BannerParam">
+            parameterType="com.ruoyi.project.storage.domain.Params">
         SELECT *
         FROM t_advertisement t
         <where>

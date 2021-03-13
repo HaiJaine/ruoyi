@@ -4,7 +4,7 @@ import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.framework.web.domain.BaseEntity;
 import com.ruoyi.project.common.enums.TerminalEnum;
-import com.ruoyi.project.storage.domain.Order;
+import com.ruoyi.project.storage.domain.OrderVO;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -224,7 +224,7 @@ public class ParameterUtil {
      *
      * @param t 泛型
      */
-    public static <T extends Order> void setCreateOrderEntity(T t) {
+    public static <T extends OrderVO> void setCreateOrderEntity(T t) {
         // 获取当前登录人用户名
         String userName = SecurityUtils.getUsername();
         // 获取当前时间

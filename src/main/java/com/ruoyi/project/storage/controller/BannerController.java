@@ -3,7 +3,7 @@ package com.ruoyi.project.storage.controller;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
-import com.ruoyi.project.storage.domain.BannerParam;
+import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.service.BannerService;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class BannerController extends BaseController {
      * @return 结果
      */
     @RequestMapping("/list")
-    public TableDataInfo list(BannerParam param) {
+    public TableDataInfo list(Params param) {
         startPage();
         List<BannerVO> bannerList = bannerService.findBannerList(param);
         return getDataTable(bannerList);
