@@ -22,6 +22,12 @@ public class BannerController extends BaseController {
     @Resource
     private BannerService bannerService;
 
+    /**
+     * 查询广告
+     *
+     * @param param 参数
+     * @return 结果
+     */
     @RequestMapping("/list")
     public TableDataInfo list(BannerParam param) {
         startPage();
@@ -29,15 +35,35 @@ public class BannerController extends BaseController {
         return getDataTable(bannerList);
     }
 
-    @PostMapping("creat")
+    /**
+     * 新增广告
+     *
+     * @param bannerVO 参数
+     * @return 结果
+     */
+    @PostMapping("/creat")
     public AjaxResult creat(@RequestBody BannerVO bannerVO) {
         int result = bannerService.creat(bannerVO);
         return toAjax(result);
     }
 
-    @PutMapping("update")
+    /**
+     * 更新广告表
+     *
+     * @param bannerVO 参数
+     * @return 结果
+     */
+    @PutMapping("/update")
     public AjaxResult update(@RequestBody BannerVO bannerVO) {
         int result = bannerService.update(bannerVO);
         return toAjax(result);
     }
+
+    @PutMapping("/{operate}/{ids}")
+    public AjaxResult operate(@PathVariable String operate, @PathVariable Long ids) {
+        int result = bannerService.operate(operate,ids);
+        return toAjax(result);
+    }
+
+
 }

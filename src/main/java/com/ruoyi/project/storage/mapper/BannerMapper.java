@@ -12,4 +12,8 @@ public interface BannerMapper {
     int create(BannerVO bannerVO);
 
     int update(BannerVO bannerVO);
+
+    int isEnable(BannerVO bannerVO);
+
+    int delete(BannerVO bannerVO);
 }

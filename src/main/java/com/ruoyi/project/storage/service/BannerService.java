@@ -15,4 +15,6 @@ public interface BannerService {
     int creat(BannerVO bannerVO);
 
     int update(BannerVO bannerVO);
+
+    int operate(String enAble, Long ids);
 }

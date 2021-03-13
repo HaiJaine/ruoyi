@@ -6,7 +6,6 @@ import com.ruoyi.project.storage.domain.AdviceVO;
 import com.ruoyi.project.storage.service.BackendAdviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +26,7 @@ public class BackendAdviceController extends BaseController {
     /*
     查询意见建议（使用分页）
      */
-    @GetMapping("list")
+    @GetMapping("/list")
     public TableDataInfo getAdviceList() {
         startPage();
         List<AdviceVO> adviceVOList = backendAdviceService.findAdviceList();

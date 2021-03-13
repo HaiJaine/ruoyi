@@ -40,7 +40,24 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public int update(BannerVO bannerVO) {
-        // bannerVO.setVersion(bannerVO.getVersion() + 1);
         return bannerMapper.update(bannerVO);
+    }
+
+    @Override
+    public int operate(String operate, Long ids) {
+        int result = 0;
+        BannerVO bannerVO = new BannerVO();
+        bannerVO.setId(ids);
+        if ("enable".equalsIgnoreCase(operate)) {
+            bannerVO.setIsEnable(0);
+            result = bannerMapper.isEnable(bannerVO);
+        } else if ("disable".equalsIgnoreCase(operate)) {
+            bannerVO.setIsEnable(1);
+            result = bannerMapper.isEnable(bannerVO);
+        } else if ("delete".equalsIgnoreCase(operate)) {
+            bannerVO.setDelFlag(2);
+            result = bannerMapper.delete(bannerVO);
+        }
+        return result;
     }
 }
