@@ -8,4 +8,6 @@ import java.util.List;
 public interface BannerMapper {
 
     List<BannerVO> findBannerList(BannerParam param);
+
+    int create(BannerVO bannerVO);
 }

@@ -5,6 +5,8 @@ import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.BannerParam;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.service.BannerService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +29,11 @@ public class BannerController extends BaseController {
         startPage();
         List<BannerVO> bannerList = bannerService.findBannerList(param);
         return getDataTable(bannerList);
+    }
+
+    @PostMapping("creat")
+    public int creat(@RequestBody BannerVO bannerVO) {
+        int result = bannerService.creat(bannerVO);
+        return result;
     }
 }

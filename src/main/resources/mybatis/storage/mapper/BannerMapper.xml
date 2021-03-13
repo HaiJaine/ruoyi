@@ -17,14 +17,28 @@
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
     </resultMap>
 
+
+    <!--新增广告-->
+    <insert id="create" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+        INSERT INTO t_advertisement (title, content, img_url, points, is_enable, sort_no,
+                                     create_time, create_by, update_time, update_by, version, del_flag)
+        VALUES (#{title}, #{content}, #{imgUrl}, #{points}, #{isEnable}, #{sortNo}, #{createTime}, #{createBy},
+                #{updateTime}, #{updateBy}, #{version}, #{delFlag})
+    </insert>
+
     <select id="findBannerList" resultMap="BannerResultMap"
             parameterType="com.ruoyi.project.storage.domain.BannerParam">
         SELECT *
         FROM t_advertisement t
-        WHERE t.del_flag = 0
-          AND t.content LIKE concat('%',#{searchValue}, '%')
+        <where>
+            t.del_flag = 0
+            <if test="searchValue != null">
+                AND t.content LIKE concat('%',#{searchValue}, '%')
+                OR t.title like concat('%',#{searchValue}, '%')
+                OR t.points like concat('%',#{searchValue}, '%')
+            </if>
+        </where>
         ORDER BY t.id
-
     </select>
 
 </mapper>

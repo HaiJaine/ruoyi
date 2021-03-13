@@ -40,7 +40,7 @@ public class BannerVO implements Serializable {
     /**
      * 是否启用（0：启用；1：停用）
      */
-    private Byte isEnable;
+    private int isEnable;
 
     /**
      * 序号
@@ -77,7 +77,7 @@ public class BannerVO implements Serializable {
     /**
      * 删除标记（0：未删除；2：已删除）
      */
-    private String delFlag;
+    private int delFlag;
 
     private static final long serialVersionUID = 1L;
 }
