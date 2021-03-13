@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.storage.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.OrderVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="order_code" jdbcType="BIGINT" property="orderCode"/>
+        <result column="order_name" jdbcType="VARCHAR" property="orderName"/>
+        <result column="empty_box_order_time" jdbcType="TIMESTAMP" property="emptyBoxOrderTime"/>
+        <result column="heavy_box_order_time" jdbcType="TIMESTAMP" property="heavyBoxOrderTime"/>
+        <result column="empty_box_call_name" jdbcType="VARCHAR" property="emptyBoxCallName"/>
+        <result column="empty_box_call_phone" jdbcType="VARCHAR" property="emptyBoxCallPhone"/>
+        <result column="empty_box_call_address" jdbcType="VARCHAR" property="emptyBoxCallAddress"/>
+        <result column="empty_box_call_time" jdbcType="DATE" property="emptyBoxCallTime"/>
+        <result column="empty_box_call_interval" jdbcType="VARCHAR" property="emptyBoxCallInterval"/>
+        <result column="heavy_box_call_name" jdbcType="VARCHAR" property="heavyBoxCallName"/>
+        <result column="heavy_box_call_phone" jdbcType="VARCHAR" property="heavyBoxCallPhone"/>
+        <result column="heavy_box_call_address" jdbcType="VARCHAR" property="heavyBoxCallAddress"/>
+        <result column="heavy_box_call_time" jdbcType="DATE" property="heavyBoxCallTime"/>
+        <result column="heavy_box_call_interval" jdbcType="VARCHAR" property="heavyBoxCallInterval"/>
+        <result column="box_id" jdbcType="BIGINT" property="boxId"/>
+        <result column="box_code" jdbcType="BIGINT" property="boxCode"/>
+        <result column="box_standard" jdbcType="VARCHAR" property="boxStandard"/>
+        <result column="box_unit_price" jdbcType="BIGINT" property="boxUnitPrice"/>
+        <result column="lease_duration" jdbcType="INTEGER" property="leaseDuration"/>
+        <result column="total_price" jdbcType="BIGINT" property="totalPrice"/>
+        <result column="sort_no" jdbcType="BIGINT" property="sortNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+        <result column="app_del_flag" jdbcType="TINYINT" property="appDelFlag"/>
+        <result column="backend_del_flag" jdbcType="TINYINT" property="backendDelFlag"/>
+    </resultMap>
+    <select id="findOrderList" resultMap="BaseResultMap">
+        SELECT *
+        FROM t_order
+    </select>
+
+</mapper>
