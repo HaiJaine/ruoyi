@@ -2,6 +2,7 @@ package com.ruoyi.project.storage.controller;
 
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.page.TableDataInfo;
+import com.ruoyi.project.storage.domain.BannerParam;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.service.BannerService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,9 @@ public class BannerController extends BaseController {
     private BannerService bannerService;
 
     @RequestMapping("/list")
-    public TableDataInfo list() {
+    public TableDataInfo list(BannerParam param) {
         startPage();
-        List<BannerVO> bannerList = bannerService.findBannerList();
+        List<BannerVO> bannerList = bannerService.findBannerList(param);
         return getDataTable(bannerList);
     }
 }

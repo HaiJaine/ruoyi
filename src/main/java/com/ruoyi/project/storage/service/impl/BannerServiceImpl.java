@@ -1,5 +1,6 @@
 package com.ruoyi.project.storage.service.impl;
 
+import com.ruoyi.project.storage.domain.BannerParam;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.mapper.BannerMapper;
 import com.ruoyi.project.storage.service.BannerService;
@@ -13,12 +14,12 @@ import java.util.List;
  * @date 2021/3/13 8:46
  */
 @Service
-public class BannerServicemImpl implements BannerService {
+public class BannerServiceImpl implements BannerService {
     @Resource
     private BannerMapper bannerMapper;
 
     @Override
-    public List<BannerVO> findBannerList() {
-        return bannerMapper.findBannerList();
+    public List<BannerVO> findBannerList(BannerParam param) {
+        return bannerMapper.findBannerList(param);
     }
 }

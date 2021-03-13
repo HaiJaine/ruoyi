@@ -17,10 +17,14 @@
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
     </resultMap>
 
-    <select id="findBannerList" resultMap="BannerResultMap">
+    <select id="findBannerList" resultMap="BannerResultMap"
+            parameterType="com.ruoyi.project.storage.domain.BannerParam">
         SELECT *
         FROM t_advertisement t
+        WHERE t.del_flag = 0
+          AND t.content LIKE concat('%',#{searchValue}, '%')
         ORDER BY t.id
+
     </select>
 
 </mapper>
