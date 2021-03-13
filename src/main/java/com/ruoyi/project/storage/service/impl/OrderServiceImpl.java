@@ -22,4 +22,11 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderVO> findOrderList(Params params) {
         return orderMapper.findOrderList(params);
     }
+
+    @Override
+    public List<OrderVO> findOrderInfo(Long id) {
+        OrderVO orderVO = new OrderVO();
+        orderVO.setId(id);
+        return orderMapper.findOrderInfo(orderVO);
+    }
 }

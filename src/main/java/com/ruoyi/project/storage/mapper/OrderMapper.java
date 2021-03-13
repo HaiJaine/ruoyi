@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface OrderMapper {
     List<OrderVO> findOrderList(Params params);
+
+    List<OrderVO> findOrderInfo(OrderVO orderVO);
 }

@@ -36,6 +36,7 @@
         <result column="backend_del_flag" jdbcType="TINYINT" property="backendDelFlag"/>
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
     </resultMap>
+    <!--多条件查询订单-->
     <select id="findOrderList" resultMap="BaseResultMap">
         SELECT *
         FROM t_order
@@ -52,6 +53,16 @@
             </if>
             <if test="heavyBoxOrderTimeStart != null and heavyBoxOrderTimeEnd != null">
                 AND heavy_box_order_time BETWEEN #{heavyBoxOrderTimeStart} AND #{heavyBoxOrderTimeEnd}
+            </if>
+        </where>
+    </select>
+    <!--订单详情-->
+    <select id="findOrderInfo" resultMap="BaseResultMap">
+        SELECT *
+        FROM t_order
+        <where>
+            <if test="id != null">
+                AND id = #{id}
             </if>
         </where>
     </select>
