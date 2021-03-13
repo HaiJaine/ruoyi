@@ -13,4 +13,6 @@ public interface OrderService {
     List<OrderVO> findOrderList(Params params);
 
     List<OrderVO> findOrderInfo(Long id);
+
+    int operateOrder(Long id, Integer operate, Long version);
 }

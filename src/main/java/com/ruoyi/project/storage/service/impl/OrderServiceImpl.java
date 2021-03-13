@@ -29,4 +29,10 @@ public class OrderServiceImpl implements OrderService {
         orderVO.setId(id);
         return orderMapper.findOrderInfo(orderVO);
     }
+
+    @Override
+    public int operateOrder(Long id, Integer operate, Long version) {
+        //TODO 操作订单业务逻辑
+        return 0;
+    }
 }
