@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.storage.mapper.BannerMapper">
+    <resultMap id="BannerResultMap" type="com.ruoyi.project.storage.domain.BannerVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+        <result column="points" jdbcType="BIGINT" property="points"/>
+        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="sort_no" jdbcType="BIGINT" property="sortNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+    </resultMap>
+
+    <select id="findBannerList" resultMap="BannerResultMap">
+        SELECT *
+        FROM t_advertisement t
+        ORDER BY t.id
+    </select>
+
+</mapper>
