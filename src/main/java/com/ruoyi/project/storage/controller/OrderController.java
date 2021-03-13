@@ -3,6 +3,7 @@ package com.ruoyi.project.storage.controller;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.OrderVO;
+import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,9 +24,9 @@ public class OrderController extends BaseController {
     private OrderService orderService;
 
     @GetMapping("/list")
-    public TableDataInfo getOrderList(@RequestBody(required = false) OrderVO orderVO) {
+    public TableDataInfo getOrderList(Params params) {
         startPage();
-        List<OrderVO> orderVOList = orderService.findOrderList(orderVO);
+        List<OrderVO> orderVOList = orderService.findOrderList(params);
         return getDataTable(orderVOList);
     }
 }

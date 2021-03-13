@@ -1,6 +1,7 @@
 package com.ruoyi.project.storage.service.impl;
 
 import com.ruoyi.project.storage.domain.OrderVO;
+import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.OrderMapper;
 import com.ruoyi.project.storage.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<OrderVO> findOrderList(OrderVO orderVO) {
-        return orderMapper.findOrderList(orderVO);
+    public List<OrderVO> findOrderList(Params params) {
+        return orderMapper.findOrderList(params);
     }
 }

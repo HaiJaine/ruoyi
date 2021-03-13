@@ -40,17 +40,18 @@
         SELECT *
         FROM t_order
         <where>
+            del_flag = 0
             <if test="nickName != null">
-                AND nick_name = #{nickName}
+                AND nick_name like concat('%', #{nickName},'%')
             </if>
             <if test="status != null">
-                AND status = #{status}
+                AND status like concat('%', #{status},'%')
             </if>
-            <if test="emptyBoxOrderTimeStart != null">
-                AND empty_box_order_time =#{emptyBoxOrderTimeStart}
+            <if test="emptyBoxOrderTimeStart != null and emptyBoxOrderTimeEnd != null">
+                AND empty_box_order_time BETWEEN #{emptyBoxOrderTimeStart} AND #{emptyBoxOrderTimeEnd}
             </if>
-            <if test="heavyBoxOrderTime != null">
-                AND heavy_box_order_time =#{heavyBoxOrderTime}
+            <if test="heavyBoxOrderTimeStart != null and heavyBoxOrderTimeEnd != null">
+                AND heavy_box_order_time BETWEEN #{heavyBoxOrderTimeStart} AND #{heavyBoxOrderTimeEnd}
             </if>
         </where>
     </select>
