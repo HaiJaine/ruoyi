@@ -5,6 +5,7 @@ import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +23,9 @@ public class OrderController extends BaseController {
     private OrderService orderService;
 
     @GetMapping("/list")
-    public TableDataInfo getOrderList() {
+    public TableDataInfo getOrderList(@RequestBody(required = false) OrderVO orderVO) {
         startPage();
-        List<OrderVO> orderVOList = orderService.findOrderList();
+        List<OrderVO> orderVOList = orderService.findOrderList(orderVO);
         return getDataTable(orderVOList);
     }
 }

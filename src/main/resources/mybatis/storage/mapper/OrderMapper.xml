@@ -34,10 +34,25 @@
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
         <result column="app_del_flag" jdbcType="TINYINT" property="appDelFlag"/>
         <result column="backend_del_flag" jdbcType="TINYINT" property="backendDelFlag"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
     </resultMap>
     <select id="findOrderList" resultMap="BaseResultMap">
         SELECT *
         FROM t_order
+        <where>
+            <if test="nickName != null">
+                AND nick_name = #{nickName}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="emptyBoxOrderTimeStart != null">
+                AND empty_box_order_time =#{emptyBoxOrderTimeStart}
+            </if>
+            <if test="heavyBoxOrderTime != null">
+                AND heavy_box_order_time =#{heavyBoxOrderTime}
+            </if>
+        </where>
     </select>
 
 </mapper>

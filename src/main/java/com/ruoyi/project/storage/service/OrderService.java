@@ -9,5 +9,5 @@ import java.util.List;
  * @date 2021/3/13 21:12
  */
 public interface OrderService {
-    List<OrderVO> findOrderList();
+    List<OrderVO> findOrderList(OrderVO orderVO);
 }

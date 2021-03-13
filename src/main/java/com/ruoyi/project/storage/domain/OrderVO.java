@@ -178,4 +178,8 @@ public class OrderVO extends BaseEntity {
     @ApiModelProperty(value = "后台端删除标记（0：未删除；2：已删除）")
     private Integer backendDelFlag;
 
+    /**
+     * 客户名称
+     */
+    private String nickName;
 }

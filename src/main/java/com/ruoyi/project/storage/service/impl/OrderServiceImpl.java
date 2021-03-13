@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<OrderVO> findOrderList() {
-        return orderMapper.findOrderList();
+    public List<OrderVO> findOrderList(OrderVO orderVO) {
+        return orderMapper.findOrderList(orderVO);
     }
 }
