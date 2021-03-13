@@ -66,6 +66,7 @@
         FROM t_advertisement t
         <where>
             t.del_flag = 0
+            AND del_flag = 0
             <if test="searchValue != null">
                 AND t.content LIKE concat('%',#{searchValue}, '%')
                 OR t.title like concat('%',#{searchValue}, '%')
