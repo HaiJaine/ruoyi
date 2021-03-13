@@ -9,11 +9,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  *
  * @author ruoyi
  */
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
-public class RuoYiApplication
-{
-    public static void main(String[] args)
-    {
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+public class RuoYiApplication {
+    public static void main(String[] args) {
         System.setProperty("spring.devtools.restart.enabled", "false");
         SpringApplication.run(RuoYiApplication.class, args);
         System.out.println("(♥◠‿◠)ﾉﾞ  若依启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
@@ -22,7 +20,7 @@ public class RuoYiApplication
                 " | ( ' )  |       \\  _. /  '       \n" +
                 " |(_ o _) /        _( )_ .'         \n" +
                 " | (_,_).' __  ___(_ o _)'          \n" +
-                " |  |\\ \\  |  |   |(_,_)'         \n" +
+                " |  |\\ \\  |  |   |(_,_)'          \n" +
                 " |  | \\ `'   /|   `-'  /           \n" +
                 " |  |  \\    /  \\      /           \n" +
                 " ''-'   `'-'    `-..-'              ");
