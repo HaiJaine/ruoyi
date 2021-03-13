@@ -39,17 +39,24 @@
     </update>
 
     <!--操作广告-->
-    <update id="isEnable" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+    <update id="isEnable" parameterType="java.util.Map">
         UPDATE t_advertisement
-        SET is_enable   = #{isEnable},
-            update_time = now()
-        WHERE id = #{id}
+        SET is_enable = #{isEnable},
+        update_time = now()
+        WHERE id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </update>
-    <update id="delete" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+    <!--删除广告-->
+    <update id="delete">
         UPDATE t_advertisement
-        SET del_flag    = #{delFlag},
-            update_time = now()
-        WHERE id = #{id}
+        SET del_flag = 2,
+        update_time = now()
+        WHERE id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </update>
 
     <!--查询广告-->

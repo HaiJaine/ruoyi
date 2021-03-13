@@ -60,7 +60,7 @@ public class BannerController extends BaseController {
     }
 
     @PutMapping("/{operate}/{ids}")
-    public AjaxResult operate(@PathVariable String operate, @PathVariable Long ids) {
+    public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
         int result = bannerService.operate(operate,ids);
         return toAjax(result);
     }

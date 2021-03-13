@@ -4,6 +4,7 @@ import com.ruoyi.project.storage.domain.BannerParam;
 import com.ruoyi.project.storage.domain.BannerVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BannerMapper {
 
@@ -13,7 +14,7 @@ public interface BannerMapper {
 
     int update(BannerVO bannerVO);
 
-    int isEnable(BannerVO bannerVO);
+    int isEnable(Map<String, Object> map);
 
-    int delete(BannerVO bannerVO);
+    int delete(Map<String, Object> map);
 }

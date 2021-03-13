@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author HaiJaine
@@ -44,19 +46,18 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public int operate(String operate, Long ids) {
+    public int operate(String operate, Long[] ids) {
         int result = 0;
-        BannerVO bannerVO = new BannerVO();
-        bannerVO.setId(ids);
+        Map<String, Object> map = new HashMap();
+        map.put("ids", ids);
         if ("enable".equalsIgnoreCase(operate)) {
-            bannerVO.setIsEnable(0);
-            result = bannerMapper.isEnable(bannerVO);
+            map.put("isEnable", 0);
+            result = bannerMapper.isEnable(map);
         } else if ("disable".equalsIgnoreCase(operate)) {
-            bannerVO.setIsEnable(1);
-            result = bannerMapper.isEnable(bannerVO);
+            map.put("isEnable", 1);
+            result = bannerMapper.isEnable(map);
         } else if ("delete".equalsIgnoreCase(operate)) {
-            bannerVO.setDelFlag(2);
-            result = bannerMapper.delete(bannerVO);
+            result = bannerMapper.delete(map);
         }
         return result;
     }
