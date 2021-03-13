@@ -10,4 +10,6 @@ public interface BannerMapper {
     List<BannerVO> findBannerList(BannerParam param);
 
     int create(BannerVO bannerVO);
+
+    int update(BannerVO bannerVO);
 }

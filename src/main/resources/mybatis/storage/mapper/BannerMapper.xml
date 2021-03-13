@@ -26,6 +26,18 @@
                 #{updateTime}, #{updateBy}, #{version}, #{delFlag})
     </insert>
 
+    <!--更新广告-->
+    <update id="update" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+        UPDATE t_advertisement
+        SET title   = #{title},
+            content = #{content},
+            points  = #{points},
+            img_url = #{imgUrl},
+            sort_no = #{sortNo}
+        WHERE id = #{id}
+    </update>
+
+    <!--查询广告-->
     <select id="findBannerList" resultMap="BannerResultMap"
             parameterType="com.ruoyi.project.storage.domain.BannerParam">
         SELECT *

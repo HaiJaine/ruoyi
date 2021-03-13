@@ -13,4 +13,6 @@ public interface BannerService {
     List<BannerVO> findBannerList(BannerParam param);
 
     int creat(BannerVO bannerVO);
+
+    int update(BannerVO bannerVO);
 }

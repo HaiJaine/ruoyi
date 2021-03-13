@@ -37,4 +37,10 @@ public class BannerServiceImpl implements BannerService {
         int result = bannerMapper.create(bannerVO);
         return result;
     }
+
+    @Override
+    public int update(BannerVO bannerVO) {
+        // bannerVO.setVersion(bannerVO.getVersion() + 1);
+        return bannerMapper.update(bannerVO);
+    }
 }

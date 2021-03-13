@@ -6,10 +6,7 @@ import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.BannerParam;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.service.BannerService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -35,6 +32,12 @@ public class BannerController extends BaseController {
     @PostMapping("creat")
     public AjaxResult creat(@RequestBody BannerVO bannerVO) {
         int result = bannerService.creat(bannerVO);
+        return toAjax(result);
+    }
+
+    @PutMapping("update")
+    public AjaxResult update(@RequestBody BannerVO bannerVO) {
+        int result = bannerService.update(bannerVO);
         return toAjax(result);
     }
 }
