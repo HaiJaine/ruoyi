@@ -1,6 +1,7 @@
 package com.ruoyi.project.storage.controller;
 
 import com.ruoyi.framework.web.controller.BaseController;
+import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.BannerParam;
 import com.ruoyi.project.storage.domain.BannerVO;
@@ -32,8 +33,8 @@ public class BannerController extends BaseController {
     }
 
     @PostMapping("creat")
-    public int creat(@RequestBody BannerVO bannerVO) {
+    public AjaxResult creat(@RequestBody BannerVO bannerVO) {
         int result = bannerService.creat(bannerVO);
-        return result;
+        return toAjax(result);
     }
 }
