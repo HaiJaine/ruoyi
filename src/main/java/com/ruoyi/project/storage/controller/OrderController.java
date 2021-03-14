@@ -7,6 +7,7 @@ import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.service.OrderService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -48,9 +49,23 @@ public class OrderController extends BaseController {
         return getDataTable(orderInfo);
     }
 
+    /**
+     * 订单操作
+     *
+     * @param id      id
+     * @param operate 操作
+     * @param version 版本
+     * @return 结果
+     */
     @PutMapping("/operate/{id}/{operate}/{version}")
     public AjaxResult operateOrder(@PathVariable Long id, @PathVariable Integer operate, @PathVariable Long version) {
         int result = orderService.operateOrder(id, operate, version);
+        return toAjax(result);
+    }
+
+    @DeleteMapping("/delete/{ids}")
+    public AjaxResult deleteOrder(@PathVariable Long[] ids) {
+        int result = orderService.deleteOrder(ids);
         return toAjax(result);
     }
 }

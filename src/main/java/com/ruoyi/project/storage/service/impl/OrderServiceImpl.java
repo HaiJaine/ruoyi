@@ -7,7 +7,9 @@ import com.ruoyi.project.storage.service.OrderService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author HaiJaine
@@ -34,5 +36,12 @@ public class OrderServiceImpl implements OrderService {
     public int operateOrder(Long id, Integer operate, Long version) {
         //TODO 操作订单业务逻辑
         return 0;
+    }
+
+    @Override
+    public int deleteOrder(Long[] ids) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("ids", ids);
+        return orderMapper.deleteOrder(map);
     }
 }

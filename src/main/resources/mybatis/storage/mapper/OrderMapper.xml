@@ -36,6 +36,14 @@
         <result column="backend_del_flag" jdbcType="TINYINT" property="backendDelFlag"/>
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
     </resultMap>
+    <!--删除订单-->
+    <update id="deleteOrder">
+        UPDATE t_order SET del_flag = 2
+        WHERE id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
     <!--多条件查询订单-->
     <select id="findOrderList" resultMap="BaseResultMap">
         SELECT *
