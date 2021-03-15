@@ -1,5 +1,6 @@
 package com.ruoyi.project.storage.service.impl;
 
+import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
 import com.ruoyi.project.storage.mapper.CustomerMapper;
@@ -7,6 +8,7 @@ import com.ruoyi.project.storage.service.CustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,7 +35,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int createCustomer(User user) {
-        return 0;
+        sexStringToNumber(user);
+        user.setUserType("02");
+        user.setCreateTime(new Date());
+        user.setCreateBy(SecurityUtils.getLoginUser().getUsername());
+        user.setPassword(SecurityUtils.encryptPassword("123456"));
+        return customerMapper.createCustomer(user);
     }
 
     @Override
@@ -54,5 +61,16 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int updatePassword(String oldPassword, String newPassword) {
         return 0;
+    }
+
+    private void sexStringToNumber(User user) {
+        String sex = user.getSex();
+        if ("男".equals(sex)) {
+            user.setSex("0");
+        } else if ("女".equals(sex)) {
+            user.setSex("1");
+        } else if ("未知".equals(sex)) {
+            user.setSex("2");
+        }
     }
 }
