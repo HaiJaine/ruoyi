@@ -67,6 +67,12 @@ public class UserController extends BaseController {
         return toAjax(result);
     }
 
+    /**
+     * 重置密码
+     *
+     * @param ids ids
+     * @return 结果
+     */
     @PutMapping("/reset/{ids}")
     public AjaxResult resetPassword(@PathVariable Long[] ids) {
         int result = userService.resetPassword(ids);

@@ -45,7 +45,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int updateCustomer(User user) {
-        return 0;
+        sexStringToNumber(user);
+        user.setUpdateTime(new Date());
+        user.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
+        return customerMapper.updateCustomer(user);
     }
 
     @Override
