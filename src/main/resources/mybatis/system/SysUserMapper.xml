@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userName"     column="user_name"    />
 		<result property="nickName"     column="nick_name"    />
 		<result property="email"        column="email"        />
-		<result property="phonenumber"  column="phonenumber"  />
+		<result property="phone_number"  column="phone_number"  />
 		<result property="sex"          column="sex"          />
 		<result property="avatar"       column="avatar"       />
 		<result property="password"     column="password"     />
@@ -65,8 +65,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="status != null and status != ''">
 			AND u.status = #{status}
 		</if>
-		<if test="phonenumber != null and phonenumber != ''">
-			AND u.phone_number like concat('%', #{phonenumber}, '%')
+		<if test="phone_number != null and phone_number != ''">
+			AND u.phone_number like concat('%', #{phone_number}, '%')
 		</if>
 		<if test="beginTime != null and beginTime != ''"><!-- 开始时间检索 -->
 			AND date_format(u.create_time,'%y%m%d') &gt;= date_format(#{beginTime},'%y%m%d')
@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">
-		select user_id, phone_number from sys_user where phone_number = #{phonenumber} and del_flag = '0'
+		select user_id, phone_number from sys_user where phone_number = #{phone_number} and del_flag = '0'
 	</select>
 
 	<select id="checkEmailUnique" parameterType="String" resultMap="SysUserResult">
@@ -111,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="nickName != null and nickName != ''">nick_name,</if>
  			<if test="email != null and email != ''">email,</if>
  			<if test="avatar != null and avatar != ''">avatar,</if>
- 			<if test="phonenumber != null and phonenumber != ''">phone_number,</if>
+ 			<if test="phone_number != null and phone_number != ''">phone_number,</if>
  			<if test="sex != null and sex != ''">sex,</if>
  			<if test="password != null and password != ''">password,</if>
  			<if test="status != null and status != ''">status,</if>
@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="nickName != null and nickName != ''">#{nickName},</if>
  			<if test="email != null and email != ''">#{email},</if>
  			<if test="avatar != null and avatar != ''">#{avatar},</if>
- 			<if test="phonenumber != null and phonenumber != ''">#{phonenumber},</if>
+ 			<if test="phone_number != null and phone_number != ''">#{phone_number},</if>
  			<if test="sex != null and sex != ''">#{sex},</if>
  			<if test="password != null and password != ''">#{password},</if>
  			<if test="status != null and status != ''">#{status},</if>
@@ -142,7 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="userName != null and userName != ''">user_name = #{userName},</if>
  			<if test="nickName != null and nickName != ''">nick_name = #{nickName},</if>
  			<if test="email != null and email != ''">email = #{email},</if>
- 			<if test="phonenumber != null and phonenumber != ''">phonenumber = #{phonenumber},</if>
+ 			<if test="phone_number != null and phone_number != ''">phone_number = #{phone_number},</if>
  			<if test="sex != null and sex != ''">sex = #{sex},</if>
  			<if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
  			<if test="password != null and password != ''">password = #{password},</if>

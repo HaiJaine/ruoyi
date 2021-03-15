@@ -98,10 +98,10 @@ public interface SysUserMapper
     /**
      * 校验手机号码是否唯一
      *
-     * @param phonenumber 手机号码
+     * @param phone_number 手机号码
      * @return 结果
      */
-    public SysUser checkPhoneUnique(String phonenumber);
+    public SysUser checkPhoneUnique(String phone_number);
 
     /**
      * 校验email是否唯一

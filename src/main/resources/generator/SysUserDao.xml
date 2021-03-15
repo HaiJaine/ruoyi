@@ -25,7 +25,7 @@
     <result column="version" jdbcType="BIGINT" property="version" />
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, dept_id, user_name, nick_name, user_type, email, phonenumber, sex, avatar, 
+    user_id, dept_id, user_name, nick_name, user_type, email, phone_number, sex, avatar,
     `password`, `status`, del_flag, login_ip, login_date, create_by, create_time, update_by, 
     update_time, remark, current_points, version
   </sql>
@@ -48,7 +48,7 @@
       update_by, update_time, remark, 
       current_points, version)
     values (#{deptId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone_number,jdbcType=VARCHAR},
       #{sex,jdbcType=CHAR}, #{avatar,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{status,jdbcType=CHAR}, #{delFlag,jdbcType=CHAR}, #{loginIp,jdbcType=VARCHAR}, 
       #{loginDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
@@ -73,8 +73,8 @@
       <if test="email != null">
         email,
       </if>
-      <if test="phonenumber != null">
-        phonenumber,
+      <if test="phone_number != null">
+        phone_number,
       </if>
       <if test="sex != null">
         sex,
@@ -135,8 +135,8 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="phonenumber != null">
-        #{phonenumber,jdbcType=VARCHAR},
+      <if test="phone_number != null">
+        #{phone_number,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=CHAR},
@@ -200,8 +200,8 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="phonenumber != null">
-        phonenumber = #{phonenumber,jdbcType=VARCHAR},
+      <if test="phone_number != null">
+        phone_number = #{phone_number,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=CHAR},
@@ -255,7 +255,7 @@
       nick_name = #{nickName,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      phone_number = #{phonenumber,jdbcType=VARCHAR},
+      phone_number = #{phone_number,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
       avatar = #{avatar,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
