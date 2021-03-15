@@ -8,7 +8,7 @@
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
         <result column="user_type" jdbcType="VARCHAR" property="userType"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="phonenumber" jdbcType="VARCHAR" property="phonenumber"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
         <result column="sex" jdbcType="CHAR" property="sex"/>
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -24,6 +24,12 @@
         <result column="current_points" jdbcType="BIGINT" property="currentPoints"/>
         <result column="version" jdbcType="BIGINT" property="version"/>
     </resultMap>
+    <insert id="createUser" parameterType="com.ruoyi.project.storage.domain.User">
+        INSERT INTO sys_user(user_name, nick_name, email, phone_number, sex, create_time, create_by, user_type,
+                             password)
+        VALUES (#{userName}, #{nickName}, #{email}, #{phoneNumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
+                #{password})
+    </insert>
     <select id="findUsers" resultMap="BaseResultMap">
         SELECT s.create_by,
         s.create_time,
@@ -38,7 +44,7 @@
         s.nick_name,
         s.user_type,
         s.email,
-        s.phonenumber,
+        s.phone_number,
         s.sex,
         s.avatar,
         s.password,
