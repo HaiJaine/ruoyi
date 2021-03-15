@@ -62,7 +62,20 @@
     <!--查询广告-->
     <select id="findBannerList" resultMap="BannerResultMap"
             parameterType="com.ruoyi.project.storage.domain.Params">
-        SELECT *
+        SELECT
+        t.id,
+        t.title,
+        t.content,
+        t.img_url,
+        t.points,
+        t.is_enable,
+        t.sort_no,
+        t.create_time,
+        t.create_by,
+        t.update_time,
+        t.update_by,
+        t.version,
+        t.del_flag
         FROM t_advertisement t
         <where>
             t.del_flag = 0
