@@ -5,7 +5,6 @@ import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
 import com.ruoyi.project.storage.mapper.UserMapper;
 import com.ruoyi.project.storage.service.UserService;
-import org.apache.catalina.security.SecurityUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,6 +34,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int createUser(User user) {
+        sexStringToNumber(user);
+        user.setUserType("01");
+        user.setCreateTime(new Date());
+        user.setCreateBy(SecurityUtils.getLoginUser().getUsername());
+        user.setPassword(SecurityUtils.encryptPassword("123456"));
+        return userMapper.createUser(user);
+    }
+
+    private void sexStringToNumber(User user) {
         String sex = user.getSex();
         if ("男".equals(sex)) {
             user.setSex("0");
@@ -43,10 +51,13 @@ public class UserServiceImpl implements UserService {
         } else if ("未知".equals(sex)) {
             user.setSex("2");
         }
-        user.setUserType("01");
-        user.setCreateTime(new Date());
-        user.setCreateBy(SecurityUtils.getLoginUser().getUsername());
-        user.setPassword(SecurityUtils.encryptPassword("123456"));
-        return userMapper.createUser(user);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        sexStringToNumber(user);
+        user.setUpdateTime(new Date());
+        user.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
+        return userMapper.updateUser(user);
     }
 }

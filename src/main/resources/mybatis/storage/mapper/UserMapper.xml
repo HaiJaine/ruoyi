@@ -30,6 +30,17 @@
         VALUES (#{userName}, #{nickName}, #{email}, #{phoneNumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
                 #{password})
     </insert>
+    <update id="updateUser" parameterType="com.ruoyi.project.storage.domain.User">
+        UPDATE sys_user
+        SET user_name    = #{userName},
+            nick_name    = #{nickName},
+            email        = #{email},
+            phone_number = #{phoneNumber},
+            sex          = #{sex},
+            update_time  = #{updateTime},
+            update_by    = #{updateBy}
+        WHERE user_id = #{userId}
+    </update>
     <select id="findUsers" resultMap="BaseResultMap">
         SELECT s.create_by,
         s.create_time,
@@ -59,7 +70,7 @@
             <if test="searchValue != null">
                 AND s.nick_name like concat ('%',#{searchValue},'%')
                 OR s.user_name like concat ('%',#{searchValue},'%')
-                OR s.phonenumber like concat ('%',#{searchValue},'%')
+                OR s.phone_number like concat ('%',#{searchValue},'%')
                 OR s.email like concat ('%',#{searchValue},'%')
             </if>
         </where>

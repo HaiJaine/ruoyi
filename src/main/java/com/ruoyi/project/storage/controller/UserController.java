@@ -41,4 +41,16 @@ public class UserController extends BaseController {
         int result = userService.createUser(user);
         return toAjax(result);
     }
+
+    /**
+     * 编辑用户
+     *
+     * @param user 用户
+     * @return 结果
+     */
+    @PutMapping("/update")
+    public AjaxResult updateUser(@RequestBody User user) {
+        int result = userService.updateUser(user);
+        return toAjax(result);
+    }
 }

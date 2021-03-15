@@ -9,4 +9,6 @@ public interface UserService {
     List<User> findUsers(Params params);
 
     int createUser(User user);
+
+    int updateUser(User user);
 }
