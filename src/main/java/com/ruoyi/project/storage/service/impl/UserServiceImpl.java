@@ -79,4 +79,12 @@ public class UserServiceImpl implements UserService {
         }
         return result;
     }
+
+    @Override
+    public int resetPassword(Long[] ids) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("ids", ids);
+        map.put("password", SecurityUtils.encryptPassword("123456"));
+        return userMapper.resetPassword(map);
+    }
 }

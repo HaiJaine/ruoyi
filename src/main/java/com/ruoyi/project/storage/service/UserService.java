@@ -13,4 +13,6 @@ public interface UserService {
     int updateUser(User user);
 
     int operate(String operate, Long[] ids);
+
+    int resetPassword(Long[] ids);
 }

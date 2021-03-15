@@ -54,9 +54,22 @@ public class UserController extends BaseController {
         return toAjax(result);
     }
 
+    /**
+     * 操作用户
+     *
+     * @param operate 操作
+     * @param ids     ids
+     * @return 结果
+     */
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
         int result = userService.operate(operate, ids);
+        return toAjax(result);
+    }
+
+    @PutMapping("/reset/{ids}")
+    public AjaxResult resetPassword(@PathVariable Long[] ids) {
+        int result = userService.resetPassword(ids);
         return toAjax(result);
     }
 }

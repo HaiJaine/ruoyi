@@ -16,4 +16,6 @@ public interface UserMapper {
     int isStatus(Map<String, Object> map);
 
     int delete(Map<String, Object> map);
+
+    int resetPassword(Map<String, Object> user);
 }

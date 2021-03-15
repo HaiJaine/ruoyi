@@ -60,6 +60,14 @@
             #{id}
         </foreach>
     </update>
+    <update id="resetPassword">
+        UPDATE sys_user
+        SET password = #{password}
+        WHERE user_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
     <select id="findUsers" resultMap="BaseResultMap">
         SELECT s.create_by,
         s.create_time,
