@@ -87,4 +87,18 @@ public class UserServiceImpl implements UserService {
         map.put("password", SecurityUtils.encryptPassword("123456"));
         return userMapper.resetPassword(map);
     }
+
+    @Override
+    public int updatePassword(String oldPassword, String newPassword) {
+        int result = 0;
+        User user = new User();
+
+        //判断输入旧密码与当前用户的旧密码是否相等
+        if (SecurityUtils.matchesPassword(oldPassword, SecurityUtils.getLoginUser().getPassword())) {
+            user.setUserId(SecurityUtils.getLoginUser().getUser().getUserId());
+            user.setPassword(SecurityUtils.encryptPassword(newPassword));
+            result = userMapper.updatePassword(user);
+        }
+        return result;
+    }
 }

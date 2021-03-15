@@ -18,4 +18,6 @@ public interface UserMapper {
     int delete(Map<String, Object> map);
 
     int resetPassword(Map<String, Object> user);
+
+    int updatePassword(User user);
 }
