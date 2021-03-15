@@ -11,4 +11,6 @@ public interface UserService {
     int createUser(User user);
 
     int updateUser(User user);
+
+    int operate(String operate, Long[] ids);
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -59,5 +61,22 @@ public class UserServiceImpl implements UserService {
         user.setUpdateTime(new Date());
         user.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
         return userMapper.updateUser(user);
+    }
+
+    @Override
+    public int operate(String operate, Long[] ids) {
+        int result = 0;
+        Map<String, Object> map = new HashMap();
+        map.put("ids", ids);
+        if ("enable".equalsIgnoreCase(operate)) {
+            map.put("status", 0);
+            result = userMapper.isStatus(map);
+        } else if ("disable".equalsIgnoreCase(operate)) {
+            map.put("status", 1);
+            result = userMapper.isStatus(map);
+        } else if ("delete".equalsIgnoreCase(operate)) {
+            result = userMapper.delete(map);
+        }
+        return result;
     }
 }

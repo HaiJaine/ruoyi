@@ -53,4 +53,10 @@ public class UserController extends BaseController {
         int result = userService.updateUser(user);
         return toAjax(result);
     }
+
+    @PutMapping("/{operate}/{ids}")
+    public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
+        int result = userService.operate(operate, ids);
+        return toAjax(result);
+    }
 }

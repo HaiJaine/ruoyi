@@ -32,14 +32,33 @@
     </insert>
     <update id="updateUser" parameterType="com.ruoyi.project.storage.domain.User">
         UPDATE sys_user
-        SET user_name    = #{userName},
-            nick_name    = #{nickName},
+        SET nick_name    = #{nickName},
             email        = #{email},
             phone_number = #{phoneNumber},
             sex          = #{sex},
             update_time  = #{updateTime},
             update_by    = #{updateBy}
         WHERE user_id = #{userId}
+    </update>
+
+    <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.User">
+        UPDATE sys_user
+        SET status = #{status},
+        update_time = now()
+        WHERE user_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="delete">
+        UPDATE sys_user
+        SET del_flag = 2,
+        update_time = now()
+        WHERE user_id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </update>
     <select id="findUsers" resultMap="BaseResultMap">
         SELECT s.create_by,
