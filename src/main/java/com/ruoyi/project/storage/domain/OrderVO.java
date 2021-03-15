@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @ApiModel(value = "订单对象", description = "订单对象")
-public class OrderVO extends BaseEntity {
+public class OrderVO {
 
     /**
      * 序列化id
