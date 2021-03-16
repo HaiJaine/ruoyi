@@ -3,11 +3,9 @@ package com.ruoyi.project.storage.controller;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
-import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.service.OrderService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,8 +30,8 @@ public class OrderController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo getOrderList(Params params) {
         startPage();
-        List<OrderVO> orderVOList = orderService.findOrderList(params);
-        return getDataTable(orderVOList);
+        List<OrderVO> orderList = orderService.findOrderList(params);
+        return getDataTable(orderList);
     }
 
     /**

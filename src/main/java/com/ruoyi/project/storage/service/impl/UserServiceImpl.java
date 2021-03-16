@@ -3,6 +3,7 @@ package com.ruoyi.project.storage.service.impl;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
+import com.ruoyi.project.storage.domain.UserVO;
 import com.ruoyi.project.storage.mapper.UserMapper;
 import com.ruoyi.project.storage.service.UserService;
 import org.springframework.stereotype.Service;
@@ -35,32 +36,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int createUser(User user) {
-        sexStringToNumber(user);
-        user.setUserType("01");
-        user.setCreateTime(new Date());
-        user.setCreateBy(SecurityUtils.getLoginUser().getUsername());
-        user.setPassword(SecurityUtils.encryptPassword("123456"));
-        return userMapper.createUser(user);
+    public int createUser(UserVO userVO) {
+        sexStringToNumber(userVO);
+        userVO.setUserType("01");
+        userVO.setCreateTime(new Date());
+        userVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
+        userVO.setPassword(SecurityUtils.encryptPassword("123456"));
+        return userMapper.createUser(userVO);
     }
 
-    private void sexStringToNumber(User user) {
-        String sex = user.getSex();
+    private void sexStringToNumber(UserVO userVO) {
+        String sex = userVO.getSex();
         if ("男".equals(sex)) {
-            user.setSex("0");
+            userVO.setSex("0");
         } else if ("女".equals(sex)) {
-            user.setSex("1");
+            userVO.setSex("1");
         } else if ("未知".equals(sex)) {
-            user.setSex("2");
+            userVO.setSex("2");
         }
     }
 
     @Override
-    public int updateUser(User user) {
-        sexStringToNumber(user);
-        user.setUpdateTime(new Date());
-        user.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
-        return userMapper.updateUser(user);
+    public int updateUser(UserVO userVO) {
+        sexStringToNumber(userVO);
+        userVO.setUpdateTime(new Date());
+        userVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
+        return userMapper.updateUser(userVO);
     }
 
     @Override

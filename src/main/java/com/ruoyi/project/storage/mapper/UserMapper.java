@@ -2,6 +2,7 @@ package com.ruoyi.project.storage.mapper;
 
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
+import com.ruoyi.project.storage.domain.UserVO;
 
 import java.util.List;
 import java.util.Map;
@@ -9,9 +10,9 @@ import java.util.Map;
 public interface UserMapper {
     List<User> findUsers(Params params);
 
-    int createUser(User user);
+    int createUser(UserVO userVO);
 
-    int updateUser(User user);
+    int updateUser(UserVO userVO);
 
     int isStatus(Map<String, Object> map);
 

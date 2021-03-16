@@ -1,5 +1,6 @@
 package com.ruoyi.project.storage.service.impl;
 
+import com.ruoyi.project.storage.domain.Order;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.OrderMapper;
@@ -27,9 +28,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderVO> findOrderInfo(Long id) {
-        OrderVO orderVO = new OrderVO();
-        orderVO.setId(id);
-        return orderMapper.findOrderInfo(orderVO);
+        Order order = new Order();
+        order.setId(id);
+        return orderMapper.findOrderInfo(order);
     }
 
     @Override

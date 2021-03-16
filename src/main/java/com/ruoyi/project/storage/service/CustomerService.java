@@ -1,18 +1,19 @@
 package com.ruoyi.project.storage.service;
 
+import com.ruoyi.framework.web.domain.AjaxResult;
+import com.ruoyi.project.storage.domain.CustomerVO;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.User;
 
 import java.util.List;
 
 public interface CustomerService {
-    List<User> findCustomers(Params params);
+    List<CustomerVO> findCustomers(Params params);
 
-    int createCustomer(User user);
+    int createCustomer(CustomerVO customerVO) throws Exception;
 
-    int updateCustomer(User user);
+    int updateCustomer(CustomerVO customerVO) throws Exception;
 
-    int operate(String operate, Long[] ids);
+    int operate(String operate, Long[] ids) throws Exception;
 
-    int resetPassword(Long[] ids);
+    AjaxResult resetPassword(Long[] ids);
 }

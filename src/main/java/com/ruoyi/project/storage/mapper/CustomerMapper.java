@@ -1,17 +1,17 @@
 package com.ruoyi.project.storage.mapper;
 
+import com.ruoyi.project.storage.domain.CustomerVO;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.User;
 
 import java.util.List;
 import java.util.Map;
 
 public interface CustomerMapper {
-    List<User> findCustomers(Params params);
+    List<CustomerVO> findCustomers(Params params);
 
-    int createCustomer(User user);
+    int createCustomer(CustomerVO customerVO);
 
-    int updateCustomer(User user);
+    int updateCustomer(CustomerVO customerVO);
 
     int isStatus(Map<String, Object> map);
 
@@ -19,4 +19,7 @@ public interface CustomerMapper {
 
     int resetPassword(Map<String, Object> map);
 
+    List<String> findCustomerByIds(Map<String, Object> ids);
+
+    CustomerVO findUserById(Long id);
 }

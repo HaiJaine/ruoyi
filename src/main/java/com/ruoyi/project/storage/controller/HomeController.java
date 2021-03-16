@@ -17,6 +17,13 @@ public class HomeController extends BaseController {
     @Resource
     private UserService userService;
 
+    /**
+     * 修改密码
+     *
+     * @param oldPassword 旧密码
+     * @param newPassword 新密码
+     * @return 结果
+     */
     @PutMapping("/updatePassword/{oldPassword}/{newPassword}")
     public AjaxResult updatePassword(@PathVariable String oldPassword, @PathVariable String newPassword) {
         int result = userService.updatePassword(oldPassword, newPassword);

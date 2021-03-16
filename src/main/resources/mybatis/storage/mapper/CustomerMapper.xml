@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.storage.mapper.CustomerMapper">
-    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.User">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.CustomerVO">
         <id column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
@@ -24,33 +24,34 @@
         <result column="current_points" jdbcType="BIGINT" property="currentPoints"/>
         <result column="version" jdbcType="BIGINT" property="version"/>
     </resultMap>
-    <insert id="createCustomer" parameterType="com.ruoyi.project.storage.domain.User">
+    <insert id="createCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
         INSERT INTO sys_user(user_name, nick_name, email, phone_number, sex, create_time, create_by, user_type,
                              password)
         VALUES (#{userName}, #{nickName}, #{email}, #{phoneNumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
                 #{password})
     </insert>
-    <update id="updateCustomer" parameterType="com.ruoyi.project.storage.domain.User">
+    <update id="updateCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
         UPDATE sys_user
         SET nick_name    = #{nickName},
             email        = #{email},
             phone_number = #{phoneNumber},
             sex          = #{sex},
-            update_time  = #{updateTime},
-            update_by    = #{updateBy}
+            update_time  = now(),
+            update_by    = #{updateBy},
+            version      = version + 1
         WHERE user_id = #{userId}
+          AND version = #{version}
     </update>
-
-    <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.User">
+    <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
         UPDATE sys_user
         SET status = #{status},
-        update_time = now()
+        update_time = now(),
+        update_by = #{updateBy}
         WHERE user_id in
         <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
     </update>
-
     <update id="delete">
         UPDATE sys_user
         SET del_flag = 2,
@@ -68,7 +69,6 @@
             #{id}
         </foreach>
     </update>
-
     <select id="findCustomers" resultMap="BaseResultMap">
         SELECT s.create_by,
         s.create_time,
@@ -102,5 +102,18 @@
                 OR s.email like concat ('%',#{searchValue},'%')
             </if>
         </where>
+    </select>
+    <select id="findCustomerByIds" resultType="java.lang.String">
+        SELECT s.status
+        FROM sys_user s WHERE s.user_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+    <select id="findUserById" resultType="com.ruoyi.project.storage.domain.CustomerVO">
+        SELECT *
+        FROM sys_user
+        WHERE del_flag = 0
+          AND user_id = #{user_id}
     </select>
 </mapper>

@@ -5,6 +5,7 @@ import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
+import com.ruoyi.project.storage.domain.UserVO;
 import com.ruoyi.project.storage.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,24 +34,25 @@ public class UserController extends BaseController {
     /**
      * 新增用户
      *
-     * @param user 用户
+     * @param userVO 用户
      * @return 结果
      */
     @PostMapping("/create")
-    public AjaxResult createUser(@RequestBody User user) {
-        int result = userService.createUser(user);
+    public AjaxResult createUser(@RequestBody UserVO userVO
+    ) {
+        int result = userService.createUser(userVO);
         return toAjax(result);
     }
 
     /**
      * 编辑用户
      *
-     * @param user 用户
+     * @param userVO 用户
      * @return 结果
      */
     @PutMapping("/update")
-    public AjaxResult updateUser(@RequestBody User user) {
-        int result = userService.updateUser(user);
+    public AjaxResult updateUser(@RequestBody UserVO userVO) {
+        int result = userService.updateUser(userVO);
         return toAjax(result);
     }
 
