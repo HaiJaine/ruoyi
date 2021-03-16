@@ -17,7 +17,6 @@ public interface CustomerMapper {
 
     int delete(Map<String, Object> map);
 
-    int resetPassword(Map<String, Object> user);
+    int resetPassword(Map<String, Object> map);
 
-    int updatePassword(User user);
 }

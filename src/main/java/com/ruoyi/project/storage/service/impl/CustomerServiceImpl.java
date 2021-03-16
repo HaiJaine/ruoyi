@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -53,18 +55,29 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int operate(String operate, Long[] ids) {
-        return 0;
+        int result = 0;
+        Map<String, Object> map = new HashMap();
+        map.put("ids", ids);
+        if ("enable".equalsIgnoreCase(operate)) {
+            map.put("status", 0);
+            result = customerMapper.isStatus(map);
+        } else if ("disable".equalsIgnoreCase(operate)) {
+            map.put("status", 1);
+            result = customerMapper.isStatus(map);
+        } else if ("delete".equalsIgnoreCase(operate)) {
+            result = customerMapper.delete(map);
+        }
+        return result;
     }
 
     @Override
     public int resetPassword(Long[] ids) {
-        return 0;
+        Map<String, Object> map = new HashMap<>();
+        map.put("ids", ids);
+        map.put("password", SecurityUtils.encryptPassword("123456"));
+        return customerMapper.resetPassword(map);
     }
 
-    @Override
-    public int updatePassword(String oldPassword, String newPassword) {
-        return 0;
-    }
 
     private void sexStringToNumber(User user) {
         String sex = user.getSex();

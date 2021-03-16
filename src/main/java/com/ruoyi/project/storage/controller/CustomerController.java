@@ -54,4 +54,29 @@ public class CustomerController extends BaseController {
         int result = customerService.updateCustomer(user);
         return toAjax(result);
     }
+
+    /**
+     * 客户操作（启用/停用/删除）
+     *
+     * @param operate 操作
+     * @param ids     ids
+     * @return 结果
+     */
+    @PutMapping("/{operate}/{ids}")
+    public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
+        int result = customerService.operate(operate, ids);
+        return toAjax(result);
+    }
+
+    /**
+     * 重置密码
+     *
+     * @param ids ids
+     * @return 结果
+     */
+    @PutMapping("/reset/{ids}")
+    public AjaxResult resetPassword(@PathVariable Long[] ids) {
+        int result = customerService.resetPassword(ids);
+        return toAjax(result);
+    }
 }
