@@ -20,19 +20,19 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<User> findUsers(Params params) {
-        List<User> users = userMapper.findUsers(params);
-        for (User user : users) {
-            String sex = user.getSex();
+    public List<UserVO> findUsers(Params params) {
+        List<UserVO> userVOList = userMapper.findUsers(params);
+        for (UserVO userVO : userVOList) {
+            String sex = userVO.getSex();
             if ("0".equals(sex)) {
-                user.setSex("男");
+                userVO.setSex("男");
             } else if ("1".equals(sex)) {
-                user.setSex("女");
+                userVO.setSex("女");
             } else if ("2".equals(sex)) {
-                user.setSex("未知");
+                userVO.setSex("未知");
             }
         }
-        return users;
+        return userVOList;
     }
 
     @Override

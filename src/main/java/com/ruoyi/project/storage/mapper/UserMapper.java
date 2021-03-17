@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserMapper {
-    List<User> findUsers(Params params);
+    List<UserVO> findUsers(Params params);
 
     int createUser(UserVO userVO);
 

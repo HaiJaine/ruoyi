@@ -4,7 +4,6 @@ import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.User;
 import com.ruoyi.project.storage.domain.UserVO;
 import com.ruoyi.project.storage.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +26,7 @@ public class UserController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo getUser(Params params) {
         startPage();
-        List<User> users = userService.findUsers(params);
+        List<UserVO> users = userService.findUsers(params);
         return getDataTable(users);
     }
 

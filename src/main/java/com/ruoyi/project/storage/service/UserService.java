@@ -1,13 +1,12 @@
 package com.ruoyi.project.storage.service;
 
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.User;
 import com.ruoyi.project.storage.domain.UserVO;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> findUsers(Params params);
+    List<UserVO> findUsers(Params params);
 
     int createUser(UserVO userVO);
 
