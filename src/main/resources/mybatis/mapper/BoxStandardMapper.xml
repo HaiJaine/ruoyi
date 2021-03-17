@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.storage.mapper.BoxStandardMapper">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.BoxStandardVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="box_standard" jdbcType="VARCHAR" property="boxStandard"/>
+        <result column="box_unit_price" jdbcType="BIGINT" property="boxUnitPrice"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="sort_no" jdbcType="BIGINT" property="sortNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+    </resultMap>
+
+    <select id="findBoxStandardList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.Params">
+        SELECT t.box_standard,
+        t.create_by,
+        t.create_time,
+        t.update_by,
+        t.update_time,
+        t.version,
+        t.del_flag,
+        t.remark
+        FROM t_box_standard t
+        WHERE
+        del_flag = 0
+        <if test="searchValue !=null">
+            AND t.box_standard = #{searchValue}
+        </if>
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE
+        FROM t_box_standard
+        WHERE id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ruoyi.project.storage.domain.BoxStandardVO"
+            useGeneratedKeys="true">
+        INSERT INTO t_box_standard (box_standard, box_unit_price, remark,
+                                    sort_no, create_time, create_by,
+                                    update_time, update_by, version,
+                                    del_flag)
+        VALUES (#{boxStandard,jdbcType=VARCHAR}, #{boxUnitPrice,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR},
+                #{sortNo,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{version,jdbcType=BIGINT},
+                #{delFlag,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.ruoyi.project.storage.domain.BoxStandardVO" useGeneratedKeys="true">
+        insert into t_box_standard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="boxStandard != null">
+                box_standard,
+            </if>
+            <if test="boxUnitPrice != null">
+                box_unit_price,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="sortNo != null">
+                sort_no,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="boxStandard != null">
+                #{boxStandard,jdbcType=VARCHAR},
+            </if>
+            <if test="boxUnitPrice != null">
+                #{boxUnitPrice,jdbcType=BIGINT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.project.storage.domain.BoxStandardVO">
+        update t_box_standard
+        <set>
+            <if test="boxStandard != null">
+                box_standard = #{boxStandard,jdbcType=VARCHAR},
+            </if>
+            <if test="boxUnitPrice != null">
+                box_unit_price = #{boxUnitPrice,jdbcType=BIGINT},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                sort_no = #{sortNo,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ruoyi.project.storage.domain.BoxStandardVO">
+        UPDATE t_box_standard
+        SET box_standard   = #{boxStandard,jdbcType=VARCHAR},
+            box_unit_price = #{boxUnitPrice,jdbcType=BIGINT},
+            remark         = #{remark,jdbcType=VARCHAR},
+            sort_no        = #{sortNo,jdbcType=BIGINT},
+            create_time    = #{createTime,jdbcType=TIMESTAMP},
+            create_by      = #{createBy,jdbcType=VARCHAR},
+            update_time    = #{updateTime,jdbcType=TIMESTAMP},
+            update_by      = #{updateBy,jdbcType=VARCHAR},
+            version        = #{version,jdbcType=BIGINT},
+            del_flag       = #{delFlag,jdbcType=CHAR}
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
