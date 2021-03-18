@@ -1,7 +1,7 @@
 package com.ruoyi.project.storage.mapper;
 
+import com.ruoyi.project.storage.domain.BoxStandardSelectVO;
 import com.ruoyi.project.storage.domain.BoxStandardVO;
-import com.ruoyi.project.storage.domain.Params;
 
 import java.util.List;
 
@@ -16,5 +16,7 @@ public interface BoxStandardMapper {
 
     int updateByPrimaryKey(BoxStandardVO record);
 
-    List<BoxStandardVO> findBoxStandardList(Params params);
+    List<BoxStandardVO> findBoxStandardList(BoxStandardVO boxStandardVO);
+
+    List<BoxStandardSelectVO> selectBoxStandardSelectList();
 }

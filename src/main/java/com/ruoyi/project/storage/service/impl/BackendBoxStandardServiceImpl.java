@@ -1,7 +1,7 @@
 package com.ruoyi.project.storage.service.impl;
 
+import com.ruoyi.project.storage.domain.BoxStandardSelectVO;
 import com.ruoyi.project.storage.domain.BoxStandardVO;
-import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.BoxStandardMapper;
 import com.ruoyi.project.storage.service.BackendBoxStandardService;
 import org.springframework.stereotype.Service;
@@ -15,11 +15,13 @@ public class BackendBoxStandardServiceImpl implements BackendBoxStandardService 
     private BoxStandardMapper boxStandardMapper;
 
     @Override
-    public List<BoxStandardVO> getBoxStandardList(Params params) {
-        List<BoxStandardVO> boxStandardList = boxStandardMapper.findBoxStandardList(params);
-        for (BoxStandardVO boxStandardVO : boxStandardList) {
-            boxStandardVO.setSearchValue(params.getSearchValue());
-        }
+    public List<BoxStandardVO> getBoxStandardList(BoxStandardVO boxStandardVO) {
+        List<BoxStandardVO> boxStandardList = boxStandardMapper.findBoxStandardList(boxStandardVO);
         return boxStandardList;
+    }
+
+    @Override
+    public List<BoxStandardSelectVO> selectBoxStandardSelectList() {
+        return boxStandardMapper.selectBoxStandardSelectList();
     }
 }

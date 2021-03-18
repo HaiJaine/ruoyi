@@ -13,25 +13,43 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
         <result column="version" jdbcType="BIGINT" property="version"/>
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+        <result column="total_number" jdbcType="BIGINT" property="totalNumber"/>
+        <result column="use_number" jdbcType="BIGINT" property="useNumber"/>
+        <result column="inventory_number" jdbcType="BIGINT" property="inventoryNumber"/>
+        <result column="use_ratio" jdbcType="CHAR" property="useRatio"/>
     </resultMap>
 
     <select id="findBoxStandardList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.Params">
-        SELECT t.box_standard,
-        t.create_by,
-        t.create_time,
-        t.update_by,
-        t.update_time,
-        t.version,
-        t.del_flag,
-        t.remark
-        FROM t_box_standard t
-        WHERE
-        del_flag = 0
-        <if test="searchValue !=null">
-            AND t.box_standard = #{searchValue}
-        </if>
+        SELECT tbs.box_standard,
+               tbs.create_by,
+               tbs.create_time,
+               tbs.update_by,
+               tbs.update_time,
+               tbs.version,
+               tbs.del_flag,
+               tbs.remark,
+               tbs.id,
+               tbs.box_standard,
+               tbs.box_unit_price,
+               tbs.sort_no,
+               COUNT(tbi.id)                                           total_number,
+               SUM(tbi.is_used)                                        use_number,
+               (COUNT(tbi.id) - SUM(tbi.is_used))                      inventory_number,
+               CONCAT(ROUND(SUM(tbi.is_used) / COUNT(tbi.id), 2), '%') use_ratio
+        FROM t_box_standard tbs
+                 INNER JOIN t_box_info tbi ON tbs.box_standard = tbi.box_standard
+        WHERE tbs.del_flag = 0
+        GROUP BY tbs.box_standard
+
     </select>
 
+    <select id="selectBoxStandardSelectList" resultType="com.ruoyi.project.storage.domain.BoxStandardSelectVO">
+        SELECT id,
+               box_standard   boxStandard,
+               box_unit_price boxUnitPrice
+        FROM t_box_standard
+        WHERE del_flag = 0
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE

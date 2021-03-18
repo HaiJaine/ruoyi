@@ -13,6 +13,10 @@ import java.util.Date;
  */
 @Data
 public class BoxStandardVO implements Serializable {
+    /**
+     * id
+     */
+    private Long id;
 
     /**
      * 箱子规格（如20*20*20）
@@ -20,9 +24,19 @@ public class BoxStandardVO implements Serializable {
     private String boxStandard;
 
     /**
+     * 箱子积分单价（每月积分单价）
+     */
+    private Long boxUnitPrice;
+
+    /**
      * 备注
      */
     private String remark;
+
+    /**
+     * 序号
+     */
+    private Long sortNo;
 
     /**
      * 创建时间
@@ -57,8 +71,24 @@ public class BoxStandardVO implements Serializable {
     private String delFlag;
 
     /**
-     * 条件搜索参数
+     * 总数量
      */
-    private String searchValue;
+    private Long totalNumber;
+
+    /**
+     * 已用数量
+     */
+    private Long useNumber;
+
+    /**
+     * 库存
+     */
+    private Long inventoryNumber;
+
+    /**
+     * 使用比例
+     */
+    private String useRatio;
+
     private static final long serialVersionUID = 1L;
 }

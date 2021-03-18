@@ -17,7 +17,6 @@
         <result column="version" jdbcType="BIGINT" property="version"/>
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
     </resultMap>
-
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ruoyi.project.storage.domain.BoxInfoVO"
             useGeneratedKeys="true">
         INSERT INTO t_box_info (box_code, box_standard, box_unit_price,
@@ -179,4 +178,32 @@
             del_flag       = #{delFlag,jdbcType=CHAR}
         WHERE id = #{id,jdbcType=BIGINT}
     </update>
+    <select id="findBoxInfoList" resultType="com.ruoyi.project.storage.domain.BoxInfoVO">
+        SELECT
+        t.create_by,
+        t.create_time,
+        t.update_by,
+        t.update_time,
+        t.version,
+        t.del_flag,
+        t.remark,
+        t.id,
+        t.box_code,
+        t.box_standard,
+        t.box_unit_price,
+        t.used_by,
+        t.is_used,
+        t.sort_no
+        FROM
+        t_box_info t WHERE del_flag = 0
+        <if test="boxStandard != null">
+            AND box_standard = #{boxStandard}
+        </if>
+        <if test="isUsed != null">
+            AND box_standard = #{isUsed}
+        </if>
+        <if test="usedByName != null">
+            AND box_standard = #{usedByName}
+        </if>
+    </select>
 </mapper>
