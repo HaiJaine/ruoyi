@@ -78,15 +78,14 @@
         t.version,
         t.del_flag,
         t.app_del_flag,
-        t.backend_del_flag,
-        t.nick_name
+        t.backend_del_flag
         FROM
         t_order t
         <where>
             del_flag = 0
-            <if test="nickName != null">
-                AND nick_name like concat('%', #{nickName},'%')
-            </if>
+<!--            <if test="nickName != null">-->
+<!--                AND nick_name like concat('%', #{nickName},'%')-->
+<!--            </if>-->
             <if test="status != null">
                 AND status like concat('%', #{status},'%')
             </if>

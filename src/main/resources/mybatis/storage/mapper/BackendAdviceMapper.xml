@@ -20,6 +20,8 @@
         FROM t_advice t
         INNER JOIN sys_user s ON t.user_id = s.user_id
         <where>
+            AND s.del_flag = 0
+            AND s.user_type = '02'
             <if test="searchValue != null and searchValue != '' ">
                 AND s.nick_name like concat('%', #{searchValue},'%')
                 OR t.title like concat('%', #{searchValue},'%')

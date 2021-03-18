@@ -10,6 +10,8 @@ public interface BannerMapper {
 
     List<BannerVO> findBannerList(Params params);
 
+    List<Long> findBanners(Long[] ids);
+
     int create(BannerVO bannerVO);
 
     int update(BannerVO bannerVO);
@@ -17,4 +19,5 @@ public interface BannerMapper {
     int isEnable(Map<String, Object> map);
 
     int delete(Map<String, Object> map);
+
 }

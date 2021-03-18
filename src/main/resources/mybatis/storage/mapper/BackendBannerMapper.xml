@@ -25,7 +25,7 @@
                 #{updateTime}, #{updateBy}, #{version}, #{delFlag})
     </insert>
 
-    <!--更新广告-->
+    <!--编辑广告-->
     <update id="update" parameterType="com.ruoyi.project.storage.domain.BannerVO">
         UPDATE t_advertisement
         SET title       = #{title},
@@ -33,8 +33,11 @@
             points      = #{points},
             img_url     = #{imgUrl},
             sort_no     = #{sortNo},
-            update_time = NOW()
-        WHERE id = #{id}
+            update_time = NOW(),
+            update_by   = #{updateBy},
+            version     = version + 1
+        WHERE version = #{version}
+          AND id = #{id}
     </update>
 
     <!--操作广告-->
@@ -48,10 +51,11 @@
         </foreach>
     </update>
     <!--删除广告-->
-    <update id="delete">
+    <update id="delete" parameterType="java.util.Map">
         UPDATE t_advertisement
         SET del_flag = 2,
-        update_time = now()
+        update_time = now(),
+        update_by = #{updateBy}
         WHERE id in
         <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
@@ -85,6 +89,15 @@
             </if>
         </where>
         ORDER BY t.sort_no
+    </select>
+
+    <select id="findBanners" resultType="java.lang.Long">
+        SELECT t.is_enable
+        FROM t_advertisement t
+        WHERE id IN
+        <foreach collection="ids" index="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 
 </mapper>

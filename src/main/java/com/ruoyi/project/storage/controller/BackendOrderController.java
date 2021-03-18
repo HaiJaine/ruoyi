@@ -61,6 +61,12 @@ public class BackendOrderController extends BaseController {
         return toAjax(result);
     }
 
+    /**
+     * 删除订单
+     *
+     * @param ids ids
+     * @return 结果
+     */
     @DeleteMapping("/delete/{ids}")
     public AjaxResult deleteOrder(@PathVariable Long[] ids) {
         int result = orderService.deleteOrder(ids);
