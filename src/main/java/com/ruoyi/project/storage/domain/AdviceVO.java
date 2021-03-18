@@ -23,6 +23,11 @@ public class AdviceVO implements Serializable {
     private Long userId;
 
     /**
+     * 提交人
+     */
+    private String nickName;
+
+    /**
      * 标题
      */
     private String title;

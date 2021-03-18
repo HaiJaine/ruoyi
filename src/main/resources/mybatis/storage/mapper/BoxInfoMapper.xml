@@ -178,7 +178,7 @@
             del_flag       = #{delFlag,jdbcType=CHAR}
         WHERE id = #{id,jdbcType=BIGINT}
     </update>
-    <select id="findBoxInfoList" resultType="com.ruoyi.project.storage.domain.BoxInfoVO">
+    <select id="findBoxInfoList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.BoxInfoVO">
         SELECT
         t.create_by,
         t.create_time,
@@ -195,15 +195,18 @@
         t.is_used,
         t.sort_no
         FROM
-        t_box_info t WHERE del_flag = 0
-        <if test="boxStandard != null">
-            AND box_standard = #{boxStandard}
-        </if>
-        <if test="isUsed != null">
-            AND box_standard = #{isUsed}
-        </if>
-        <if test="usedByName != null">
-            AND box_standard = #{usedByName}
-        </if>
+        t_box_info t
+        <where>
+            del_flag = 0
+            <if test="boxStandard != null and boxStandard !='' ">
+                AND box_standard = #{boxStandard}
+            </if>
+            <if test="isUsed != null and isUsed !=''">
+                AND is_used = #{isUsed}
+            </if>
+            <if test="usedBy != null and usedBy !=''">
+                AND used_by = #{usedBy}
+            </if>
+        </where>
     </select>
 </mapper>

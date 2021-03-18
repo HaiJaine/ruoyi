@@ -1,6 +1,7 @@
 package com.ruoyi.project.storage.controller;
 
 import com.ruoyi.framework.web.controller.BaseController;
+import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.BoxStandardSelectVO;
 import com.ruoyi.project.storage.domain.BoxStandardVO;
@@ -26,8 +27,8 @@ public class BackendBoxStandardController extends BaseController {
     }
 
     @GetMapping("/select")
-    public TableDataInfo getStandardList() {
+    public AjaxResult getStandardList() {
         List<BoxStandardSelectVO> list = backendBoxStandardService.selectBoxStandardSelectList();
-        return getDataTable(list);
+        return AjaxResult.success(list);
     }
 }

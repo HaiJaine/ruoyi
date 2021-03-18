@@ -18,7 +18,6 @@
         <result column="inventory_number" jdbcType="BIGINT" property="inventoryNumber"/>
         <result column="use_ratio" jdbcType="CHAR" property="useRatio"/>
     </resultMap>
-
     <select id="findBoxStandardList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.Params">
         SELECT tbs.box_standard,
                tbs.create_by,
@@ -29,11 +28,10 @@
                tbs.del_flag,
                tbs.remark,
                tbs.id,
-               tbs.box_standard,
                tbs.box_unit_price,
                tbs.sort_no,
                COUNT(tbi.id)                                           total_number,
-               SUM(tbi.is_used)                                        use_number,
+               SUM(tbi.is_used)                                        used_number,
                (COUNT(tbi.id) - SUM(tbi.is_used))                      inventory_number,
                CONCAT(ROUND(SUM(tbi.is_used) / COUNT(tbi.id), 2), '%') use_ratio
         FROM t_box_standard tbs
@@ -42,7 +40,6 @@
         GROUP BY tbs.box_standard
 
     </select>
-
     <select id="selectBoxStandardSelectList" resultType="com.ruoyi.project.storage.domain.BoxStandardSelectVO">
         SELECT id,
                box_standard   boxStandard,
@@ -50,7 +47,6 @@
         FROM t_box_standard
         WHERE del_flag = 0
     </select>
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         DELETE
         FROM t_box_standard
