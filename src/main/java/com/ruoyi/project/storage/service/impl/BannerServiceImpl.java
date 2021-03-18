@@ -36,8 +36,7 @@ public class BannerServiceImpl implements BannerService {
         bannerVO.setUpdateTime(new Date());
         bannerVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
         bannerVO.setVersion(0L);
-        int result = bannerMapper.create(bannerVO);
-        return result;
+        return bannerMapper.create(bannerVO);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public int operate(String operate, Long[] ids) {
         int result = 0;
-        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
         if ("enable".equalsIgnoreCase(operate)) {
             map.put("isEnable", 0);
@@ -56,9 +55,14 @@ public class BannerServiceImpl implements BannerService {
         } else if ("disable".equalsIgnoreCase(operate)) {
             map.put("isEnable", 1);
             result = bannerMapper.isEnable(map);
-        } else if ("delete".equalsIgnoreCase(operate)) {
-            result = bannerMapper.delete(map);
         }
         return result;
+    }
+
+    @Override
+    public int delete(Long[] ids) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("ids", ids);
+        return bannerMapper.delete(map);
     }
 }

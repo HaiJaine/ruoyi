@@ -17,7 +17,6 @@
         <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
     </resultMap>
 
-
     <!--新增广告-->
     <insert id="create" parameterType="com.ruoyi.project.storage.domain.BannerVO">
         INSERT INTO t_advertisement (title, content, img_url, points, is_enable, sort_no,
@@ -34,7 +33,7 @@
             points      = #{points},
             img_url     = #{imgUrl},
             sort_no     = #{sortNo},
-            update_time = now()
+            update_time = NOW()
         WHERE id = #{id}
     </update>
 
@@ -78,15 +77,14 @@
         t.del_flag
         FROM t_advertisement t
         <where>
-            t.del_flag = 0
-            AND del_flag = 0
-            <if test="searchValue != null">
+            AND t.del_flag = 0
+            <if test="searchValue != null and searchValue != '' ">
                 AND t.content LIKE concat('%',#{searchValue}, '%')
                 OR t.title like concat('%',#{searchValue}, '%')
                 OR t.points like concat('%',#{searchValue}, '%')
             </if>
         </where>
-        ORDER BY t.id
+        ORDER BY t.sort_no
     </select>
 
 </mapper>

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/backend/customer")
-public class CustomerController extends BaseController {
+public class BackendCustomerController extends BaseController {
     @Resource
     private CustomerService customerService;
 
@@ -75,7 +75,6 @@ public class CustomerController extends BaseController {
      */
     @PutMapping("/reset/{ids}")
     public AjaxResult resetPassword(@PathVariable Long[] ids) {
-        AjaxResult ajaxResult = customerService.resetPassword(ids);
-        return ajaxResult;
+        return customerService.resetPassword(ids);
     }
 }

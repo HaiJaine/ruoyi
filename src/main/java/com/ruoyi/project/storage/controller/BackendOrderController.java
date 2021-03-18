@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/backend/order")
-public class OrderController extends BaseController {
+public class BackendOrderController extends BaseController {
     @Resource
     private OrderService orderService;
 

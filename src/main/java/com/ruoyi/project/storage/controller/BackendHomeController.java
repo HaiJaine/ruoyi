@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/backend/home")
-public class HomeController extends BaseController {
+public class BackendHomeController extends BaseController {
 
     @Resource
     private UserService userService;

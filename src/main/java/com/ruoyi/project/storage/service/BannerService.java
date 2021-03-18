@@ -17,4 +17,6 @@ public interface BannerService {
     int update(BannerVO bannerVO);
 
     int operate(String enAble, Long[] ids);
+
+    int delete(Long[] ids);
 }

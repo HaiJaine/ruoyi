@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/backend/advertisement")
-public class BannerController extends BaseController {
+public class BackendBannerController extends BaseController {
 
     @Resource
     private BannerService bannerService;
@@ -41,7 +41,7 @@ public class BannerController extends BaseController {
      * @param bannerVO 参数
      * @return 结果
      */
-    @PostMapping("/creat")
+    @PostMapping("/create")
     public AjaxResult creat(@RequestBody BannerVO bannerVO) {
         int result = bannerService.creat(bannerVO);
         return toAjax(result);
@@ -61,9 +61,19 @@ public class BannerController extends BaseController {
 
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
-        int result = bannerService.operate(operate,ids);
+        int result = bannerService.operate(operate, ids);
         return toAjax(result);
     }
 
-
+    /**
+     * 删除广告
+     *
+     * @param ids ids
+     * @return 结果
+     */
+    @DeleteMapping("/delete/{ids}")
+    public AjaxResult delete(@PathVariable Long[] ids) {
+        int result = bannerService.delete(ids);
+        return toAjax(result);
+    }
 }

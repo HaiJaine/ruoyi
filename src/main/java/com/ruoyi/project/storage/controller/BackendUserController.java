@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/backend/user")
-public class UserController extends BaseController {
+public class BackendUserController extends BaseController {
     @Resource
     private UserService userService;
 
