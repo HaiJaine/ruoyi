@@ -1,7 +1,9 @@
 package com.ruoyi.project.storage.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.framework.web.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,8 +13,9 @@ import java.util.Date;
  *
  * @author HaiJaine
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class BoxStandardVO implements Serializable {
+public class BoxStandardVO extends BaseEntity implements Serializable {
     /**
      * id
      */
@@ -78,7 +81,7 @@ public class BoxStandardVO implements Serializable {
     /**
      * 已用数量
      */
-    private Long useNumber;
+    private Long usedNumber;
 
     /**
      * 库存
@@ -91,4 +94,5 @@ public class BoxStandardVO implements Serializable {
     private String useRatio;
 
     private static final long serialVersionUID = 1L;
+
 }

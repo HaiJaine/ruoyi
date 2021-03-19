@@ -1,12 +1,14 @@
 package com.ruoyi.project.storage.domain;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * t_box_info
- * @author 
+ *
+ * @author HaiJaine
  */
 @Data
 public class BoxInfoVO implements Serializable {
@@ -33,12 +35,12 @@ public class BoxInfoVO implements Serializable {
     /**
      * 使用人
      */
-    private Long usedBy;
+    private String usedBy;
 
     /**
      * 是否被使用（0：未使用；1：已使用）
      */
-    private Byte isUsed;
+    private String isUsed;
 
     /**
      * 备注
@@ -79,6 +81,11 @@ public class BoxInfoVO implements Serializable {
      * 删除标记（0：未删除；2：已删除）
      */
     private String delFlag;
+
+    /**
+     * 使用人
+     */
+    private String usedByName;
 
     private static final long serialVersionUID = 1L;
 }

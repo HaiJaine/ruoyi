@@ -6,7 +6,7 @@ import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.project.storage.domain.CustomerVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.CustomerMapper;
-import com.ruoyi.project.storage.service.CustomerService;
+import com.ruoyi.project.storage.service.BackendCustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class BackendBackendCustomerServiceImpl implements BackendCustomerService {
 
     @Resource
     private CustomerMapper customerMapper;
@@ -115,7 +115,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public int operate(String operate, Long[] ids) throws Exception {
         int result = 0;
-        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
         List<String> statuses = customerMapper.findCustomerByIds(map);
         String ENABLE = "0";

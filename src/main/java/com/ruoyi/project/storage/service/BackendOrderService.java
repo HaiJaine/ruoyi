@@ -9,7 +9,7 @@ import java.util.List;
  * @author HaiJaine
  * @date 2021/3/13 21:12
  */
-public interface OrderService {
+public interface BackendOrderService {
     List<OrderVO> findOrderList(Params params);
 
     List<OrderVO> findOrderInfo(Long id);

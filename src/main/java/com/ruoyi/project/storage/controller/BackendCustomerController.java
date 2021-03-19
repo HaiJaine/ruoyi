@@ -5,7 +5,7 @@ import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.CustomerVO;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.service.CustomerService;
+import com.ruoyi.project.storage.service.BackendCustomerService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/backend/customer")
 public class BackendCustomerController extends BaseController {
     @Resource
-    private CustomerService customerService;
+    private BackendCustomerService backendCustomerService;
 
     /**
      * 查询客户
@@ -26,7 +26,7 @@ public class BackendCustomerController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo getCustomers(Params params) {
         startPage();
-        List<CustomerVO> customers = customerService.findCustomers(params);
+        List<CustomerVO> customers = backendCustomerService.findCustomers(params);
         return getDataTable(customers);
     }
 
@@ -38,7 +38,7 @@ public class BackendCustomerController extends BaseController {
      */
     @PostMapping("/create")
     public AjaxResult create(@RequestBody CustomerVO customerVO) throws Exception {
-        int result = customerService.createCustomer(customerVO);
+        int result = backendCustomerService.createCustomer(customerVO);
         return toAjax(result);
     }
 
@@ -50,7 +50,7 @@ public class BackendCustomerController extends BaseController {
      */
     @PutMapping("/update")
     public AjaxResult updateCustomer(@RequestBody CustomerVO customerVO) throws Exception {
-        int result = customerService.updateCustomer(customerVO);
+        int result = backendCustomerService.updateCustomer(customerVO);
         return toAjax(result);
     }
 
@@ -63,7 +63,7 @@ public class BackendCustomerController extends BaseController {
      */
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) throws Exception {
-        int result = customerService.operate(operate, ids);
+        int result = backendCustomerService.operate(operate, ids);
         return toAjax(result);
     }
 
@@ -75,6 +75,6 @@ public class BackendCustomerController extends BaseController {
      */
     @PutMapping("/reset/{ids}")
     public AjaxResult resetPassword(@PathVariable Long[] ids) {
-        return customerService.resetPassword(ids);
+        return backendCustomerService.resetPassword(ids);
     }
 }

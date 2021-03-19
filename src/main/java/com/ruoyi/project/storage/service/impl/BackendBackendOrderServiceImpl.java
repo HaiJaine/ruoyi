@@ -4,7 +4,7 @@ import com.ruoyi.project.storage.domain.Order;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.OrderMapper;
-import com.ruoyi.project.storage.service.OrderService;
+import com.ruoyi.project.storage.service.BackendOrderService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @date 2021/3/13 21:13
  */
 @Service
-public class OrderServiceImpl implements OrderService {
+public class BackendBackendOrderServiceImpl implements BackendOrderService {
     @Resource
     private OrderMapper orderMapper;
 

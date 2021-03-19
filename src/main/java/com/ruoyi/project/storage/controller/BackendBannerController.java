@@ -5,7 +5,7 @@ import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.BannerVO;
-import com.ruoyi.project.storage.service.BannerService;
+import com.ruoyi.project.storage.service.BackendBannerService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ import java.util.List;
 public class BackendBannerController extends BaseController {
 
     @Resource
-    private BannerService bannerService;
+    private BackendBannerService backendBannerService;
 
     /**
      * 查询广告
@@ -31,7 +31,7 @@ public class BackendBannerController extends BaseController {
     @RequestMapping("/list")
     public TableDataInfo list(Params param) {
         startPage();
-        List<BannerVO> bannerList = bannerService.findBannerList(param);
+        List<BannerVO> bannerList = backendBannerService.findBannerList(param);
         return getDataTable(bannerList);
     }
 
@@ -43,7 +43,7 @@ public class BackendBannerController extends BaseController {
      */
     @PostMapping("/create")
     public AjaxResult creat(@RequestBody BannerVO bannerVO) {
-        int result = bannerService.creat(bannerVO);
+        int result = backendBannerService.creat(bannerVO);
         return toAjax(result);
     }
 
@@ -55,13 +55,13 @@ public class BackendBannerController extends BaseController {
      */
     @PutMapping("/update")
     public AjaxResult update(@RequestBody BannerVO bannerVO) {
-        int result = bannerService.update(bannerVO);
+        int result = backendBannerService.update(bannerVO);
         return toAjax(result);
     }
 
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
-        int result = bannerService.operate(operate, ids);
+        int result = backendBannerService.operate(operate, ids);
         return toAjax(result);
     }
 
@@ -73,7 +73,7 @@ public class BackendBannerController extends BaseController {
      */
     @DeleteMapping("/delete/{ids}")
     public AjaxResult delete(@PathVariable Long[] ids) {
-        int result = bannerService.delete(ids);
+        int result = backendBannerService.delete(ids);
         return toAjax(result);
     }
 }

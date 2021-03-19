@@ -5,7 +5,7 @@ import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.UserVO;
-import com.ruoyi.project.storage.service.UserService;
+import com.ruoyi.project.storage.service.BackendUserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/backend/user")
 public class BackendUserController extends BaseController {
     @Resource
-    private UserService userService;
+    private BackendUserService backendUserService;
 
     /**
      * 用户查询（分页，多条件）
@@ -26,7 +26,7 @@ public class BackendUserController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo getUser(Params params) {
         startPage();
-        List<UserVO> users = userService.findUsers(params);
+        List<UserVO> users = backendUserService.findUsers(params);
         return getDataTable(users);
     }
 
@@ -39,7 +39,7 @@ public class BackendUserController extends BaseController {
     @PostMapping("/create")
     public AjaxResult createUser(@RequestBody UserVO userVO
     ) {
-        int result = userService.createUser(userVO);
+        int result = backendUserService.createUser(userVO);
         return toAjax(result);
     }
 
@@ -51,7 +51,7 @@ public class BackendUserController extends BaseController {
      */
     @PutMapping("/update")
     public AjaxResult updateUser(@RequestBody UserVO userVO) {
-        int result = userService.updateUser(userVO);
+        int result = backendUserService.updateUser(userVO);
         return toAjax(result);
     }
 
@@ -64,7 +64,7 @@ public class BackendUserController extends BaseController {
      */
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
-        int result = userService.operate(operate, ids);
+        int result = backendUserService.operate(operate, ids);
         return toAjax(result);
     }
 
@@ -76,7 +76,7 @@ public class BackendUserController extends BaseController {
      */
     @PutMapping("/reset/{ids}")
     public AjaxResult resetPassword(@PathVariable Long[] ids) {
-        int result = userService.resetPassword(ids);
+        int result = backendUserService.resetPassword(ids);
         return toAjax(result);
     }
 }

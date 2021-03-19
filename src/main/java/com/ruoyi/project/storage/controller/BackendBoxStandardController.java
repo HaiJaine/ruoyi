@@ -6,9 +6,7 @@ import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.BoxStandardSelectVO;
 import com.ruoyi.project.storage.domain.BoxStandardVO;
 import com.ruoyi.project.storage.service.BackendBoxStandardService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -30,5 +28,17 @@ public class BackendBoxStandardController extends BaseController {
     public AjaxResult getStandardList() {
         List<BoxStandardSelectVO> list = backendBoxStandardService.selectBoxStandardSelectList();
         return AjaxResult.success(list);
+    }
+
+    @PostMapping("/create")
+    public AjaxResult createBoxStandard(@RequestBody BoxStandardVO boxStandardVO) {
+        int result = backendBoxStandardService.createBoxStandard(boxStandardVO);
+        return toAjax(result);
+    }
+
+    @DeleteMapping("delete/{ids}")
+    public AjaxResult deleteBoxStandards(@PathVariable Long[] ids) {
+        int result = backendBoxStandardService.deleteBoxStandards(ids);
+        return toAjax(result);
     }
 }

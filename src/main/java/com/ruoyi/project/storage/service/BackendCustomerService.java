@@ -6,7 +6,7 @@ import com.ruoyi.project.storage.domain.Params;
 
 import java.util.List;
 
-public interface CustomerService {
+public interface BackendCustomerService {
     List<CustomerVO> findCustomers(Params params);
 
     int createCustomer(CustomerVO customerVO) throws Exception;

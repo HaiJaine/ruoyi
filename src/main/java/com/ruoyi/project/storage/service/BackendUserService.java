@@ -5,7 +5,7 @@ import com.ruoyi.project.storage.domain.UserVO;
 
 import java.util.List;
 
-public interface UserService {
+public interface BackendUserService {
     List<UserVO> findUsers(Params params);
 
     int createUser(UserVO userVO);

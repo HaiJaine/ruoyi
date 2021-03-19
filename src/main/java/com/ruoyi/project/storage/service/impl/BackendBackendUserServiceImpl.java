@@ -5,7 +5,7 @@ import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
 import com.ruoyi.project.storage.domain.UserVO;
 import com.ruoyi.project.storage.mapper.UserMapper;
-import com.ruoyi.project.storage.service.UserService;
+import com.ruoyi.project.storage.service.BackendUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class BackendBackendUserServiceImpl implements BackendUserService {
     @Resource
     private UserMapper userMapper;
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int operate(String operate, Long[] ids) {
         int result = 0;
-        Map<String, Object> map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
         if ("enable".equalsIgnoreCase(operate)) {
             map.put("status", 0);

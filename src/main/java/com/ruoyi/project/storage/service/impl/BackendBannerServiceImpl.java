@@ -5,7 +5,7 @@ import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.BannerVO;
 import com.ruoyi.project.storage.mapper.BannerMapper;
-import com.ruoyi.project.storage.service.BannerService;
+import com.ruoyi.project.storage.service.BackendBannerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @date 2021/3/13 8:46
  */
 @Service
-public class BannerServiceImpl implements BannerService {
+public class BackendBannerServiceImpl implements BackendBannerService {
     @Resource
     private BannerMapper bannerMapper;
 

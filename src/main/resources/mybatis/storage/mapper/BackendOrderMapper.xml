@@ -49,7 +49,8 @@
         SELECT
         t.id,
         t.user_id,
-        t.STATUS,
+        t.status,
+        s.nick_name,
         t.order_code,
         t.order_name,
         t.empty_box_order_time,
@@ -80,13 +81,10 @@
         t.app_del_flag,
         t.backend_del_flag
         FROM
-        t_order t
+        t_order t inner JOIN sys_user s ON t.user_id = s.user_id
         <where>
-            del_flag = 0
-<!--            <if test="nickName != null">-->
-<!--                AND nick_name like concat('%', #{nickName},'%')-->
-<!--            </if>-->
-            <if test="status != null">
+            t.del_flag = 0
+            <if test="status != null and status != '' ">
                 AND status like concat('%', #{status},'%')
             </if>
             <if test="emptyBoxOrderTimeStart != null and emptyBoxOrderTimeEnd != null">

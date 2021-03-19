@@ -2,7 +2,7 @@ package com.ruoyi.project.storage.controller;
 
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
-import com.ruoyi.project.storage.service.UserService;
+import com.ruoyi.project.storage.service.BackendUserService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class BackendHomeController extends BaseController {
 
     @Resource
-    private UserService userService;
+    private BackendUserService backendUserService;
 
     /**
      * 修改密码
@@ -26,7 +26,7 @@ public class BackendHomeController extends BaseController {
      */
     @PutMapping("/updatePassword/{oldPassword}/{newPassword}")
     public AjaxResult updatePassword(@PathVariable String oldPassword, @PathVariable String newPassword) {
-        int result = userService.updatePassword(oldPassword, newPassword);
+        int result = backendUserService.updatePassword(oldPassword, newPassword);
         return toAjax(result);
     }
 }

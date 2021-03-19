@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface BackendBoxInfoService {
     List<BoxInfoVO> getBoxInfoList(BoxInfoVO params);
+
+    int createBoxInfo(BoxInfoVO boxInfoVO);
+
+    int deleteBoxInfos(Long[] ids);
 }

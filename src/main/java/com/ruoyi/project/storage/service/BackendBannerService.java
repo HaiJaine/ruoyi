@@ -9,7 +9,7 @@ import java.util.List;
  * @author HaiJaine
  * @date 2021/3/13 8:14
  */
-public interface BannerService {
+public interface BackendBannerService {
     List<BannerVO> findBannerList(Params param);
 
     int creat(BannerVO bannerVO);

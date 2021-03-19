@@ -5,7 +5,7 @@ import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.service.OrderService;
+import com.ruoyi.project.storage.service.BackendOrderService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/backend/order")
 public class BackendOrderController extends BaseController {
     @Resource
-    private OrderService orderService;
+    private BackendOrderService backendOrderService;
 
     /**
      * 订单查询（多条件，分页）
@@ -30,7 +30,7 @@ public class BackendOrderController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo getOrderList(Params params) {
         startPage();
-        List<OrderVO> orderList = orderService.findOrderList(params);
+        List<OrderVO> orderList = backendOrderService.findOrderList(params);
         return getDataTable(orderList);
     }
 
@@ -43,7 +43,7 @@ public class BackendOrderController extends BaseController {
     @GetMapping("/info/{id}")
     public TableDataInfo getInfo(@PathVariable Long id) {
         startPage();
-        List<OrderVO> orderInfo = orderService.findOrderInfo(id);
+        List<OrderVO> orderInfo = backendOrderService.findOrderInfo(id);
         return getDataTable(orderInfo);
     }
 
@@ -57,7 +57,7 @@ public class BackendOrderController extends BaseController {
      */
     @PutMapping("/operate/{id}/{operate}/{version}")
     public AjaxResult operateOrder(@PathVariable Long id, @PathVariable Integer operate, @PathVariable Long version) {
-        int result = orderService.operateOrder(id, operate, version);
+        int result = backendOrderService.operateOrder(id, operate, version);
         return toAjax(result);
     }
 
@@ -69,7 +69,7 @@ public class BackendOrderController extends BaseController {
      */
     @DeleteMapping("/delete/{ids}")
     public AjaxResult deleteOrder(@PathVariable Long[] ids) {
-        int result = orderService.deleteOrder(ids);
+        int result = backendOrderService.deleteOrder(ids);
         return toAjax(result);
     }
 }
