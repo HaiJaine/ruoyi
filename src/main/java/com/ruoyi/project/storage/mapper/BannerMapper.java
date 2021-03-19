@@ -10,7 +10,7 @@ public interface BannerMapper {
 
     List<BannerVO> findBannerList(Params params);
 
-    List<Long> findBanners(Long[] ids);
+    List<Long> findBanners(Map<String, Object> map);
 
     int create(BannerVO bannerVO);
 

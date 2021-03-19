@@ -61,7 +61,7 @@ public class BackendBannerServiceImpl implements BackendBannerService {
     public int operate(String operate, Long[] ids) {
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
-        List<Long> list = bannerMapper.findBanners(ids);
+        List<Long> list = bannerMapper.findBanners(map);
         int result = 0;
         if ("enable".equalsIgnoreCase(operate)) {
             if (!list.contains(0L)) {
