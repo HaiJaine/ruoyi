@@ -85,7 +85,7 @@
             <if test="searchValue != null and searchValue != '' ">
                 AND t.content LIKE concat('%',#{searchValue}, '%')
                 OR t.title like concat('%',#{searchValue}, '%')
-                OR t.points like concat('%',#{searchValue}, '%')
+                OR t.points =#{searchValue}
             </if>
         </where>
         ORDER BY t.sort_no
