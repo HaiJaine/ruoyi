@@ -59,10 +59,10 @@ public class BackendBannerServiceImpl implements BackendBannerService {
 
     @Override
     public int operate(String operate, Long[] ids) {
-        List<Long> list = bannerMapper.findBanners(ids);
-        int result = 0;
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
+        List<Long> list = bannerMapper.findBanners(ids);
+        int result = 0;
         if ("enable".equalsIgnoreCase(operate)) {
             if (!list.contains(0L)) {
                 map.put("isEnable", 0);
