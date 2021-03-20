@@ -8,7 +8,7 @@
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
         <result column="user_type" jdbcType="VARCHAR" property="userType"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phonenumber"/>
         <result column="sex" jdbcType="CHAR" property="sex"/>
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -27,14 +27,14 @@
     <insert id="createCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
         INSERT INTO sys_user(user_name, nick_name, email, phone_number, sex, create_time, create_by, user_type,
                              password)
-        VALUES (#{userName}, #{nickName}, #{email}, #{phoneNumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
+        VALUES (#{userName}, #{nickName}, #{email}, #{phonenumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
                 #{password})
     </insert>
     <update id="updateCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
         UPDATE sys_user
         SET nick_name    = #{nickName},
             email        = #{email},
-            phone_number = #{phoneNumber},
+            phone_number = #{phonenumber},
             sex          = #{sex},
             update_time  = NOW(),
             update_by    = #{updateBy},

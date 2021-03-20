@@ -68,7 +68,7 @@ public class CheckUtil {
         // 赋值用户账号
         sysUser.setUserName(user.getUserName());
         // 赋值手机号
-        sysUser.setPhoneNumber(user.getPhoneNumber());
+        sysUser.setPhoneNumber(user.getPhonenumber());
         // 赋值邮箱
         sysUser.setEmail(user.getEmail());
         // 新增则校验登录帐号

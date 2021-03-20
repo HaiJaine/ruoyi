@@ -65,7 +65,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
         if (userName.length() >= 16) {
             throw new CustomException("客户名超过16位");
         }
-        if (customerVO.getPhoneNumber().length() != 11) {
+        if (customerVO.getPhonenumber().length() != 11) {
             throw new CustomException("电话号码不为11位");
         }
         if (customerVO.getNickName().length() >= 10) {

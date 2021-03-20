@@ -1,23 +1,16 @@
 package com.ruoyi.project.storage.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户对象 sys_user
- *
- * @author wangdong
- * @date 2020-04-30
+ * sys_user
+ * @author HaiJaine
  */
-@Getter
-@Setter
-@ApiModel(value = "用户对象", description = "用户对象")
-public class CustomerVO {
-
+@Data
+public class SysUser implements Serializable {
     /**
      * 用户ID
      */
@@ -56,7 +49,7 @@ public class CustomerVO {
     /**
      * 用户性别（0男 1女 2未知）
      */
-    private Integer sex;
+    private String sex;
 
     /**
      * 头像地址
@@ -86,7 +79,6 @@ public class CustomerVO {
     /**
      * 最后登陆时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date loginDate;
 
     /**
@@ -97,7 +89,6 @@ public class CustomerVO {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
@@ -108,7 +99,6 @@ public class CustomerVO {
     /**
      * 更新时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
@@ -125,4 +115,6 @@ public class CustomerVO {
      * 版本号
      */
     private Long version;
+
+    private static final long serialVersionUID = 1L;
 }
