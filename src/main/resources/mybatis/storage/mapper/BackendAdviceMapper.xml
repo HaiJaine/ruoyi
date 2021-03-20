@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.storage.mapper.BackendAdviceMapper">
+
+    <select id="findAdviceList" resultMap="adviceResultMap" parameterType="com.ruoyi.project.storage.domain.Params">
+        SELECT t.id,
+        t.user_id,
+        s.nick_name,
+        t.title,
+        t.content,
+        t.sort_no,
+        t.create_time,
+        t.create_by,
+        t.update_time,
+        t.update_by,
+        t.version,
+        t.del_flag
+        FROM t_advice t
+        INNER JOIN sys_user s ON t.user_id = s.user_id
+        <where>
+            AND s.del_flag = 0
+            AND s.user_type = '02'
+            <if test="searchValue != null and searchValue != '' ">
+                AND s.nick_name like concat('%', #{searchValue},'%')
+                OR t.title like concat('%', #{searchValue},'%')
+            </if>
+        </where>
+        ORDER BY t.id
+    </select>
+
+    <resultMap id="adviceResultMap" type="com.ruoyi.project.storage.domain.AdviceVO">
+        <!-- vo类字段与数据库字段对应 -->
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="sortNo" column="sort_no"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="version" column="version"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+</mapper>

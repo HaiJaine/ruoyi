@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.storage.mapper.BoxStandardMapper">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.BoxStandardVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="box_standard" jdbcType="VARCHAR" property="boxStandard"/>
+        <result column="box_unit_price" jdbcType="BIGINT" property="boxUnitPrice"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="sort_no" jdbcType="BIGINT" property="sortNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+        <result column="total_number" jdbcType="BIGINT" property="totalNumber"/>
+        <result column="used_number" jdbcType="BIGINT" property="usedNumber"/>
+        <result column="inventory_number" jdbcType="BIGINT" property="inventoryNumber"/>
+        <result column="use_ratio" jdbcType="CHAR" property="useRatio"/>
+    </resultMap>
+    <update id="deleteBoxStandards">
+        UPDATE t_box_standard
+        SET del_flag =2,
+        update_time= now(),
+        update_by = #{updateBy}
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+    <select id="findBoxStandardList" resultMap="BaseResultMap">
+        SELECT tbs.box_standard,
+        tbs.create_by,
+        tbs.create_time,
+        tbs.update_by,
+        tbs.update_time,
+        tbs.version,
+        tbs.del_flag,
+        tbs.remark,
+        tbs.id,
+        tbs.box_unit_price,
+        tbs.sort_no,
+        COUNT(tbi.id) total_number,
+        SUM(tbi.is_used) used_number,
+        (COUNT(tbi.id) - SUM(tbi.is_used)) inventory_number,
+        CONCAT(ROUND(SUM(tbi.is_used) / COUNT(tbi.id), 2), '%') use_ratio
+        FROM t_box_standard tbs
+        INNER JOIN t_box_info tbi ON tbs.box_standard = tbi.box_standard
+        <where>
+            tbs.del_flag = 0
+            <if test="searchValue != null and searchValue != ''">
+                AND tbs.box_standard = #{searchValue}
+            </if>
+        </where>
+        GROUP BY tbs.box_standard
+
+    </select>
+    <select id="selectBoxStandardSelectList" resultType="com.ruoyi.project.storage.domain.BoxStandardSelectVO">
+        SELECT id,
+               box_standard   boxStandard,
+               box_unit_price boxUnitPrice
+        FROM t_box_standard
+        WHERE del_flag = 0
+    </select>
+    <insert id="createBoxStandard" parameterType="com.ruoyi.project.storage.domain.BoxStandardVO">
+        INSERT INTO t_box_standard(box_standard, box_unit_price, remark, sort_no, create_time, create_by, update_time,
+                                   update_by, version, del_flag)
+            VALUE (#{boxStandard}, #{boxUnitPrice}, #{remark},
+                   #{sortNo}, #{createTime}, #{createBy},
+                   #{updateTime}, #{updateBy}, #{version},
+                   #{delFlag})
+    </insert>
+</mapper>

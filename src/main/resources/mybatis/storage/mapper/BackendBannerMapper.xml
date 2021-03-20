@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.storage.mapper.BannerMapper">
+    <resultMap id="BannerResultMap" type="com.ruoyi.project.storage.domain.BannerVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+        <result column="points" jdbcType="BIGINT" property="points"/>
+        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="sort_no" jdbcType="BIGINT" property="sortNo"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="del_flag" jdbcType="CHAR" property="delFlag"/>
+    </resultMap>
+
+    <!--新增广告-->
+    <insert id="create" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+        INSERT INTO t_advertisement (title, content, img_url, points, is_enable, sort_no,
+                                     create_time, create_by, update_time, update_by, version, del_flag)
+        VALUES (#{title}, #{content}, #{imgUrl}, #{points}, #{isEnable}, #{sortNo}, #{createTime}, #{createBy},
+                #{updateTime}, #{updateBy}, #{version}, #{delFlag})
+    </insert>
+
+    <!--编辑广告-->
+    <update id="update" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+        UPDATE t_advertisement
+        SET title       = #{title},
+            content     = #{content},
+            points      = #{points},
+            img_url     = #{imgUrl},
+            sort_no     = #{sortNo},
+            update_time = NOW(),
+            update_by   = #{updateBy},
+            version     = version + 1
+        WHERE version = #{version}
+          AND id = #{id}
+    </update>
+
+    <!--操作广告-->
+    <update id="isEnable" parameterType="java.util.Map">
+        UPDATE t_advertisement
+        SET is_enable = #{isEnable},
+        update_time = now()
+        WHERE id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+    <!--删除广告-->
+    <update id="delete" parameterType="java.util.Map">
+        UPDATE t_advertisement
+        SET del_flag = 2,
+        update_time = now(),
+        update_by = #{updateBy}
+        WHERE id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <!--查询广告-->
+    <select id="findBannerList" resultMap="BannerResultMap"
+            parameterType="com.ruoyi.project.storage.domain.Params">
+        SELECT
+        t.id,
+        t.title,
+        t.content,
+        t.img_url,
+        t.points,
+        t.is_enable,
+        t.sort_no,
+        t.create_time,
+        t.create_by,
+        t.update_time,
+        t.update_by,
+        t.version,
+        t.del_flag
+        FROM t_advertisement t
+        <where>
+            AND t.del_flag = 0
+            <if test="searchValue != null and searchValue != '' ">
+                AND t.content LIKE concat('%',#{searchValue}, '%')
+                OR t.title like concat('%',#{searchValue}, '%')
+                OR t.points =#{searchValue}
+            </if>
+        </where>
+        ORDER BY t.sort_no
+    </select>
+
+    <select id="findBanners" resultType="java.lang.Long">
+        SELECT t.is_enable
+        FROM t_advertisement t
+        WHERE id IN
+        <foreach collection="ids" index="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>
