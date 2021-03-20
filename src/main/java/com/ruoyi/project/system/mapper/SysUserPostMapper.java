@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.mapper;
 
-import java.util.List;
 import com.ruoyi.project.system.domain.SysUserPost;
+
+import java.util.List;
 
 /**
  * 用户与岗位关联表 数据层

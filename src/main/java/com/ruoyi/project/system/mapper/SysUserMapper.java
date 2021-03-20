@@ -1,10 +1,9 @@
 package com.ruoyi.project.system.mapper;
 
-import java.util.List;
-
+import com.ruoyi.project.system.domain.SysUser;
 import org.apache.ibatis.annotations.Param;
 
-import com.ruoyi.project.system.domain.SysUser;
+import java.util.List;
 
 /**
  * 用户表 数据层

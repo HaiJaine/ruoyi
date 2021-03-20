@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.mapper;
 
-import java.util.List;
 import com.ruoyi.project.system.domain.SysPost;
+
+import java.util.List;
 
 /**
  * 岗位信息 数据层
