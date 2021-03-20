@@ -76,10 +76,15 @@ public class BackendBoxStandardServiceImpl implements BackendBoxStandardService 
     }
 
     @Override
+    @Transactional(rollbackFor = CustomException.class)
     public int deleteBoxStandards(Long[] ids) {
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
         map.put("updateBy", SecurityUtils.getLoginUser().getUser().getUserId());
+        List<Integer> boxInfoStatusList = boxInfoMapper.findBoxInfoStatusList(map);
+        if (boxInfoStatusList.contains(0)) {
+            throw new CustomException("删除箱子规格失败，规格下仍有箱子");
+        }
         return boxStandardMapper.deleteBoxStandards(map);
     }
 }

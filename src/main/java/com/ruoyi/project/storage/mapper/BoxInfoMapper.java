@@ -13,4 +13,6 @@ public interface BoxInfoMapper {
     List<BoxInfoVO> findBoxInfoList(BoxInfoVO boxInfoVO);
 
     int deleteBoxStandards(Map<String, Object> map);
+
+    List<Integer> findBoxInfoStatusList(Map<String, Object> map);
 }

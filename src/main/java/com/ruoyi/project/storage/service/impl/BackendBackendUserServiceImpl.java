@@ -27,7 +27,6 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
 
     @Override
     public int createUser(UserVO userVO) {
-//        sexStringToNumber(userVO);
         userVO.setUserType("01");
         userVO.setCreateTime(new Date());
         userVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
