@@ -1,10 +1,12 @@
 package com.ruoyi.project.storage.service.impl;
 
+import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.BoxInfoVO;
 import com.ruoyi.project.storage.mapper.BoxInfoMapper;
 import com.ruoyi.project.storage.service.BackendBoxInfoService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
@@ -39,10 +41,15 @@ public class BackendBoxInfoServiceImpl implements BackendBoxInfoService {
     }
 
     @Override
+    @Transactional(rollbackFor = CustomException.class)
     public int deleteBoxInfos(Long[] ids) {
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
         map.put("updateBy", SecurityUtils.getLoginUser().getUser().getUserId());
+        List<Integer> boxInfoStatusList = boxInfoMapper.findBoxInfoStatusList(map);
+        if (boxInfoStatusList.contains(1)) {
+            throw new CustomException("删除箱子信息失败，仍被订单使用");
+        }
         return boxInfoMapper.deleteBoxStandards(map);
     }
 

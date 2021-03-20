@@ -47,7 +47,7 @@
         FROM t_box_standard tbs
         INNER JOIN t_box_info tbi ON tbs.box_standard = tbi.box_standard
         <where>
-            tbs.del_flag = 0
+            tbs.del_flag = 0 AND tbi.del_flag = 0
             <if test="searchValue != null and searchValue != ''">
                 AND tbs.box_standard = #{searchValue}
             </if>
