@@ -37,8 +37,7 @@ public class BackendUserController extends BaseController {
      * @return 结果
      */
     @PostMapping("/create")
-    public AjaxResult createUser(@RequestBody UserVO userVO
-    ) {
+    public AjaxResult createUser(@RequestBody UserVO userVO) {
         int result = backendUserService.createUser(userVO);
         return toAjax(result);
     }
@@ -65,6 +64,12 @@ public class BackendUserController extends BaseController {
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) {
         int result = backendUserService.operate(operate, ids);
+        return toAjax(result);
+    }
+
+    @DeleteMapping("/delete/{ids}")
+    public AjaxResult deleteUsers(@PathVariable Long[] ids) {
+        int result = backendUserService.deleteUsers(ids);
         return toAjax(result);
     }
 

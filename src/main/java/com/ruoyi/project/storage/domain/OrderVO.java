@@ -33,6 +33,11 @@ public class OrderVO extends BaseEntity {
     private Long userId;
 
     /**
+     * 客户名称
+     */
+    private String nickName;
+
+    /**
      * 订单状态（手机端——1：已下上门单；2：待收空箱；3：已收空箱；4：已发重箱；5：已存储；6：已下提取单；7：待收重箱；8：已收重箱；9：已发空箱；10：已完成）订单状态（后台端——1：待发空箱；2：已发空箱；3：送达空箱；4：待发重箱；5：已存储；6：待发重箱；7：已发重箱；8：送达重箱；9：待收空箱；10：已完成）
      */
     @ApiModelProperty(value = "订单状态（手机端——1：已下上门单；2：待收空箱；3：已收空箱；4：已发重箱；5：已存储；6：已下提取单；7：待收重箱；8：已收重箱；9：已发空箱；10：已完成）订单状态（后台端——1：待发空箱；2：已发空箱；3：送达空箱；4：待发重箱；5：已存储；6：待发重箱；7：已发重箱；8：送达重箱；9：待收空箱；10：已完成）")
@@ -169,6 +174,11 @@ public class OrderVO extends BaseEntity {
     private Long sortNo;
 
     /**
+     * 删除标记（0：未删除；2：已删除）
+     */
+    private String delFlag;
+
+    /**
      * 手机端删除标记（0：未删除；2：已删除）
      */
     @ApiModelProperty(value = "手机端删除标记（0：未删除；2：已删除）")
@@ -180,8 +190,5 @@ public class OrderVO extends BaseEntity {
     @ApiModelProperty(value = "后台端删除标记（0：未删除；2：已删除）")
     private Integer backendDelFlag;
 
-    /**
-     * 客户名称
-     */
-    private String nickName;
+
 }

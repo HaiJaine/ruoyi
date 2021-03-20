@@ -36,7 +36,7 @@
             email        = #{email},
             phone_number = #{phoneNumber},
             sex          = #{sex},
-            update_time  = now(),
+            update_time  = NOW(),
             update_by    = #{updateBy},
             version      = version + 1
         WHERE user_id = #{userId}
@@ -52,10 +52,11 @@
             #{id}
         </foreach>
     </update>
-    <update id="delete">
+    <update id="delete" parameterType="java.util.Map">
         UPDATE sys_user
         SET del_flag = 2,
-        update_time = now()
+        update_time = now(),
+        update_by=#{updateBy}
         WHERE user_id in
         <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
@@ -95,7 +96,7 @@
         <where>
             del_flag = 0
             AND s.user_type = '02'
-            <if test="searchValue != null">
+            <if test="searchValue != null and searchValue != ''">
                 AND s.nick_name like concat ('%',#{searchValue},'%')
                 OR s.user_name like concat ('%',#{searchValue},'%')
                 OR s.phone_number like concat ('%',#{searchValue},'%')

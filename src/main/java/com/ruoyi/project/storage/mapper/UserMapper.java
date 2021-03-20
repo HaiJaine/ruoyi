@@ -21,4 +21,6 @@ public interface UserMapper {
     int resetPassword(Map<String, Object> user);
 
     int updatePassword(User user);
+
+    List<String> findCustomerByIds(Map<String, Object> map);
 }

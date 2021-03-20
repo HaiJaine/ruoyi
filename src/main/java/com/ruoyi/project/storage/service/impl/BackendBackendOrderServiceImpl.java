@@ -27,7 +27,7 @@ public class BackendBackendOrderServiceImpl implements BackendOrderService {
     }
 
     @Override
-    public List<OrderVO> findOrderInfo(Long id) {
+    public OrderVO findOrderInfo(Long id) {
         Order order = new Order();
         order.setId(id);
         return orderMapper.findOrderInfo(order);

@@ -41,10 +41,10 @@ public class BackendOrderController extends BaseController {
      * @return 结果
      */
     @GetMapping("/info/{id}")
-    public TableDataInfo getInfo(@PathVariable Long id) {
+    public AjaxResult getInfo(@PathVariable Long id) {
         startPage();
-        List<OrderVO> orderInfo = backendOrderService.findOrderInfo(id);
-        return getDataTable(orderInfo);
+        OrderVO orderInfo = backendOrderService.findOrderInfo(id);
+        return AjaxResult.success(orderInfo);
     }
 
     /**

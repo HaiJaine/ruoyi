@@ -55,7 +55,7 @@ public class UserVO {
     /**
      * 用户性别（0男 1女 2未知）
      */
-    private String sex;
+    private Integer sex;
 
     /**
      * 头像地址

@@ -101,7 +101,41 @@
         <where>
             del_flag = 0
             AND s.user_type = '01'
-            <if test="searchValue != null">
+            <if test="searchValue != null and searchValue != ''">
+                AND s.nick_name like concat ('%',#{searchValue},'%')
+                OR s.user_name like concat ('%',#{searchValue},'%')
+                OR s.phone_number like concat ('%',#{searchValue},'%')
+                OR s.email like concat ('%',#{searchValue},'%')
+            </if>
+        </where>
+    </select>
+    <select id="findCustomerByIds" resultType="java.lang.String">
+        SELECT s.create_by,
+        s.create_time,
+        s.update_by,
+        s.update_time,
+        s.version,
+        s.del_flag,
+        s.remark,
+        s.user_id,
+        s.dept_id,
+        s.user_name,
+        s.nick_name,
+        s.user_type,
+        s.email,
+        s.phone_number,
+        s.sex,
+        s.avatar,
+        s.password,
+        s.status,
+        s.login_ip,
+        s.login_date,
+        s.current_points
+        FROM sys_user s
+        <where>
+            del_flag = 0
+            AND s.user_type = '01'
+            <if test="searchValue != null and searchValue != ''">
                 AND s.nick_name like concat ('%',#{searchValue},'%')
                 OR s.user_name like concat ('%',#{searchValue},'%')
                 OR s.phone_number like concat ('%',#{searchValue},'%')

@@ -10,7 +10,7 @@ import java.util.Map;
 public interface OrderMapper {
     List<OrderVO> findOrderList(Params params);
 
-    List<OrderVO> findOrderInfo(Order order);
+    OrderVO findOrderInfo(Order order);
 
     int deleteOrder(Map<String, Object> map);
 }

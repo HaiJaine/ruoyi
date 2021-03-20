@@ -1,6 +1,7 @@
 package com.ruoyi.project.storage.service.impl;
 
 import com.ruoyi.common.constant.HttpStatus;
+import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.project.storage.domain.CustomerVO;
@@ -29,18 +30,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      */
     @Override
     public List<CustomerVO> findCustomers(Params params) {
-        List<CustomerVO> customers = customerMapper.findCustomers(params);
-        for (CustomerVO customer : customers) {
-            String sex = customer.getSex();
-            if ("0".equals(sex)) {
-                customer.setSex("男");
-            } else if ("1".equals(sex)) {
-                customer.setSex("女");
-            } else if ("2".equals(sex)) {
-                customer.setSex("未知");
-            }
-        }
-        return customers;
+        return customerMapper.findCustomers(params);
 
     }
 
@@ -51,9 +41,9 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * @return 结果
      */
     @Override
-    public int createCustomer(CustomerVO customerVO) throws Exception {
+    public int createCustomer(CustomerVO customerVO) throws CustomException {
         checkCustomer(customerVO);
-        sexStringToNumber(customerVO);
+//        sexStringToNumber(customerVO);
         customerVO.setUserType("02");
         customerVO.setCreateTime(new Date());
         customerVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
@@ -65,27 +55,27 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * 检验客户信息（前端传入）
      *
      * @param customerVO 客户
-     * @throws Exception 异常
+     * @throws CustomException 异常
      */
-    private void checkCustomer(CustomerVO customerVO) throws Exception {
+    private void checkCustomer(CustomerVO customerVO) throws CustomException {
         String userName = customerVO.getUserName();
         if (userName == null) {
             userName = "";
         }
         if (userName.length() >= 16) {
-            throw new Exception("客户名超过16位");
+            throw new CustomException("客户名超过16位");
         }
         if (customerVO.getPhoneNumber().length() != 11) {
-            throw new Exception("电话号码不为11位");
+            throw new CustomException("电话号码不为11位");
         }
         if (customerVO.getNickName().length() >= 10) {
-            throw new Exception("姓名超过10位");
+            throw new CustomException("姓名超过10位");
         }
-        if (customerVO.getSex().length() > 1) {
-            throw new Exception("性别超过1位");
+        if (String.valueOf(customerVO.getSex()).length() > 1) {
+            throw new CustomException("性别超过1位");
         }
         if (!customerVO.getEmail().contains("@")) {
-            throw new Exception("邮箱格式不对");
+            throw new CustomException("邮箱格式不对");
         }
     }
 
@@ -96,9 +86,9 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * @return 结果
      */
     @Override
-    public int updateCustomer(CustomerVO customerVO) throws Exception {
+    public int updateCustomer(CustomerVO customerVO) throws CustomException {
         checkCustomer(customerVO);
-        sexStringToNumber(customerVO);
+//        sexStringToNumber(customerVO);
         CustomerVO customerMapperUserById = customerMapper.findUserById(customerVO.getUserId());
         customerVO.setVersion(customerMapperUserById.getVersion());
         customerVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
@@ -113,7 +103,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * @return 结果
      */
     @Override
-    public int operate(String operate, Long[] ids) throws Exception {
+    public int operate(String operate, Long[] ids) throws CustomException {
         int result = 0;
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
@@ -122,7 +112,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
         if ("enable".equalsIgnoreCase(operate)) {
             boolean contains = statuses.contains(ENABLE);
             if (contains) {
-                throw new Exception("用户已经启用");
+                throw new CustomException("用户已经启用");
             } else {
                 map.put("status", ENABLE);
                 result = customerMapper.isStatus(map);
@@ -131,17 +121,10 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
             String DISABLE = "1";
             boolean contains = statuses.contains(DISABLE);
             if (contains) {
-                throw new Exception("用户已停用");
+                throw new CustomException("用户已停用");
             } else {
                 map.put("status", DISABLE);
                 result = customerMapper.isStatus(map);
-            }
-        } else if ("delete".equalsIgnoreCase(operate)) {
-            boolean contains = statuses.contains(ENABLE);
-            if (contains) {
-                throw new Exception("选择用户中包含未停用客户，删除失败！");
-            } else {
-                result = customerMapper.delete(map);
             }
         }
         return result;
@@ -168,22 +151,19 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
         return ajaxResult;
     }
 
-
-    /**
-     * 将性别字符串转换为数字
-     *
-     * @param customerVO user
-     */
-    private void sexStringToNumber(CustomerVO customerVO) {
-        String sex = customerVO.getSex();
-        if ("男".equals(sex)) {
-            customerVO.setSex("0");
-        } else if ("女".equals(sex)) {
-            customerVO.setSex("1");
-        } else if ("未知".equals(sex)) {
-            customerVO.setSex("2");
+    @Override
+    public int deleteCustomers(Long[] ids) {
+        int result;
+        Map<String, Object> map = new HashMap<>();
+        map.put("ids", ids);
+        List<String> statuses = customerMapper.findCustomerByIds(map);
+        boolean contains = statuses.contains("0");
+        if (contains) {
+            throw new CustomException("选择用户中包含未停用客户，删除失败！");
+        } else {
+            result = customerMapper.delete(map);
         }
+        return result;
     }
-
 
 }

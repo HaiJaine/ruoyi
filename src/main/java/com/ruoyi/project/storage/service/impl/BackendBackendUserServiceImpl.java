@@ -1,5 +1,6 @@
 package com.ruoyi.project.storage.service.impl;
 
+import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
@@ -21,23 +22,12 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
 
     @Override
     public List<UserVO> findUsers(Params params) {
-        List<UserVO> userVOList = userMapper.findUsers(params);
-        for (UserVO userVO : userVOList) {
-            String sex = userVO.getSex();
-            if ("0".equals(sex)) {
-                userVO.setSex("男");
-            } else if ("1".equals(sex)) {
-                userVO.setSex("女");
-            } else if ("2".equals(sex)) {
-                userVO.setSex("未知");
-            }
-        }
-        return userVOList;
+        return userMapper.findUsers(params);
     }
 
     @Override
     public int createUser(UserVO userVO) {
-        sexStringToNumber(userVO);
+//        sexStringToNumber(userVO);
         userVO.setUserType("01");
         userVO.setCreateTime(new Date());
         userVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
@@ -45,20 +35,20 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
         return userMapper.createUser(userVO);
     }
 
-    private void sexStringToNumber(UserVO userVO) {
-        String sex = userVO.getSex();
-        if ("男".equals(sex)) {
-            userVO.setSex("0");
-        } else if ("女".equals(sex)) {
-            userVO.setSex("1");
-        } else if ("未知".equals(sex)) {
-            userVO.setSex("2");
-        }
-    }
+//    private void sexStringToNumber(UserVO userVO) {
+//        String sex = userVO.getSex();
+//        if ("男".equals(sex)) {
+//            userVO.setSex("0");
+//        } else if ("女".equals(sex)) {
+//            userVO.setSex("1");
+//        } else if ("未知".equals(sex)) {
+//            userVO.setSex("2");
+//        }
+//    }
 
     @Override
     public int updateUser(UserVO userVO) {
-        sexStringToNumber(userVO);
+//        sexStringToNumber(userVO);
         userVO.setUpdateTime(new Date());
         userVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
         return userMapper.updateUser(userVO);
@@ -99,6 +89,21 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
             user.setUserId(SecurityUtils.getLoginUser().getUser().getUserId());
             user.setPassword(SecurityUtils.encryptPassword(newPassword));
             result = userMapper.updatePassword(user);
+        }
+        return result;
+    }
+
+    @Override
+    public int deleteUsers(Long[] ids) {
+        int result;
+        Map<String, Object> map = new HashMap<>();
+        map.put("ids", ids);
+        List<String> statuses = userMapper.findCustomerByIds(map);
+        boolean contains = statuses.contains("0");
+        if (contains) {
+            throw new CustomException("选择用户中包含未停用客户，删除失败！");
+        } else {
+            result = userMapper.delete(map);
         }
         return result;
     }

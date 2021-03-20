@@ -1,5 +1,6 @@
 package com.ruoyi.project.storage.controller;
 
+import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
@@ -37,7 +38,7 @@ public class BackendCustomerController extends BaseController {
      * @return 结果
      */
     @PostMapping("/create")
-    public AjaxResult create(@RequestBody CustomerVO customerVO) throws Exception {
+    public AjaxResult create(@RequestBody CustomerVO customerVO) throws CustomException {
         int result = backendCustomerService.createCustomer(customerVO);
         return toAjax(result);
     }
@@ -49,7 +50,7 @@ public class BackendCustomerController extends BaseController {
      * @return 结果
      */
     @PutMapping("/update")
-    public AjaxResult updateCustomer(@RequestBody CustomerVO customerVO) throws Exception {
+    public AjaxResult updateCustomer(@RequestBody CustomerVO customerVO) {
         int result = backendCustomerService.updateCustomer(customerVO);
         return toAjax(result);
     }
@@ -64,6 +65,12 @@ public class BackendCustomerController extends BaseController {
     @PutMapping("/{operate}/{ids}")
     public AjaxResult operate(@PathVariable String operate, @PathVariable Long[] ids) throws Exception {
         int result = backendCustomerService.operate(operate, ids);
+        return toAjax(result);
+    }
+
+    @DeleteMapping("/delete/{ids}")
+    public AjaxResult deleteCustomers(@PathVariable Long[] ids) {
+        int result = backendCustomerService.deleteCustomers(ids);
         return toAjax(result);
     }
 

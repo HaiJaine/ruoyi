@@ -17,4 +17,6 @@ public interface BackendUserService {
     int resetPassword(Long[] ids);
 
     int updatePassword(String oldPassword, String newPassword);
+
+    int deleteUsers(Long[] ids);
 }

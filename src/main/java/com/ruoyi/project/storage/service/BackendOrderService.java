@@ -12,7 +12,7 @@ import java.util.List;
 public interface BackendOrderService {
     List<OrderVO> findOrderList(Params params);
 
-    List<OrderVO> findOrderInfo(Long id);
+    OrderVO findOrderInfo(Long id);
 
     int operateOrder(Long id, Integer operate, Long version);
 
