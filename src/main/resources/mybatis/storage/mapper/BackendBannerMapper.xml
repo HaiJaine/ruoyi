@@ -91,11 +91,11 @@
         ORDER BY t.sort_no
     </select>
 
-    <select id="findBanners" resultType="java.lang.Long">
+    <select id="findBanners" resultType="java.lang.Long" parameterType="java.util.Map">
         SELECT t.is_enable
         FROM t_advertisement t
         WHERE id IN
-        <foreach collection="ids" index="id" open="(" separator="," close=")">
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
     </select>

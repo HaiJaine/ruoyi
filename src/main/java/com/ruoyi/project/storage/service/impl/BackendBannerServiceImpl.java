@@ -64,15 +64,19 @@ public class BackendBannerServiceImpl implements BackendBannerService {
         List<Long> list = bannerMapper.findBanners(map);
         int result = 0;
         if ("enable".equalsIgnoreCase(operate)) {
-            if (!list.contains(0L)) {
+            if (list.contains(0L)) {
+                throw new CustomException("状态为启用的用户，不能启用");
+            } else {
                 map.put("isEnable", 0);
                 result = bannerMapper.isEnable(map);
-            } else {
-                throw new CustomException("状态为启用的用户，不能启用");
             }
         } else if ("disable".equalsIgnoreCase(operate)) {
-            map.put("isEnable", 1);
-            result = bannerMapper.isEnable(map);
+            if (list.contains(1L)) {
+                throw new CustomException("状态为停用的用户，不能停用");
+            } else {
+                map.put("isEnable", 1);
+                result = bannerMapper.isEnable(map);
+            }
         }
         return result;
     }
