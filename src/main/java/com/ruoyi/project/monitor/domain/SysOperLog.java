@@ -1,11 +1,10 @@
 package com.ruoyi.project.monitor.domain;
 
+import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel.ColumnType;
 import com.ruoyi.framework.web.domain.BaseEntity;
-
-import java.util.Date;
 
 /**
  * 操作日志记录表 oper_log

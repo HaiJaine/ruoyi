@@ -1,8 +1,7 @@
 package com.ruoyi.project.monitor.service;
 
-import com.ruoyi.project.monitor.domain.SysOperLog;
-
 import java.util.List;
+import com.ruoyi.project.monitor.domain.SysOperLog;
 
 /**
  * 操作日志 服务层

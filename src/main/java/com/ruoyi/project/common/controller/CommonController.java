@@ -1,18 +1,15 @@
 package com.ruoyi.project.common.controller;
 
-import com.ruoyi.common.constant.Constants;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.common.utils.ServletUtils;
-import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.common.utils.file.FileUploadUtils;
-import com.ruoyi.common.utils.file.FileUtils;
 import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.aspectj.lang.enums.BusinessType;
-import com.ruoyi.framework.config.RuoYiConfig;
-import com.ruoyi.framework.config.ServerConfig;
 import com.ruoyi.framework.security.LoginUser;
 import com.ruoyi.framework.security.service.SysPermissionService;
 import com.ruoyi.framework.security.service.TokenService;
-import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.project.common.domain.LoginBody;
 import com.ruoyi.project.common.service.CommonService;
 import com.ruoyi.project.system.domain.SysUser;
@@ -20,11 +17,20 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import com.ruoyi.common.constant.Constants;
+import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.common.utils.file.FileUploadUtils;
+import com.ruoyi.common.utils.file.FileUtils;
+import com.ruoyi.framework.config.RuoYiConfig;
+import com.ruoyi.framework.config.ServerConfig;
+import com.ruoyi.framework.web.domain.AjaxResult;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
 /**

@@ -1,8 +1,7 @@
 package com.ruoyi.project.monitor.mapper;
 
-import com.ruoyi.project.monitor.domain.SysJobLog;
-
 import java.util.List;
+import com.ruoyi.project.monitor.domain.SysJobLog;
 
 /**
  * 调度任务日志信息 数据层

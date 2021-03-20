@@ -1,7 +1,10 @@
 package com.ruoyi.common.utils;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,6 +12,7 @@ import java.io.OutputStream;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
+import javax.imageio.ImageIO;
 
 /**
  * 验证码工具类

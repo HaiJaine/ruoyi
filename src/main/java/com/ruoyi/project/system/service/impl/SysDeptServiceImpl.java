@@ -1,5 +1,11 @@
 package com.ruoyi.project.system.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.StringUtils;
@@ -8,13 +14,6 @@ import com.ruoyi.framework.web.domain.TreeSelect;
 import com.ruoyi.project.system.domain.SysDept;
 import com.ruoyi.project.system.mapper.SysDeptMapper;
 import com.ruoyi.project.system.service.ISysDeptService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 部门管理 服务实现

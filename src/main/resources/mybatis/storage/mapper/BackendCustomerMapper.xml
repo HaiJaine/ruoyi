@@ -8,7 +8,7 @@
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
         <result column="user_type" jdbcType="VARCHAR" property="userType"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="phone_number" jdbcType="VARCHAR" property="phonenumber"/>
+        <result column="phonenumber" jdbcType="VARCHAR" property="phonenumber"/>
         <result column="sex" jdbcType="CHAR" property="sex"/>
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -25,7 +25,7 @@
         <result column="version" jdbcType="BIGINT" property="version"/>
     </resultMap>
     <insert id="createCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
-        INSERT INTO sys_user(user_name, nick_name, email, phone_number, sex, create_time, create_by, user_type,
+        INSERT INTO sys_user(user_name, nick_name, email, phonenumber, sex, create_time, create_by, user_type,
                              password)
         VALUES (#{userName}, #{nickName}, #{email}, #{phonenumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
                 #{password})
@@ -34,7 +34,7 @@
         UPDATE sys_user
         SET nick_name    = #{nickName},
             email        = #{email},
-            phone_number = #{phonenumber},
+            phonenumber = #{phonenumber},
             sex          = #{sex},
             update_time  = NOW(),
             update_by    = #{updateBy},
@@ -84,7 +84,7 @@
         s.nick_name,
         s.user_type,
         s.email,
-        s.phone_number,
+        s.phonenumber,
         s.sex,
         s.avatar,
         s.password,
@@ -99,7 +99,7 @@
             <if test="searchValue != null and searchValue != ''">
                 AND s.nick_name like concat ('%',#{searchValue},'%')
                 OR s.user_name like concat ('%',#{searchValue},'%')
-                OR s.phone_number like concat ('%',#{searchValue},'%')
+                OR s.phonenumber like concat ('%',#{searchValue},'%')
                 OR s.email like concat ('%',#{searchValue},'%')
             </if>
         </where>

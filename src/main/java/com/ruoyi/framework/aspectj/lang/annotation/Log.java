@@ -1,9 +1,12 @@
 package com.ruoyi.framework.aspectj.lang.annotation;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import com.ruoyi.framework.aspectj.lang.enums.BusinessType;
 import com.ruoyi.framework.aspectj.lang.enums.OperatorType;
-
-import java.lang.annotation.*;
 
 /**
  * 自定义操作日志记录注解

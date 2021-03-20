@@ -1,11 +1,10 @@
 package com.ruoyi.project.system.domain;
 
-import com.ruoyi.framework.web.domain.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.ruoyi.framework.web.domain.BaseEntity;
 
 /**
  * 通知公告表 sys_notice

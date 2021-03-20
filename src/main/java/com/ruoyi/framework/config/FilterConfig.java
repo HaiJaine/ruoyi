@@ -1,16 +1,15 @@
 package com.ruoyi.framework.config;
 
-import com.ruoyi.common.filter.RepeatableFilter;
-import com.ruoyi.common.filter.XssFilter;
-import com.ruoyi.common.utils.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.servlet.DispatcherType;
-import java.util.HashMap;
-import java.util.Map;
+import com.ruoyi.common.filter.RepeatableFilter;
+import com.ruoyi.common.filter.XssFilter;
+import com.ruoyi.common.utils.StringUtils;
 
 /**
  * Filter配置

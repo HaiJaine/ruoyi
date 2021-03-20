@@ -1,13 +1,12 @@
 package com.ruoyi.project.tool.gen.util;
 
+import java.util.Arrays;
+import org.apache.commons.lang3.RegExUtils;
 import com.ruoyi.common.constant.GenConstants;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.config.GenConfig;
 import com.ruoyi.project.tool.gen.domain.GenTable;
 import com.ruoyi.project.tool.gen.domain.GenTableColumn;
-import org.apache.commons.lang3.RegExUtils;
-
-import java.util.Arrays;
 
 /**
  * 代码生成器 工具类

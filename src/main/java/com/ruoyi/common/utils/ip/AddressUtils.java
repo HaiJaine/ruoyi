@@ -1,11 +1,11 @@
 package com.ruoyi.common.utils.ip;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.http.HttpUtils;
 import com.ruoyi.framework.config.RuoYiConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 获取地址类

@@ -1,19 +1,18 @@
 package com.ruoyi.project.common.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.utils.IdUtils;
 import com.ruoyi.common.utils.VerifyCodeUtils;
 import com.ruoyi.common.utils.sign.Base64;
 import com.ruoyi.framework.redis.RedisCache;
 import com.ruoyi.framework.web.domain.AjaxResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 验证码操作处理

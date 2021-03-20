@@ -1,11 +1,10 @@
 package com.ruoyi.project.monitor.domain;
 
-import com.ruoyi.framework.aspectj.lang.annotation.Excel;
-import com.ruoyi.framework.web.domain.BaseEntity;
+import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-import java.util.Date;
+import com.ruoyi.framework.aspectj.lang.annotation.Excel;
+import com.ruoyi.framework.web.domain.BaseEntity;
 
 /**
  * 定时任务调度日志表 sys_job_log

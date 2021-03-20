@@ -1,7 +1,7 @@
 package com.ruoyi.common.utils.job;
 
-import com.ruoyi.project.monitor.domain.SysJob;
 import org.quartz.JobExecutionContext;
+import com.ruoyi.project.monitor.domain.SysJob;
 
 /**
  * 定时任务处理（允许并发执行）

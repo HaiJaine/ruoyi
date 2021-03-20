@@ -1,11 +1,11 @@
 package com.ruoyi.common.utils;
 
-import com.ruoyi.common.constant.HttpStatus;
-import com.ruoyi.common.exception.CustomException;
-import com.ruoyi.framework.security.LoginUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.ruoyi.common.constant.HttpStatus;
+import com.ruoyi.common.exception.CustomException;
+import com.ruoyi.framework.security.LoginUser;
 
 /**
  * 安全服务工具类

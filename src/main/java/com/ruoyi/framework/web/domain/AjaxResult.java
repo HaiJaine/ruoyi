@@ -1,9 +1,9 @@
 package com.ruoyi.framework.web.domain;
 
+import java.util.HashMap;
+
 import com.ruoyi.common.constant.HttpStatus;
 import com.ruoyi.common.utils.StringUtils;
-
-import java.util.HashMap;
 
 /**
  * 通用返回实体（非分页）

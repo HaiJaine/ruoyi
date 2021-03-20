@@ -1,9 +1,8 @@
 package com.ruoyi.common.utils.security;
 
+import java.security.MessageDigest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.security.MessageDigest;
 
 /**
  * Md5加密方法

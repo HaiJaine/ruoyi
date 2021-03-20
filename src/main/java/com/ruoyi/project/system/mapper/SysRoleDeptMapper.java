@@ -1,8 +1,7 @@
 package com.ruoyi.project.system.mapper;
 
-import com.ruoyi.project.system.domain.SysRoleDept;
-
 import java.util.List;
+import com.ruoyi.project.system.domain.SysRoleDept;
 
 /**
  * 角色与部门关联表 数据层

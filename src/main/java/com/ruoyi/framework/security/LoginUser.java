@@ -1,12 +1,11 @@
 package com.ruoyi.framework.security;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ruoyi.project.system.domain.SysUser;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Set;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ruoyi.project.system.domain.SysUser;
 
 /**
  * 登录用户身份权限

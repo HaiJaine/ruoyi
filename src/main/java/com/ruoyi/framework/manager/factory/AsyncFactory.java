@@ -1,5 +1,8 @@
 package com.ruoyi.framework.manager.factory;
 
+import java.util.TimerTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.utils.LogUtils;
 import com.ruoyi.common.utils.ServletUtils;
@@ -11,10 +14,6 @@ import com.ruoyi.project.monitor.domain.SysOperLog;
 import com.ruoyi.project.monitor.service.ISysLogininforService;
 import com.ruoyi.project.monitor.service.ISysOperLogService;
 import eu.bitwalker.useragentutils.UserAgent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.TimerTask;
 
 /**
  * 异步工厂（产生任务用）
