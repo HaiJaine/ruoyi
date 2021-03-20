@@ -1,11 +1,13 @@
 package com.ruoyi.project.storage.service.impl;
 
-import com.ruoyi.project.storage.domain.Order;
+import com.ruoyi.common.exception.CustomException;
+import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.OrderMapper;
 import com.ruoyi.project.storage.service.BackendOrderService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -28,21 +30,34 @@ public class BackendBackendOrderServiceImpl implements BackendOrderService {
 
     @Override
     public OrderVO findOrderInfo(Long id) {
-        Order order = new Order();
-        order.setId(id);
-        return orderMapper.findOrderInfo(order);
+        OrderVO orderVO = new OrderVO();
+        orderVO.setId(id);
+        return orderMapper.findOrderInfo(orderVO);
     }
 
     @Override
+    @Transactional(rollbackFor = CustomException.class)
     public int operateOrder(Long id, Integer operate, Long version) {
-        //TODO 操作订单业务逻辑
-        return 0;
+        OrderVO orderInfo = findOrderInfo(id);
+        orderInfo.setStatus(operate);
+        orderInfo.setUpdateBy(String.valueOf(SecurityUtils.getLoginUser().getUser().getUserId()));
+        int result = orderMapper.operateOrder(orderInfo);
+        if (result <= 0) {
+            throw new CustomException("操作失败");
+        }
+        return result;
     }
 
     @Override
+    @Transactional(rollbackFor = CustomException.class)
     public int deleteOrder(Long[] ids) {
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
-        return orderMapper.deleteOrder(map);
+        map.put("updateBy", String.valueOf(SecurityUtils.getLoginUser().getUser().getUserId()));
+        int result = orderMapper.deleteOrder(map);
+        if (result <= 0) {
+            throw new CustomException("删除失败");
+        }
+        return result;
     }
 }

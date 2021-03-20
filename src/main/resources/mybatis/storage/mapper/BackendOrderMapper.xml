@@ -38,11 +38,21 @@
     </resultMap>
     <!--删除订单-->
     <update id="deleteOrder">
-        UPDATE t_order SET del_flag = 2
+        UPDATE t_order SET del_flag = 2,
+        update_time = now(),
+        update_by= #{updateBy}
         WHERE id in
         <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
+    </update>
+    <!--订单操作-->
+    <update id="operateOrder">
+        UPDATE t_order
+        SET status      = #{status},
+            update_time = NOW(),
+            update_by= #{updateBy}
+        WHERE id = #{id}
     </update>
     <!--多条件查询订单-->
     <select id="findOrderList" resultMap="BaseResultMap">
@@ -80,7 +90,7 @@
         t.app_del_flag,
         t.backend_del_flag
         FROM
-        t_order t inner JOIN sys_user s ON t.user_id = s.user_id
+        t_order t LEFT JOIN sys_user s ON t.user_id = s.user_id
         <where>
             t.del_flag = 0
             <if test="nickName != null and nickName != ''">

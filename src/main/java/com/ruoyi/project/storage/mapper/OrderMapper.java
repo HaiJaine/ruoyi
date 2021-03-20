@@ -1,6 +1,5 @@
 package com.ruoyi.project.storage.mapper;
 
-import com.ruoyi.project.storage.domain.Order;
 import com.ruoyi.project.storage.domain.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 
@@ -10,7 +9,9 @@ import java.util.Map;
 public interface OrderMapper {
     List<OrderVO> findOrderList(Params params);
 
-    OrderVO findOrderInfo(Order order);
+    OrderVO findOrderInfo(OrderVO orderVO);
 
     int deleteOrder(Map<String, Object> map);
+
+    int operateOrder(OrderVO orderInfo);
 }

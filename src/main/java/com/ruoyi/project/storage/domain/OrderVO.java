@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.framework.web.domain.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
-
 @EqualsAndHashCode(callSuper = true)
-@Data
+@Setter
+@Getter
 @ApiModel(value = "订单对象", description = "订单对象")
 public class OrderVO extends BaseEntity {
 
