@@ -33,9 +33,17 @@ public class BackendBoxStandardServiceImpl implements BackendBoxStandardService 
         return boxStandardMapper.selectBoxStandardSelectList();
     }
 
+    /**
+     * 箱子新增
+     *
+     * @param boxStandardVO boxStandardVO
+     * @return 结果
+     * @throws CustomException 异常
+     */
     @Override
     @Transactional(rollbackFor = CustomException.class)
     public int createBoxStandard(BoxStandardVO boxStandardVO) throws CustomException {
+        boolean flag = true;
         String loginUserId = String.valueOf(SecurityUtils.getLoginUser().getUser().getUserId());
         boxStandardVO.setCreateBy(loginUserId);
         boxStandardVO.setCreateTime(new Date());
@@ -44,35 +52,58 @@ public class BackendBoxStandardServiceImpl implements BackendBoxStandardService 
         boxStandardVO.setUpdateTime(new Date());
         boxStandardVO.setVersion(0L);
         boxStandardVO.setDelFlag("0");
-        int result = boxStandardMapper.createBoxStandard(boxStandardVO);
-        if (result > 0) {
-            List<BoxInfoVO> boxInfoVOList = new ArrayList<>();
-            for (int i = 0; i < boxStandardVO.getInventoryNumber(); i++) {
-                BoxInfoVO boxInfoVO = new BoxInfoVO();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-                String boxCode = simpleDateFormat.format(new Date());
-                boxInfoVO.setBoxCode(Long.valueOf(boxCode));
-                boxInfoVO.setBoxStandard(boxStandardVO.getBoxStandard());
-                boxInfoVO.setBoxUnitPrice(boxStandardVO.getBoxUnitPrice());
-                boxInfoVO.setIsUsed("0");
-                boxInfoVO.setRemark(boxStandardVO.getRemark());
-                boxInfoVO.setSortNo(0L);
-                boxInfoVO.setCreateTime(new Date());
-                boxInfoVO.setCreateBy(loginUserId);
-                boxInfoVO.setUpdateTime(new Date());
-                boxInfoVO.setUpdateBy(loginUserId);
-                boxInfoVO.setVersion(0L);
-                boxInfoVO.setDelFlag("0");
-                boxInfoVOList.add(boxInfoVO);
+        final List<BoxStandardSelectVO> list = selectBoxStandardSelectList();
+        for (BoxStandardSelectVO boxStandardSelectVO : list) {
+            if (boxStandardSelectVO.getBoxStandard().equals(boxStandardVO.getBoxStandard())) {
+                flag = false;
+                if (!boxStandardSelectVO.getBoxUnitPrice().equals(boxStandardVO.getBoxUnitPrice())) {
+                    throw new CustomException("新增失败，已存在相同规格的箱子");
+                }
             }
-            int boxInfo = boxInfoMapper.createBoxInfo(boxInfoVOList);
-            if (boxInfo <= 0) {
-                throw new CustomException("出错了");
-            }
+        }
+        int result = 0;
+        if (flag) {
+            result = boxStandardMapper.createBoxStandard(boxStandardVO);
+        }
+        if (result > 0 || !flag) {
+            result = createBoxInfo(boxStandardVO, loginUserId);
         } else {
             throw new CustomException("出错了");
         }
         return result;
+    }
+
+    /**
+     * 创建箱子信息
+     *
+     * @param boxStandardVO boxStandardVO
+     * @param loginUserId   loginUserId
+     */
+    private int createBoxInfo(BoxStandardVO boxStandardVO, String loginUserId) {
+        List<BoxInfoVO> boxInfoVOList = new ArrayList<>();
+        for (int i = 0; i < boxStandardVO.getInventoryNumber(); i++) {
+            BoxInfoVO boxInfoVO = new BoxInfoVO();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            String boxCode = simpleDateFormat.format(new Date());
+            boxInfoVO.setBoxCode(Long.valueOf(boxCode));
+            boxInfoVO.setBoxStandard(boxStandardVO.getBoxStandard());
+            boxInfoVO.setBoxUnitPrice(boxStandardVO.getBoxUnitPrice());
+            boxInfoVO.setIsUsed("0");
+            boxInfoVO.setRemark(boxStandardVO.getRemark());
+            boxInfoVO.setSortNo(0L);
+            boxInfoVO.setCreateTime(new Date());
+            boxInfoVO.setCreateBy(loginUserId);
+            boxInfoVO.setUpdateTime(new Date());
+            boxInfoVO.setUpdateBy(loginUserId);
+            boxInfoVO.setVersion(0L);
+            boxInfoVO.setDelFlag("0");
+            boxInfoVOList.add(boxInfoVO);
+        }
+        int boxInfo = boxInfoMapper.createBoxInfo(boxInfoVOList);
+        if (boxInfo <= 0) {
+            throw new CustomException("出错了");
+        }
+        return boxInfo;
     }
 
     @Override
@@ -87,4 +118,5 @@ public class BackendBoxStandardServiceImpl implements BackendBoxStandardService 
         }
         return boxStandardMapper.deleteBoxStandards(map);
     }
+
 }
