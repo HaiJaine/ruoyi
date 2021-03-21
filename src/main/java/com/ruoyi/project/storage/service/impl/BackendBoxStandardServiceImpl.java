@@ -1,7 +1,9 @@
 package com.ruoyi.project.storage.service.impl;
 
 import com.ruoyi.common.exception.CustomException;
+import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.SecurityUtils;
+import com.ruoyi.project.common.util.SeqGeneratorUtil;
 import com.ruoyi.project.storage.domain.BoxInfoVO;
 import com.ruoyi.project.storage.domain.BoxStandardSelectVO;
 import com.ruoyi.project.storage.domain.BoxStandardVO;
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -83,9 +84,7 @@ public class BackendBoxStandardServiceImpl implements BackendBoxStandardService 
         List<BoxInfoVO> boxInfoVOList = new ArrayList<>();
         for (int i = 0; i < boxStandardVO.getInventoryNumber(); i++) {
             BoxInfoVO boxInfoVO = new BoxInfoVO();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-            String boxCode = simpleDateFormat.format(new Date());
-            boxInfoVO.setBoxCode(Long.valueOf(boxCode));
+            boxInfoVO.setBoxCode(Long.valueOf(SeqGeneratorUtil.seqGenerator(DateUtils.getNowDateStr(), 6)));
             boxInfoVO.setBoxStandard(boxStandardVO.getBoxStandard());
             boxInfoVO.setBoxUnitPrice(boxStandardVO.getBoxUnitPrice());
             boxInfoVO.setIsUsed("0");

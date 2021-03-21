@@ -32,13 +32,13 @@
     </insert>
     <update id="updateCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
         UPDATE sys_user
-        SET nick_name    = #{nickName},
-            email        = #{email},
+        SET nick_name   = #{nickName},
+            email       = #{email},
             phonenumber = #{phonenumber},
-            sex          = #{sex},
-            update_time  = NOW(),
-            update_by    = #{updateBy},
-            version      = version + 1
+            sex         = #{sex},
+            update_time = NOW(),
+            update_by   = #{updateBy},
+            version     = version + 1
         WHERE user_id = #{userId}
           AND version = #{version}
     </update>
@@ -111,10 +111,25 @@
             #{id}
         </foreach>
     </select>
-    <select id="findUserById" resultType="com.ruoyi.project.storage.domain.CustomerVO">
+    <select id="findCustomerById" resultType="com.ruoyi.project.storage.domain.CustomerVO">
         SELECT *
         FROM sys_user
         WHERE del_flag = 0
           AND user_id = #{user_id}
+    </select>
+    <select id="findCustomerByUsername" resultType="java.lang.Integer">
+        SELECT COUNT(user_id)
+        FROM sys_user
+        WHERE user_name = #{userName}
+    </select>
+    <select id="findCustomerByEmail" resultType="java.lang.Integer">
+        SELECT COUNT(user_id)
+        FROM sys_user
+        WHERE email = #{email}
+    </select>
+    <select id="findCustomerByPhoneNumber" resultType="java.lang.Integer">
+        SELECT COUNT(user_id)
+        FROM sys_user
+        WHERE phonenumber = #{phoneNumber}
     </select>
 </mapper>

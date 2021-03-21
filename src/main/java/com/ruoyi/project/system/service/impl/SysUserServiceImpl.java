@@ -1,29 +1,22 @@
 package com.ruoyi.project.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.framework.aspectj.lang.annotation.DataScope;
-import com.ruoyi.project.system.domain.SysPost;
-import com.ruoyi.project.system.domain.SysRole;
-import com.ruoyi.project.system.domain.SysUser;
-import com.ruoyi.project.system.domain.SysUserPost;
-import com.ruoyi.project.system.domain.SysUserRole;
-import com.ruoyi.project.system.mapper.SysPostMapper;
-import com.ruoyi.project.system.mapper.SysRoleMapper;
-import com.ruoyi.project.system.mapper.SysUserMapper;
-import com.ruoyi.project.system.mapper.SysUserPostMapper;
-import com.ruoyi.project.system.mapper.SysUserRoleMapper;
+import com.ruoyi.project.system.domain.*;
+import com.ruoyi.project.system.mapper.*;
 import com.ruoyi.project.system.service.ISysConfigService;
 import com.ruoyi.project.system.service.ISysUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户 业务层处理
@@ -35,22 +28,22 @@ public class SysUserServiceImpl implements ISysUserService
 {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
-    @Autowired
+    @Resource
     private SysUserMapper userMapper;
 
-    @Autowired
+    @Resource
     private SysRoleMapper roleMapper;
 
-    @Autowired
+    @Resource
     private SysPostMapper postMapper;
 
-    @Autowired
+    @Resource
     private SysUserRoleMapper userRoleMapper;
 
-    @Autowired
+    @Resource
     private SysUserPostMapper userPostMapper;
 
-    @Autowired
+    @Resource
     private ISysConfigService configService;
 
     /**

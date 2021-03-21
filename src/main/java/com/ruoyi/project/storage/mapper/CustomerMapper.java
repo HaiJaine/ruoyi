@@ -21,5 +21,11 @@ public interface CustomerMapper {
 
     List<String> findCustomerByIds(Map<String, Object> ids);
 
-    CustomerVO findUserById(Long id);
+    CustomerVO findCustomerById(Long id);
+
+    int findCustomerByUsername(String username);
+
+    int findCustomerByEmail(String email);
+
+    int findCustomerByPhoneNumber(String phoneNumber);
 }

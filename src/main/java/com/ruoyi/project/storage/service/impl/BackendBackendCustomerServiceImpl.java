@@ -23,7 +23,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
     private CustomerMapper customerMapper;
 
     /**
-     * 查询客户
+     * 查询所有客户
      *
      * @param params 参数
      * @return 结果
@@ -34,6 +34,37 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
     }
 
     /**
+     * 查询用户是否存在（通过用户名）
+     *
+     * @param username 用户名
+     * @return 结果
+     */
+    private boolean findCustomerByUsername(String username) {
+        return customerMapper.findCustomerByUsername(username) > 0;
+    }
+
+    /**
+     * 查询用户是否存在（通过邮箱）
+     *
+     * @param email 邮箱
+     * @return 结果
+     */
+    private boolean findCustomerByEmail(String email) {
+        return customerMapper.findCustomerByEmail(email) > 0;
+    }
+
+    /**
+     * 查询用户是否存在（通过电话号码）
+     *
+     * @param phoneNumber 电话号码
+     * @return 结果
+     */
+    private boolean findCustomerByPhoneNumber(String phoneNumber) {
+        return customerMapper.findCustomerByPhoneNumber(phoneNumber) > 0;
+    }
+
+
+    /**
      * 新增顾客
      *
      * @param customerVO user
@@ -41,10 +72,20 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      */
     @Override
     public int createCustomer(CustomerVO customerVO) throws CustomException {
+        if (findCustomerByUsername(customerVO.getUserName())) {
+            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，登录账号已存在");
+        }
+        if (findCustomerByEmail(customerVO.getEmail())) {
+            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
+        }
+        if (findCustomerByPhoneNumber(customerVO.getPhonenumber())) {
+            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，手机号已存在");
+        }
         checkCustomer(customerVO);
-//        sexStringToNumber(customerVO);
         customerVO.setUserType("02");
         customerVO.setCreateTime(new Date());
+        customerVO.setCurrentPoints(0L);
+        customerVO.setVersion(0L);
         customerVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
         customerVO.setPassword(SecurityUtils.encryptPassword("123456"));
         return customerMapper.createCustomer(customerVO);
@@ -86,9 +127,14 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      */
     @Override
     public int updateCustomer(CustomerVO customerVO) throws CustomException {
+        if (findCustomerByEmail(customerVO.getEmail())) {
+            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
+        }
+        if (findCustomerByPhoneNumber(customerVO.getPhonenumber())) {
+            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，手机号已存在");
+        }
         checkCustomer(customerVO);
-//        sexStringToNumber(customerVO);
-        CustomerVO customerMapperUserById = customerMapper.findUserById(customerVO.getUserId());
+        CustomerVO customerMapperUserById = customerMapper.findCustomerById(customerVO.getUserId());
         customerVO.setVersion(customerMapperUserById.getVersion());
         customerVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
         return customerMapper.updateCustomer(customerVO);

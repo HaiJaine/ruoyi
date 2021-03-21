@@ -32,15 +32,14 @@
     </insert>
     <update id="updateUser" parameterType="com.ruoyi.project.storage.domain.UserVO">
         UPDATE sys_user
-        SET nick_name    = #{nickName},
-            email        = #{email},
+        SET nick_name   = #{nickName},
+            email       = #{email},
             phonenumber = #{phonenumber},
-            sex          = #{sex},
-            update_time  = #{updateTime},
-            update_by    = #{updateBy}
+            sex         = #{sex},
+            update_time = #{updateTime},
+            update_by   = #{updateBy}
         WHERE user_id = #{userId}
     </update>
-
     <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.UserVO">
         UPDATE sys_user
         SET status = #{status},
@@ -50,7 +49,6 @@
             #{id}
         </foreach>
     </update>
-
     <update id="delete">
         UPDATE sys_user
         SET del_flag = 2,
@@ -68,13 +66,11 @@
             #{id}
         </foreach>
     </update>
-
     <update id="updatePassword">
         UPDATE sys_user
         SET password = #{password}
         WHERE user_id = #{userId}
     </update>
-
     <select id="findUsers" resultMap="BaseResultMap">
         SELECT s.create_by,
         s.create_time,
@@ -142,5 +138,20 @@
                 OR s.email like concat ('%',#{searchValue},'%')
             </if>
         </where>
+    </select>
+    <select id="findUserByUsername" resultType="int" parameterType="string">
+        SELECT COUNT(user_id)
+        FROM sys_user
+        WHERE user_name = #{userName}
+    </select>
+    <select id="findUserByEmail" resultType="int" parameterType="string">
+        SELECT COUNT(user_id)
+        FROM sys_user
+        WHERE email = #{email}
+    </select>
+    <select id="findUserByPhoneNumber" resultType="int" parameterType="string">
+        SELECT COUNT(user_id)
+        FROM sys_user
+        WHERE phonenumber = #{phoneNumber}
     </select>
 </mapper>

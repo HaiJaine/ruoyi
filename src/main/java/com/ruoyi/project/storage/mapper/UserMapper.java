@@ -23,4 +23,10 @@ public interface UserMapper {
     int updatePassword(User user);
 
     List<String> findCustomerByIds(Map<String, Object> map);
+
+    int findUserByUsername(String username);
+
+    int findUserByEmail(String email);
+
+    int findUserByPhoneNumber(String phoneNumber);
 }
