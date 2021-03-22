@@ -3,7 +3,7 @@ package com.ruoyi.project.storage.service.impl;
 import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.BannerVO;
+import com.ruoyi.project.storage.domain.vo.BannerVO;
 import com.ruoyi.project.storage.mapper.BannerMapper;
 import com.ruoyi.project.storage.service.BackendBannerService;
 import org.springframework.stereotype.Service;

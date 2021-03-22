@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.storage.mapper.BoxInfoMapper">
-    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.BoxInfoVO">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.vo.BoxInfoVO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="box_code" jdbcType="BIGINT" property="boxCode"/>
         <result column="box_standard" jdbcType="VARCHAR" property="boxStandard"/>
@@ -42,7 +42,7 @@
             #{id}
         </foreach>
     </update>
-    <select id="findBoxInfoList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.BoxInfoVO">
+    <select id="findBoxInfoList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.vo.BoxInfoVO">
         SELECT
         t.create_by,
         t.create_time,

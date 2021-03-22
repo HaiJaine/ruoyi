@@ -3,8 +3,8 @@ package com.ruoyi.project.storage.controller;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
-import com.ruoyi.project.storage.domain.BoxStandardSelectVO;
-import com.ruoyi.project.storage.domain.BoxStandardVO;
+import com.ruoyi.project.storage.domain.vo.BoxStandardSelectVO;
+import com.ruoyi.project.storage.domain.vo.BoxStandardVO;
 import com.ruoyi.project.storage.service.BackendBoxStandardService;
 import org.springframework.web.bind.annotation.*;
 

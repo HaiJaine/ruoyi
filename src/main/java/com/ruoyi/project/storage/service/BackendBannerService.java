@@ -1,7 +1,7 @@
 package com.ruoyi.project.storage.service;
 
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.BannerVO;
+import com.ruoyi.project.storage.domain.vo.BannerVO;
 
 import java.util.List;
 

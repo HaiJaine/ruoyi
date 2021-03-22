@@ -30,7 +30,7 @@
         ORDER BY t.id
     </select>
 
-    <resultMap id="adviceResultMap" type="com.ruoyi.project.storage.domain.AdviceVO">
+    <resultMap id="adviceResultMap" type="com.ruoyi.project.storage.domain.vo.AdviceVO">
         <!-- vo类字段与数据库字段对应 -->
         <id property="id" column="id"/>
         <result property="userId" column="user_id"/>

@@ -1,6 +1,6 @@
 package com.ruoyi.project.storage.service;
 
-import com.ruoyi.project.storage.domain.AdviceVO;
+import com.ruoyi.project.storage.domain.vo.AdviceVO;
 import com.ruoyi.project.storage.domain.Params;
 
 import java.util.List;

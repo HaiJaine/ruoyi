@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.storage.mapper.BoxStandardMapper">
-    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.BoxStandardVO">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.vo.BoxStandardVO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="box_standard" jdbcType="VARCHAR" property="boxStandard"/>
         <result column="box_unit_price" jdbcType="BIGINT" property="boxUnitPrice"/>
@@ -55,14 +55,14 @@
         GROUP BY tbs.box_standard
 
     </select>
-    <select id="selectBoxStandardSelectList" resultType="com.ruoyi.project.storage.domain.BoxStandardSelectVO">
+    <select id="selectBoxStandardSelectList" resultType="com.ruoyi.project.storage.domain.vo.BoxStandardSelectVO">
         SELECT id,
                box_standard   boxStandard,
                box_unit_price boxUnitPrice
         FROM t_box_standard
         WHERE del_flag = 0
     </select>
-    <insert id="createBoxStandard" parameterType="com.ruoyi.project.storage.domain.BoxStandardVO">
+    <insert id="createBoxStandard" parameterType="com.ruoyi.project.storage.domain.vo.BoxStandardVO">
         INSERT INTO t_box_standard(box_standard, box_unit_price, remark, sort_no, create_time, create_by, update_time,
                                    update_by, version, del_flag)
             VALUE (#{boxStandard}, #{boxUnitPrice}, #{remark},

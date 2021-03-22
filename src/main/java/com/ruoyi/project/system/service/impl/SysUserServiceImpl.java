@@ -29,7 +29,7 @@ public class SysUserServiceImpl implements ISysUserService
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
     @Resource
-    private SysUserMapper userMapper;
+    private SysUserMapper sysUserMapper;
 
     @Resource
     private SysRoleMapper roleMapper;
@@ -56,7 +56,7 @@ public class SysUserServiceImpl implements ISysUserService
     @DataScope(deptAlias = "d", userAlias = "u")
     public List<SysUser> selectUserList(SysUser user)
     {
-        return userMapper.selectUserList(user);
+        return sysUserMapper.selectUserList(user);
     }
 
     /**
@@ -68,7 +68,7 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public SysUser selectUserByUserName(String userName)
     {
-        return userMapper.selectUserByUserName(userName);
+        return sysUserMapper.selectUserByUserName(userName);
     }
 
     /**
@@ -80,7 +80,7 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public SysUser selectUserById(Long userId)
     {
-        return userMapper.selectUserById(userId);
+        return sysUserMapper.selectUserById(userId);
     }
 
     /**
@@ -136,7 +136,7 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public String checkUserNameUnique(String userName)
     {
-        int count = userMapper.checkUserNameUnique(userName);
+        int count = sysUserMapper.checkUserNameUnique(userName);
         if (count > 0)
         {
             return UserConstants.NOT_UNIQUE;
@@ -154,7 +154,7 @@ public class SysUserServiceImpl implements ISysUserService
     public String checkPhoneUnique(SysUser user)
     {
         Long userId = StringUtils.isNull(user.getUserId()) ? -1L : user.getUserId();
-        SysUser info = userMapper.checkPhoneUnique(user.getPhonenumber());
+        SysUser info = sysUserMapper.checkPhoneUnique(user.getPhonenumber());
         if (StringUtils.isNotNull(info) && info.getUserId().longValue() != userId.longValue())
         {
             return UserConstants.NOT_UNIQUE;
@@ -172,7 +172,7 @@ public class SysUserServiceImpl implements ISysUserService
     public String checkEmailUnique(SysUser user)
     {
         Long userId = StringUtils.isNull(user.getUserId()) ? -1L : user.getUserId();
-        SysUser info = userMapper.checkEmailUnique(user.getEmail());
+        SysUser info = sysUserMapper.checkEmailUnique(user.getEmail());
         if (StringUtils.isNotNull(info) && info.getUserId().longValue() != userId.longValue())
         {
             return UserConstants.NOT_UNIQUE;
@@ -204,7 +204,7 @@ public class SysUserServiceImpl implements ISysUserService
     public int insertUser(SysUser user)
     {
         // 新增用户信息
-        int rows = userMapper.insertUser(user);
+        int rows = sysUserMapper.insertUser(user);
         // 新增用户岗位关联
         insertUserPost(user);
         // 新增用户与角色管理
@@ -231,7 +231,7 @@ public class SysUserServiceImpl implements ISysUserService
         userPostMapper.deleteUserPostByUserId(userId);
         // 新增用户与岗位管理
         insertUserPost(user);
-        return userMapper.updateUser(user);
+        return sysUserMapper.updateUser(user);
     }
 
     /**
@@ -243,7 +243,7 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public int updateUserStatus(SysUser user)
     {
-        return userMapper.updateUser(user);
+        return sysUserMapper.updateUser(user);
     }
 
     /**
@@ -255,19 +255,19 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public int updateUserProfile(SysUser user)
     {
-        return userMapper.updateUser(user);
+        return sysUserMapper.updateUser(user);
     }
 
     /**
      * 修改用户头像
      * 
-     * @param userId 用户ID
+     * @param userName 用户ID
      * @param avatar 头像地址
      * @return 结果
      */
     public boolean updateUserAvatar(String userName, String avatar)
     {
-        return userMapper.updateUserAvatar(userName, avatar) > 0;
+        return sysUserMapper.updateUserAvatar(userName, avatar) > 0;
     }
 
     /**
@@ -279,7 +279,7 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public int resetPwd(SysUser user)
     {
-        return userMapper.updateUser(user);
+        return sysUserMapper.updateUser(user);
     }
 
     /**
@@ -292,7 +292,7 @@ public class SysUserServiceImpl implements ISysUserService
     @Override
     public int resetUserPwd(String userName, String password)
     {
-        return userMapper.resetUserPwd(userName, password);
+        return sysUserMapper.resetUserPwd(userName, password);
     }
 
     /**
@@ -360,7 +360,7 @@ public class SysUserServiceImpl implements ISysUserService
         userRoleMapper.deleteUserRoleByUserId(userId);
         // 删除用户与岗位表
         userPostMapper.deleteUserPostByUserId(userId);
-        return userMapper.deleteUserById(userId);
+        return sysUserMapper.deleteUserById(userId);
     }
 
     /**
@@ -375,7 +375,7 @@ public class SysUserServiceImpl implements ISysUserService
         {
             checkUserAllowed(new SysUser(userId));
         }
-        return userMapper.deleteUserByIds(userIds);
+        return sysUserMapper.deleteUserByIds(userIds);
     }
 
     /**
@@ -403,7 +403,7 @@ public class SysUserServiceImpl implements ISysUserService
             try
             {
                 // 验证是否存在这个用户
-                SysUser u = userMapper.selectUserByUserName(user.getUserName());
+                SysUser u = sysUserMapper.selectUserByUserName(user.getUserName());
                 if (StringUtils.isNull(u))
                 {
                     user.setPassword(SecurityUtils.encryptPassword(password));

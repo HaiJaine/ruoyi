@@ -4,7 +4,7 @@ import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.common.util.SeqGeneratorUtil;
-import com.ruoyi.project.storage.domain.BoxInfoVO;
+import com.ruoyi.project.storage.domain.vo.BoxInfoVO;
 import com.ruoyi.project.storage.mapper.BoxInfoMapper;
 import com.ruoyi.project.storage.service.BackendBoxInfoService;
 import org.springframework.stereotype.Service;

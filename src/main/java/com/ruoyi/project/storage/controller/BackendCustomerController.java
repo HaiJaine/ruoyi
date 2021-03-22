@@ -4,7 +4,7 @@ import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
-import com.ruoyi.project.storage.domain.CustomerVO;
+import com.ruoyi.project.storage.domain.vo.CustomerVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.service.BackendCustomerService;
 import org.springframework.web.bind.annotation.*;

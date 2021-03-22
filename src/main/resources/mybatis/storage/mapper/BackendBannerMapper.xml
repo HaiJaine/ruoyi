@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.storage.mapper.BannerMapper">
-    <resultMap id="BannerResultMap" type="com.ruoyi.project.storage.domain.BannerVO">
+    <resultMap id="BannerResultMap" type="com.ruoyi.project.storage.domain.vo.BannerVO">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
@@ -18,7 +18,7 @@
     </resultMap>
 
     <!--新增广告-->
-    <insert id="create" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+    <insert id="create" parameterType="com.ruoyi.project.storage.domain.vo.BannerVO">
         INSERT INTO t_advertisement (title, content, img_url, points, is_enable, sort_no,
                                      create_time, create_by, update_time, update_by, version, del_flag)
         VALUES (#{title}, #{content}, #{imgUrl}, #{points}, #{isEnable}, #{sortNo}, #{createTime}, #{createBy},
@@ -26,7 +26,7 @@
     </insert>
 
     <!--编辑广告-->
-    <update id="update" parameterType="com.ruoyi.project.storage.domain.BannerVO">
+    <update id="update" parameterType="com.ruoyi.project.storage.domain.vo.BannerVO">
         UPDATE t_advertisement
         SET title       = #{title},
             content     = #{content},

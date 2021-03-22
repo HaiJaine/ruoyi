@@ -1,6 +1,6 @@
 package com.ruoyi.project.storage.service;
 
-import com.ruoyi.project.storage.domain.BoxInfoVO;
+import com.ruoyi.project.storage.domain.vo.BoxInfoVO;
 
 import java.util.List;
 

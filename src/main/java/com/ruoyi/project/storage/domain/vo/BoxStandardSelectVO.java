@@ -1,4 +1,4 @@
-package com.ruoyi.project.storage.domain;
+package com.ruoyi.project.storage.domain.vo;
 
 import lombok.Data;
 

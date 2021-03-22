@@ -1,41 +1,40 @@
-package com.ruoyi.project.storage.domain;
+package com.ruoyi.project.storage.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.framework.web.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * t_box_standard
+ *
  * @author HaiJaine
- * @date 2021/3/12 10:43
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AdviceVO implements Serializable {
+public class BoxStandardVO extends BaseEntity implements Serializable {
     /**
      * id
      */
     private Long id;
 
     /**
-     * 手机端用户id
+     * 箱子规格（如20*20*20）
      */
-    private Long userId;
+    private String boxStandard;
 
     /**
-     * 提交人
+     * 箱子积分单价（每月积分单价）
      */
-    private String nickName;
+    private Long boxUnitPrice;
 
     /**
-     * 标题
+     * 备注
      */
-    private String title;
-
-    /**
-     * 内容
-     */
-    private String content;
+    private String remark;
 
     /**
      * 序号
@@ -74,5 +73,26 @@ public class AdviceVO implements Serializable {
      */
     private String delFlag;
 
+    /**
+     * 总数量
+     */
+    private Long totalNumber;
+
+    /**
+     * 已用数量
+     */
+    private Long usedNumber;
+
+    /**
+     * 库存
+     */
+    private Long inventoryNumber;
+
+    /**
+     * 使用比例
+     */
+    private String useRatio;
+
     private static final long serialVersionUID = 1L;
+
 }

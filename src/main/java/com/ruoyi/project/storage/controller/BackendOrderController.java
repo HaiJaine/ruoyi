@@ -3,7 +3,7 @@ package com.ruoyi.project.storage.controller;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
-import com.ruoyi.project.storage.domain.OrderVO;
+import com.ruoyi.project.storage.domain.vo.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.service.BackendOrderService;
 import org.springframework.web.bind.annotation.*;

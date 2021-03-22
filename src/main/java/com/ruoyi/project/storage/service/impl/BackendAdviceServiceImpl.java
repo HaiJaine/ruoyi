@@ -1,6 +1,6 @@
 package com.ruoyi.project.storage.service.impl;
 
-import com.ruoyi.project.storage.domain.AdviceVO;
+import com.ruoyi.project.storage.domain.vo.AdviceVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.BackendAdviceMapper;
 import com.ruoyi.project.storage.service.BackendAdviceService;

@@ -4,7 +4,7 @@ import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
-import com.ruoyi.project.storage.domain.UserVO;
+import com.ruoyi.project.storage.domain.vo.UserVO;
 import com.ruoyi.project.storage.mapper.UserMapper;
 import com.ruoyi.project.storage.service.BackendUserService;
 import org.springframework.stereotype.Service;

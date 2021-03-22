@@ -1,6 +1,5 @@
-package com.ruoyi.project.storage.domain;
+package com.ruoyi.project.storage.domain.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ApiModel(value = "用户对象", description = "用户对象")
-public class CustomerVO {
+public class UserVO {
 
     /**
      * 用户ID
@@ -86,7 +85,6 @@ public class CustomerVO {
     /**
      * 最后登陆时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date loginDate;
 
     /**
@@ -97,7 +95,6 @@ public class CustomerVO {
     /**
      * 创建时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
@@ -108,7 +105,6 @@ public class CustomerVO {
     /**
      * 更新时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**

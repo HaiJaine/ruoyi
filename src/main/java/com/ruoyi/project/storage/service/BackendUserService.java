@@ -1,7 +1,7 @@
 package com.ruoyi.project.storage.service;
 
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.UserVO;
+import com.ruoyi.project.storage.domain.vo.UserVO;
 
 import java.util.List;
 

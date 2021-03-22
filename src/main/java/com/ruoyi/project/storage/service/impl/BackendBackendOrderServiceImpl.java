@@ -2,7 +2,7 @@ package com.ruoyi.project.storage.service.impl;
 
 import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
-import com.ruoyi.project.storage.domain.OrderVO;
+import com.ruoyi.project.storage.domain.vo.OrderVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.OrderMapper;
 import com.ruoyi.project.storage.service.BackendOrderService;

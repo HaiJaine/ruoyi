@@ -4,7 +4,7 @@ import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.storage.domain.Params;
-import com.ruoyi.project.storage.domain.UserVO;
+import com.ruoyi.project.storage.domain.vo.UserVO;
 import com.ruoyi.project.storage.service.BackendUserService;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.project.storage.mapper.CustomerMapper">
-    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.CustomerVO">
+    <resultMap id="BaseResultMap" type="com.ruoyi.project.storage.domain.vo.CustomerVO">
         <id column="user_id" jdbcType="BIGINT" property="userId"/>
         <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
@@ -24,13 +24,13 @@
         <result column="current_points" jdbcType="BIGINT" property="currentPoints"/>
         <result column="version" jdbcType="BIGINT" property="version"/>
     </resultMap>
-    <insert id="createCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
+    <insert id="createCustomer" parameterType="com.ruoyi.project.storage.domain.vo.CustomerVO">
         INSERT INTO sys_user(user_name, nick_name, email, phonenumber, sex, create_time, create_by, user_type,
                              password)
         VALUES (#{userName}, #{nickName}, #{email}, #{phonenumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
                 #{password})
     </insert>
-    <update id="updateCustomer" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
+    <update id="updateCustomer" parameterType="com.ruoyi.project.storage.domain.vo.CustomerVO">
         UPDATE sys_user
         SET nick_name   = #{nickName},
             email       = #{email},
@@ -42,7 +42,7 @@
         WHERE user_id = #{userId}
           AND version = #{version}
     </update>
-    <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.CustomerVO">
+    <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.vo.CustomerVO">
         UPDATE sys_user
         SET status = #{status},
         update_time = now(),
@@ -111,7 +111,7 @@
             #{id}
         </foreach>
     </select>
-    <select id="findCustomerById" resultType="com.ruoyi.project.storage.domain.CustomerVO">
+    <select id="findCustomerById" resultType="com.ruoyi.project.storage.domain.vo.CustomerVO">
         SELECT *
         FROM sys_user
         WHERE del_flag = 0

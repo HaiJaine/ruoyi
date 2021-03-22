@@ -4,7 +4,7 @@ import com.ruoyi.common.constant.HttpStatus;
 import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.framework.web.domain.AjaxResult;
-import com.ruoyi.project.storage.domain.CustomerVO;
+import com.ruoyi.project.storage.domain.vo.CustomerVO;
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.mapper.CustomerMapper;
 import com.ruoyi.project.storage.service.BackendCustomerService;

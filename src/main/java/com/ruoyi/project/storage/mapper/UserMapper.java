@@ -2,7 +2,7 @@ package com.ruoyi.project.storage.mapper;
 
 import com.ruoyi.project.storage.domain.Params;
 import com.ruoyi.project.storage.domain.User;
-import com.ruoyi.project.storage.domain.UserVO;
+import com.ruoyi.project.storage.domain.vo.UserVO;
 
 import java.util.List;
 import java.util.Map;

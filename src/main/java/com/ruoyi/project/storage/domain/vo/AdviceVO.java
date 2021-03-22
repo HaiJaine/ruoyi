@@ -1,51 +1,41 @@
-package com.ruoyi.project.storage.domain;
+package com.ruoyi.project.storage.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * t_box_info
- *
  * @author HaiJaine
+ * @date 2021/3/12 10:43
  */
 @Data
-public class BoxInfoVO implements Serializable {
+public class AdviceVO implements Serializable {
     /**
      * id
      */
     private Long id;
 
     /**
-     * 箱子编号（年月日+6位序列）
+     * 手机端用户id
      */
-    private Long boxCode;
+    private Long userId;
 
     /**
-     * 箱子规格（如20*20*20）
+     * 提交人
      */
-    private String boxStandard;
+    private String nickName;
 
     /**
-     * 箱子积分单价（每月积分单价）
+     * 标题
      */
-    private Long boxUnitPrice;
+    private String title;
 
     /**
-     * 使用人
+     * 内容
      */
-    private String usedBy;
-
-    /**
-     * 是否被使用（0：未使用；1：已使用）
-     */
-    private String isUsed;
-
-    /**
-     * 备注
-     */
-    private String remark;
+    private String content;
 
     /**
      * 序号
@@ -55,6 +45,7 @@ public class BoxInfoVO implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
@@ -65,6 +56,7 @@ public class BoxInfoVO implements Serializable {
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
@@ -81,11 +73,6 @@ public class BoxInfoVO implements Serializable {
      * 删除标记（0：未删除；2：已删除）
      */
     private String delFlag;
-
-    /**
-     * 使用人
-     */
-    private String usedByName;
 
     private static final long serialVersionUID = 1L;
 }
