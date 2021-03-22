@@ -20,4 +20,5 @@ public interface BannerMapper {
 
     int delete(Map<String, Object> map);
 
+    List<Integer> findBannerStatus(Map<String, Object> map);
 }

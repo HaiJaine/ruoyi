@@ -99,5 +99,11 @@
             #{id}
         </foreach>
     </select>
+    <select id="findBannerStatus" resultType="java.lang.Integer">
+        SELECT is_enable FROM t_advertisement WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>

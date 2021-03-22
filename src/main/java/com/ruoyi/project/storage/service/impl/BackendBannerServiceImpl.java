@@ -92,6 +92,10 @@ public class BackendBannerServiceImpl implements BackendBannerService {
         Map<String, Object> map = new HashMap<>();
         String updateBy = SecurityUtils.getLoginUser().getUsername();
         map.put("ids", ids);
+        List<Integer> bannerStatus = bannerMapper.findBannerStatus(map);
+        if (bannerStatus.contains(0)) {
+            throw new CustomException("已启用的广告不能删除");
+        }
         map.put("updateBy", updateBy);
         return bannerMapper.delete(map);
     }
