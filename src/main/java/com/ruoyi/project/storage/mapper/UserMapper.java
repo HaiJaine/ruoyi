@@ -24,9 +24,9 @@ public interface UserMapper {
 
     List<String> findCustomerByIds(Map<String, Object> map);
 
-    int findUserByUsername(String username);
+    Map<String, Object> findUserByUsername(String username);
 
-    int findUserByEmail(String email);
+    Map<String, Object> findUserByEmail(String email);
 
-    int findUserByPhoneNumber(String phoneNumber);
+    Map<String, Object> findUserByPhoneNumber(String phoneNumber);
 }

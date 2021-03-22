@@ -130,10 +130,10 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
         final Map<String, Object> byEmail = findCustomerByEmail(customerVO.getEmail());
         final Map<String, Object> byPhoneNumber = findCustomerByPhoneNumber(customerVO.getPhonenumber());
         if ((Long) byEmail.get("count") > 0 && (((Long) byEmail.get("userId")).longValue() != customerVO.getUserId().longValue())) {
-            throw new CustomException("编辑'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
+            throw new CustomException("修改'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
         }
         if ((Long) byPhoneNumber.get("count") > 0 && (((Long) byPhoneNumber.get("userId")).longValue() != customerVO.getUserId().longValue())) {
-            throw new CustomException("编辑'" + customerVO.getUserName() + "'失败，手机号已存在");
+            throw new CustomException("修改'" + customerVO.getUserName() + "'失败，手机号已存在");
         }
         checkCustomer(customerVO);
         CustomerVO customerMapperUserById = customerMapper.findCustomerById(customerVO.getUserId());

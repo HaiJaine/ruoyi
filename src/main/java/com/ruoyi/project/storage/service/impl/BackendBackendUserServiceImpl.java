@@ -37,8 +37,8 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
      * @param username 用户名
      * @return 结果
      */
-    private boolean findUserByUsername(String username) {
-        return userMapper.findUserByUsername(username) > 0;
+    private Map<String, Object> findUserByUsername(String username) {
+        return userMapper.findUserByUsername(username);
     }
 
     /**
@@ -47,8 +47,8 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
      * @param email 邮箱
      * @return 结果
      */
-    private boolean findUserByEmail(String email) {
-        return userMapper.findUserByEmail(email) > 0;
+    private Map<String, Object> findUserByEmail(String email) {
+        return userMapper.findUserByEmail(email);
     }
 
     /**
@@ -57,8 +57,8 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
      * @param phoneNumber 电话号码
      * @return 结果
      */
-    private boolean findUserByPhoneNumber(String phoneNumber) {
-        return userMapper.findUserByPhoneNumber(phoneNumber) > 0;
+    private Map<String, Object> findUserByPhoneNumber(String phoneNumber) {
+        return userMapper.findUserByPhoneNumber(phoneNumber);
     }
 
     /**
@@ -69,13 +69,16 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
      */
     @Override
     public int createUser(UserVO userVO) {
-        if (findUserByUsername(userVO.getUserName())) {
+        final Map<String, Object> byUsername = findUserByUsername(userVO.getUserName());
+        final Map<String, Object> byEmail = findUserByEmail(userVO.getEmail());
+        final Map<String, Object> byPhoneNumber = findUserByPhoneNumber(userVO.getPhonenumber());
+        if ((Integer) byUsername.get("count") > 0) {
             throw new CustomException("新增'" + userVO.getUserName() + "'失败，登录账号已存在");
         }
-        if (findUserByEmail(userVO.getEmail())) {
+        if ((Integer) byEmail.get("count") > 0) {
             throw new CustomException("新增'" + userVO.getUserName() + "'失败，邮箱账号已存在");
         }
-        if (findUserByPhoneNumber(userVO.getPhonenumber())) {
+        if ((Integer) byPhoneNumber.get("count") > 0) {
             throw new CustomException("新增'" + userVO.getUserName() + "'失败，手机号已存在");
         }
         userVO.setUserType("01");
@@ -96,10 +99,12 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
      */
     @Override
     public int updateUser(UserVO userVO) {
-        if (findUserByEmail(userVO.getEmail())) {
+        final Map<String, Object> byEmail = findUserByEmail(userVO.getEmail());
+        final Map<String, Object> byPhoneNumber = findUserByPhoneNumber(userVO.getPhonenumber());
+        if ((Long) byEmail.get("count") > 0 && (((Long) byEmail.get("userId")).longValue() != userVO.getUserId().longValue())) {
             throw new CustomException("修改'" + userVO.getUserName() + "'失败，邮箱账号已存在");
         }
-        if (findUserByPhoneNumber(userVO.getPhonenumber())) {
+        if ((Long) byPhoneNumber.get("count") > 0 && (((Long) byPhoneNumber.get("userId")).longValue() != userVO.getUserId().longValue())) {
             throw new CustomException("修改'" + userVO.getUserName() + "'失败，手机号已存在");
         }
         userVO.setUpdateTime(new Date());
