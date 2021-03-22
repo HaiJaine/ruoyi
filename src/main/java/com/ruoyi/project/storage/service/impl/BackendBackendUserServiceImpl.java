@@ -72,13 +72,13 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
         final Map<String, Object> byUsername = findUserByUsername(userVO.getUserName());
         final Map<String, Object> byEmail = findUserByEmail(userVO.getEmail());
         final Map<String, Object> byPhoneNumber = findUserByPhoneNumber(userVO.getPhonenumber());
-        if ((Integer) byUsername.get("count") > 0) {
+        if ((Long) byUsername.get("count") > 0) {
             throw new CustomException("新增'" + userVO.getUserName() + "'失败，登录账号已存在");
         }
-        if ((Integer) byEmail.get("count") > 0) {
+        if ((Long) byEmail.get("count") > 0) {
             throw new CustomException("新增'" + userVO.getUserName() + "'失败，邮箱账号已存在");
         }
-        if ((Integer) byPhoneNumber.get("count") > 0) {
+        if ((Long) byPhoneNumber.get("count") > 0) {
             throw new CustomException("新增'" + userVO.getUserName() + "'失败，手机号已存在");
         }
         userVO.setUserType("01");
