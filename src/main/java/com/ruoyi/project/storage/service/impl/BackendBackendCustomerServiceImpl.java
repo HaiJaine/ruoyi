@@ -39,8 +39,8 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * @param username 用户名
      * @return 结果
      */
-    private boolean findCustomerByUsername(String username) {
-        return customerMapper.findCustomerByUsername(username) > 0;
+    private Map<String, Object> findCustomerByUsername(String username) {
+        return customerMapper.findCustomerByUsername(username);
     }
 
     /**
@@ -49,8 +49,8 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * @param email 邮箱
      * @return 结果
      */
-    private boolean findCustomerByEmail(String email) {
-        return customerMapper.findCustomerByEmail(email) > 0;
+    private Map<String, Object> findCustomerByEmail(String email) {
+        return customerMapper.findCustomerByEmail(email);
     }
 
     /**
@@ -59,8 +59,8 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      * @param phoneNumber 电话号码
      * @return 结果
      */
-    private boolean findCustomerByPhoneNumber(String phoneNumber) {
-        return customerMapper.findCustomerByPhoneNumber(phoneNumber) > 0;
+    private Map<String, Object> findCustomerByPhoneNumber(String phoneNumber) {
+        return customerMapper.findCustomerByPhoneNumber(phoneNumber);
     }
 
 
@@ -72,13 +72,16 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      */
     @Override
     public int createCustomer(CustomerVO customerVO) throws CustomException {
-        if (findCustomerByUsername(customerVO.getUserName())) {
+        final Map<String, Object> byUsername = findCustomerByUsername(customerVO.getUserName());
+        final Map<String, Object> byEmail = findCustomerByEmail(customerVO.getEmail());
+        final Map<String, Object> byPhoneNumber = findCustomerByPhoneNumber(customerVO.getPhonenumber());
+        if ((Integer) byUsername.get("count") > 0) {
             throw new CustomException("新增'" + customerVO.getUserName() + "'失败，登录账号已存在");
         }
-        if (findCustomerByEmail(customerVO.getEmail())) {
+        if ((Integer) byEmail.get("count") > 0) {
             throw new CustomException("新增'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
         }
-        if (findCustomerByPhoneNumber(customerVO.getPhonenumber())) {
+        if ((Integer) byPhoneNumber.get("count") > 0) {
             throw new CustomException("新增'" + customerVO.getUserName() + "'失败，手机号已存在");
         }
         checkCustomer(customerVO);
@@ -111,9 +114,6 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
         if (customerVO.getNickName().length() >= 10) {
             throw new CustomException("姓名超过10位");
         }
-        if (String.valueOf(customerVO.getSex()).length() > 1) {
-            throw new CustomException("性别超过1位");
-        }
         if (!customerVO.getEmail().contains("@")) {
             throw new CustomException("邮箱格式不对");
         }
@@ -127,11 +127,13 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
      */
     @Override
     public int updateCustomer(CustomerVO customerVO) throws CustomException {
-        if (findCustomerByEmail(customerVO.getEmail())) {
-            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
+        final Map<String, Object> byEmail = findCustomerByEmail(customerVO.getEmail());
+        final Map<String, Object> byPhoneNumber = findCustomerByPhoneNumber(customerVO.getPhonenumber());
+        if ((Long) byEmail.get("count") > 0 && (((Long) byEmail.get("userId")).longValue() != customerVO.getUserId().longValue())) {
+            throw new CustomException("编辑'" + customerVO.getUserName() + "'失败，邮箱账号已存在");
         }
-        if (findCustomerByPhoneNumber(customerVO.getPhonenumber())) {
-            throw new CustomException("新增'" + customerVO.getUserName() + "'失败，手机号已存在");
+        if ((Long) byPhoneNumber.get("count") > 0 && (((Long) byPhoneNumber.get("userId")).longValue() != customerVO.getUserId().longValue())) {
+            throw new CustomException("编辑'" + customerVO.getUserName() + "'失败，手机号已存在");
         }
         checkCustomer(customerVO);
         CustomerVO customerMapperUserById = customerMapper.findCustomerById(customerVO.getUserId());
