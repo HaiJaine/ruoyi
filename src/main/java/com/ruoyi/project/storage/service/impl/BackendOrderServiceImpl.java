@@ -19,7 +19,7 @@ import java.util.Map;
  * @date 2021/3/13 21:13
  */
 @Service
-public class BackendBackendOrderServiceImpl implements BackendOrderService {
+public class BackendOrderServiceImpl implements BackendOrderService {
     @Resource
     private OrderMapper orderMapper;
 
@@ -54,6 +54,10 @@ public class BackendBackendOrderServiceImpl implements BackendOrderService {
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
         map.put("updateBy", String.valueOf(SecurityUtils.getLoginUser().getUser().getUserId()));
+        List<Integer> orderStatus = orderMapper.findOrderStatus(map);
+        if (!orderStatus.contains(10)) {
+            throw new CustomException("选中订单包含未完成订单，删除失败！");
+        }
         int result = orderMapper.deleteOrder(map);
         if (result <= 0) {
             throw new CustomException("删除失败");

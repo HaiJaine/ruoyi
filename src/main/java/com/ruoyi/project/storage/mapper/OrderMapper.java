@@ -14,4 +14,6 @@ public interface OrderMapper {
     int deleteOrder(Map<String, Object> map);
 
     int operateOrder(OrderVO orderInfo);
+
+    List<Integer> findOrderStatus(Map<String, Object> map);
 }
