@@ -30,6 +30,18 @@ public class BackendBannerServiceImpl implements BackendBannerService {
 
     @Override
     public int creat(BannerVO bannerVO) {
+        checkBanner(bannerVO);
+        bannerVO.setDelFlag(0);
+        bannerVO.setCreateTime(new Date());
+        bannerVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
+        bannerVO.setIsEnable(0);
+        bannerVO.setUpdateTime(new Date());
+        bannerVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
+        bannerVO.setVersion(0L);
+        return bannerMapper.create(bannerVO);
+    }
+
+    private void checkBanner(BannerVO bannerVO) {
         if (bannerVO.getTitle().length() > 20) {
             throw new CustomException("广告标题最大长度为20");
         }
@@ -42,18 +54,15 @@ public class BackendBannerServiceImpl implements BackendBannerService {
         if (bannerVO.getImgUrl().length() > 512) {
             throw new CustomException("图片路劲最大长度为512");
         }
-        bannerVO.setDelFlag(0);
-        bannerVO.setCreateTime(new Date());
-        bannerVO.setCreateBy(SecurityUtils.getLoginUser().getUsername());
-        bannerVO.setIsEnable(0);
-        bannerVO.setUpdateTime(new Date());
-        bannerVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
-        bannerVO.setVersion(0L);
-        return bannerMapper.create(bannerVO);
+        if (bannerVO.getSortNo() < 0) {
+            throw new CustomException("排序不能为负数");
+        }
     }
 
     @Override
     public int update(BannerVO bannerVO) {
+        checkBanner(bannerVO);
+        bannerVO.setUpdateBy(String.valueOf(SecurityUtils.getLoginUser().getUser().getUserId()));
         return bannerMapper.update(bannerVO);
     }
 
