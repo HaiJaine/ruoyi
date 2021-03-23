@@ -46,3 +46,7 @@ nbdist/
 gitbook/node_modules
 gitbook/_book
 gitbook/package-lock.json
+
+# jrebel
+/rebel.xml
+/rebel-remote.xml

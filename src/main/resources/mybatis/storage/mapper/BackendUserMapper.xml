@@ -37,8 +37,10 @@
             phonenumber = #{phonenumber},
             sex         = #{sex},
             update_time = #{updateTime},
-            update_by   = #{updateBy}
+            update_by   = #{updateBy},
+            version     = version + 1
         WHERE user_id = #{userId}
+          AND version = #{version}
     </update>
     <update id="isStatus" parameterType="com.ruoyi.project.storage.domain.vo.UserVO">
         UPDATE sys_user

@@ -8,6 +8,7 @@ import com.ruoyi.project.storage.domain.vo.UserVO;
 import com.ruoyi.project.storage.mapper.UserMapper;
 import com.ruoyi.project.storage.service.BackendUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -98,6 +99,7 @@ public class BackendUserServiceImpl implements BackendUserService {
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = CustomException.class)
     public int updateUser(UserVO userVO) {
         final Map<String, Object> byEmail = findUserByEmail(userVO.getEmail());
         final Map<String, Object> byPhoneNumber = findUserByPhoneNumber(userVO.getPhonenumber());
@@ -109,7 +111,11 @@ public class BackendUserServiceImpl implements BackendUserService {
         }
         userVO.setUpdateTime(new Date());
         userVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
-        return userMapper.updateUser(userVO);
+        int result = userMapper.updateUser(userVO);
+        if (result <= 0) {
+            throw new CustomException("当前用户已被他人操作，请刷新后重试");
+        }
+        return result;
     }
 
     /**
