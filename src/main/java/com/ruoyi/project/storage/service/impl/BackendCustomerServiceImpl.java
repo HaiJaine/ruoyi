@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class BackendBackendCustomerServiceImpl implements BackendCustomerService {
+public class BackendCustomerServiceImpl implements BackendCustomerService {
 
     @Resource
     private CustomerMapper customerMapper;
@@ -159,7 +159,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
         if ("enable".equalsIgnoreCase(operate)) {
             boolean contains = statuses.contains(ENABLE);
             if (contains) {
-                throw new CustomException("用户已经启用");
+                throw new CustomException("用户已经启用，不能启用");
             } else {
                 map.put("status", ENABLE);
                 result = customerMapper.isStatus(map);
@@ -168,7 +168,7 @@ public class BackendBackendCustomerServiceImpl implements BackendCustomerService
             String DISABLE = "1";
             boolean contains = statuses.contains(DISABLE);
             if (contains) {
-                throw new CustomException("用户已停用");
+                throw new CustomException("用户已停用，不能停用");
             } else {
                 map.put("status", DISABLE);
                 result = customerMapper.isStatus(map);

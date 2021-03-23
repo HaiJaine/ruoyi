@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class BackendBackendUserServiceImpl implements BackendUserService {
+public class BackendUserServiceImpl implements BackendUserService {
     @Resource
     private UserMapper userMapper;
 
@@ -124,14 +124,23 @@ public class BackendBackendUserServiceImpl implements BackendUserService {
         int result = 0;
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
+        List<String> statuses = userMapper.findUserByIds(map);
         if ("enable".equalsIgnoreCase(operate)) {
-            map.put("status", 0);
-            result = userMapper.isStatus(map);
+            boolean contains = statuses.contains("0");
+            if (contains) {
+                throw new CustomException("用户已经启用，不能启用");
+            } else {
+                map.put("status", 0);
+                result = userMapper.isStatus(map);
+            }
         } else if ("disable".equalsIgnoreCase(operate)) {
-            map.put("status", 1);
-            result = userMapper.isStatus(map);
-        } else if ("delete".equalsIgnoreCase(operate)) {
-            result = userMapper.delete(map);
+            boolean contains = statuses.contains("1");
+            if (contains) {
+                throw new CustomException("用户已停用，不能停用");
+            } else {
+                map.put("status", 1);
+                result = userMapper.isStatus(map);
+            }
         }
         return result;
     }

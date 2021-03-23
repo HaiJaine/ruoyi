@@ -29,4 +29,6 @@ public interface UserMapper {
     Map<String, Object> findUserByEmail(String email);
 
     Map<String, Object> findUserByPhoneNumber(String phoneNumber);
+
+    List<String> findUserByIds(Map<String, Object> map);
 }

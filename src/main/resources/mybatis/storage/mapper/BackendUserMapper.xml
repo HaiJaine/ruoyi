@@ -139,19 +139,26 @@
             </if>
         </where>
     </select>
-    <select id="findUserByUsername" resultType="java.util.HashMap" >
+    <select id="findUserByUsername" resultType="java.util.HashMap">
         SELECT COUNT(user_id) count, user_id userId
         FROM sys_user
         WHERE user_name = #{userName}
     </select>
-    <select id="findUserByEmail" resultType="java.util.HashMap" >
+    <select id="findUserByEmail" resultType="java.util.HashMap">
         SELECT COUNT(user_id) count, user_id userId
         FROM sys_user
         WHERE email = #{email}
     </select>
-    <select id="findUserByPhoneNumber" resultType="java.util.HashMap" >
+    <select id="findUserByPhoneNumber" resultType="java.util.HashMap">
         SELECT COUNT(user_id) count, user_id userId
         FROM sys_user
         WHERE phonenumber = #{phoneNumber}
+    </select>
+    <select id="findUserByIds" resultType="java.lang.String">
+        SELECT s.status
+        FROM sys_user s WHERE s.user_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 </mapper>
