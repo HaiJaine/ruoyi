@@ -49,8 +49,11 @@ public class BackendBoxInfoServiceImpl implements BackendBoxInfoService {
         if (boxInfoStatusList.contains(1)) {
             throw new CustomException("删除箱子信息失败，仍被订单使用");
         }
-        return boxInfoMapper.deleteBoxStandards(map);
+        final int result = boxInfoMapper.deleteBoxInfo(map);
+        if (result > 0) {
+            boxInfoMapper.deleteBoxStandard();
+        }
+        return result;
     }
-
 
 }

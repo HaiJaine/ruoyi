@@ -32,7 +32,7 @@
             #{boxInfo.delFlag})
         </foreach>
     </insert>
-    <update id="deleteBoxStandards">
+    <update id="deleteBoxInfo">
         UPDATE t_box_info
         SET del_flag = 2,
         update_time=now(),
@@ -42,7 +42,8 @@
             #{id}
         </foreach>
     </update>
-    <select id="findBoxInfoList" resultMap="BaseResultMap" parameterType="com.ruoyi.project.storage.domain.vo.BoxInfoVO">
+    <select id="findBoxInfoList" resultMap="BaseResultMap"
+            parameterType="com.ruoyi.project.storage.domain.vo.BoxInfoVO">
         SELECT
         t.create_by,
         t.create_time,
@@ -83,4 +84,15 @@
             #{id}
         </foreach>
     </select>
+    <update id="deleteBoxStandard">
+        UPDATE t_box_standard
+        SET del_flag = 2
+        WHERE box_standard IN (
+            SELECT t.box_standard
+            FROM t_box_info t
+            GROUP BY t.box_standard
+            HAVING COUNT(CASE WHEN t.del_flag = '0' THEN 1 ELSE NULL END) = '0'
+        )
+          AND del_flag = 0
+    </update>
 </mapper>

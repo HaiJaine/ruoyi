@@ -36,7 +36,7 @@
             email       = #{email},
             phonenumber = #{phonenumber},
             sex         = #{sex},
-            update_time = #{updateTime},
+            update_time = NOW(),
             update_by   = #{updateBy},
             version     = version + 1
         WHERE user_id = #{userId}
@@ -107,40 +107,6 @@
             </if>
         </where>
     </select>
-    <select id="findCustomerByIds" resultType="java.lang.String">
-        SELECT s.create_by,
-        s.create_time,
-        s.update_by,
-        s.update_time,
-        s.version,
-        s.del_flag,
-        s.remark,
-        s.user_id,
-        s.dept_id,
-        s.user_name,
-        s.nick_name,
-        s.user_type,
-        s.email,
-        s.phonenumber,
-        s.sex,
-        s.avatar,
-        s.password,
-        s.status,
-        s.login_ip,
-        s.login_date,
-        s.current_points
-        FROM sys_user s
-        <where>
-            del_flag = 0
-            AND s.user_type = '01'
-            <if test="searchValue != null and searchValue != ''">
-                AND s.nick_name like concat ('%',#{searchValue},'%')
-                OR s.user_name like concat ('%',#{searchValue},'%')
-                OR s.phonenumber like concat ('%',#{searchValue},'%')
-                OR s.email like concat ('%',#{searchValue},'%')
-            </if>
-        </where>
-    </select>
     <select id="findUserByUsername" resultType="java.util.HashMap">
         SELECT COUNT(user_id) count, user_id userId
         FROM sys_user
@@ -162,5 +128,11 @@
         <foreach collection="ids" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
+    </select>
+    <select id="findUserById" resultType="com.ruoyi.project.storage.domain.vo.UserVO">
+        SELECT *
+        FROM sys_user
+        WHERE del_flag = 0
+          AND user_id = #{user_id}
     </select>
 </mapper>

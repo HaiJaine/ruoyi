@@ -43,7 +43,7 @@
         COUNT(tbi.id) total_number,
         SUM(tbi.is_used) used_number,
         (COUNT(tbi.id) - SUM(tbi.is_used)) inventory_number,
-        CONCAT(ROUND(SUM(tbi.is_used) / COUNT(tbi.id), 2), '%') use_ratio
+        CONCAT(ROUND(SUM(tbi.is_used) / COUNT(tbi.id) * 100, 2), '%') use_ratio
         FROM t_box_standard tbs
         INNER JOIN t_box_info tbi ON tbs.box_standard = tbi.box_standard
         <where>

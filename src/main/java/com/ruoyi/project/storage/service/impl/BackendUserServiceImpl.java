@@ -109,7 +109,6 @@ public class BackendUserServiceImpl implements BackendUserService {
         if ((Long) byPhoneNumber.get("count") > 0 && (((Long) byPhoneNumber.get("userId")).longValue() != userVO.getUserId().longValue())) {
             throw new CustomException("修改'" + userVO.getUserName() + "'失败，手机号已存在");
         }
-        userVO.setUpdateTime(new Date());
         userVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
         int result = userMapper.updateUser(userVO);
         if (result <= 0) {
@@ -197,10 +196,10 @@ public class BackendUserServiceImpl implements BackendUserService {
         int result;
         Map<String, Object> map = new HashMap<>();
         map.put("ids", ids);
-        List<String> statuses = userMapper.findCustomerByIds(map);
+        List<String> statuses = userMapper.findUserByIds(map);
         boolean contains = statuses.contains("0");
         if (contains) {
-            throw new CustomException("选择用户中包含未停用客户，删除失败！");
+            throw new CustomException("选择用户中包含未停用用户，删除失败！");
         } else {
             result = userMapper.delete(map);
         }

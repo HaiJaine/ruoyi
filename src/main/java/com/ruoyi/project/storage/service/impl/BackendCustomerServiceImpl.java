@@ -136,14 +136,16 @@ public class BackendCustomerServiceImpl implements BackendCustomerService {
             throw new CustomException("修改'" + customerVO.getUserName() + "'失败，手机号已存在");
         }
         checkCustomer(customerVO);
-        CustomerVO customerMapperUserById = customerMapper.findCustomerById(customerVO.getUserId());
-        customerVO.setVersion(customerMapperUserById.getVersion());
         customerVO.setUpdateBy(SecurityUtils.getLoginUser().getUsername());
-        return customerMapper.updateCustomer(customerVO);
+        int result = customerMapper.updateCustomer(customerVO);
+        if (result <= 0) {
+            throw new CustomException("当前客户已被他人操作，请刷新后重试");
+        }
+        return result;
     }
 
     /**
-     * 操作客户（启用，停用，删除）
+     * 操作客户（启用，停用）
      *
      * @param operate 操作
      * @param ids     ids

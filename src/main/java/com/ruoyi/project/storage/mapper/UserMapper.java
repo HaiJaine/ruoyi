@@ -22,8 +22,6 @@ public interface UserMapper {
 
     int updatePassword(User user);
 
-    List<String> findCustomerByIds(Map<String, Object> map);
-
     Map<String, Object> findUserByUsername(String username);
 
     Map<String, Object> findUserByEmail(String email);
@@ -31,4 +29,6 @@ public interface UserMapper {
     Map<String, Object> findUserByPhoneNumber(String phoneNumber);
 
     List<String> findUserByIds(Map<String, Object> map);
+
+    UserVO findUserById(Long userId);
 }
