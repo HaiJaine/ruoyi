@@ -9,7 +9,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/13 9:48
+ */
 @EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter

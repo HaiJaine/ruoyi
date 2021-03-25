@@ -6,7 +6,7 @@ import com.ruoyi.project.storage.domain.vo.BannerVO;
 import java.util.List;
 
 /**
- * @author HaiJaine
+ * @author LongHaijiang
  * @date 2021/3/13 8:14
  */
 public interface BackendBannerService {

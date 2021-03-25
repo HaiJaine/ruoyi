@@ -7,10 +7,8 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * 用户对象 sys_user
- *
- * @author wangdong
- * @date 2020-04-30
+ * @author LongHaiJiang
+ * @date 2021/3/13 9:48
  */
 @Getter
 @Setter

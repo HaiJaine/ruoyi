@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/13 8:09
+ */
 @RestController
 @RequestMapping("/backend/user")
 public class BackendUserController extends BaseController {

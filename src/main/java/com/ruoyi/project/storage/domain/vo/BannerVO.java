@@ -6,7 +6,10 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/13 9:48
+ */
 @Data
 public class BannerVO implements Serializable {
     /**

@@ -6,7 +6,10 @@ import com.ruoyi.project.storage.domain.vo.UserVO;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/12 10:37
+ */
 public interface UserMapper {
     List<UserVO> findUsers(Params params);
 

@@ -12,7 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.*;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/13 8:46
+ */
 @Service
 public class BackendBoxInfoServiceImpl implements BackendBoxInfoService {
     @Resource

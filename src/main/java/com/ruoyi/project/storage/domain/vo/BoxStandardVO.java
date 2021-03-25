@@ -9,9 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * t_box_standard
- *
- * @author HaiJaine
+ * @author LongHaiJiang
+ * @date 2021/3/13 9:48
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

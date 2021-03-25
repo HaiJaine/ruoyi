@@ -6,9 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * t_box_info
- *
- * @author HaiJaine
+ * @author LongHaiJiang
+ * @date 2021/3/13 9:48
  */
 @Data
 public class BoxInfoVO implements Serializable {

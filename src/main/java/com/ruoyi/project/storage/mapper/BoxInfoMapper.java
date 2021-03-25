@@ -5,7 +5,10 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/12 10:37
+ */
 public interface BoxInfoMapper {
 
     int createBoxInfo(@Param("boxInfoVOList") List<BoxInfoVO> boxInfoVOList);

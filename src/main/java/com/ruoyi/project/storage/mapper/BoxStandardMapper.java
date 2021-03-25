@@ -5,7 +5,10 @@ import com.ruoyi.project.storage.domain.vo.BoxStandardVO;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/12 10:37
+ */
 public interface BoxStandardMapper {
 
     List<BoxStandardVO> findBoxStandardList(BoxStandardVO boxStandardVO);

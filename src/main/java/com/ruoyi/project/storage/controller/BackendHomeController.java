@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
+/**
+ * @author LongHaiJiang
+ * @date 2021/3/13 8:09
+ */
 @RestController
 @RequestMapping("/backend/home")
 public class BackendHomeController extends BaseController {
