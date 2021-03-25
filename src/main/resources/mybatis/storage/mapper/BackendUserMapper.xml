@@ -26,9 +26,9 @@
     </resultMap>
     <insert id="createUser" parameterType="com.ruoyi.project.storage.domain.vo.UserVO">
         INSERT INTO sys_user(user_name, nick_name, email, phonenumber, sex, create_time, create_by, user_type,
-                             password)
+                             password,current_points,version)
         VALUES (#{userName}, #{nickName}, #{email}, #{phonenumber}, #{sex}, #{createTime}, #{createBy}, #{userType},
-                #{password})
+                #{password},#{currentPoints},#{version})
     </insert>
     <update id="updateUser" parameterType="com.ruoyi.project.storage.domain.vo.UserVO">
         UPDATE sys_user
