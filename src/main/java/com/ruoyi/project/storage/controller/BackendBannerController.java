@@ -68,7 +68,7 @@ public class BackendBannerController extends BaseController {
     /**
      * 删除广告
      *
-     * @param ids ids
+     * @param ids delete ids
      * @return 结果
      */
     @DeleteMapping("/delete/{ids}")
