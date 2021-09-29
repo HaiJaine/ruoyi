@@ -25,7 +25,7 @@ public class BackendAdviceController extends BaseController {
     private BackendAdviceService backendAdviceService;
 
     /*
-    查询意见建议（使用分页）
+     * 查询意见建议（使用分页）
      */
     @GetMapping("/list")
     public TableDataInfo getAdviceList(Params params) {
@@ -33,4 +33,5 @@ public class BackendAdviceController extends BaseController {
         List<AdviceVO> adviceVOList = backendAdviceService.findAdviceList(params);
         return getDataTable(adviceVOList);
     }
+
 }
